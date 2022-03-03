@@ -66,21 +66,11 @@
                                 <li>Carnet militar.</li>
                                 <br>
                                 <h6 class="card-title">Si tienes toda la documentación puedes hacer clic en "PREINSCRIPCIÓN" y llenar el formulario.</h6><br><br><br>                         
-                            <a href="#" class="btn btn-danger">PREINSCRIPCIÓN</a><br>
+                            <a href="<?php echo base_url(); ?>preinscripcion/preinscripcion/RegistroAspirante" class="btn btn-danger">PREINSCRIPCIÓN</a><br>
                             </div>
                        
                     </div><!-- /.card -->
                    
-
-                    <!-- <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <h5 class="card-title m-0">Preinscripción</h5>
-                        </div>
-                        <div class="card-body">
-                            <h6 class="card-title">Hacer clic en "PREINSCRIPCIÓN" y llena el formulario</h6>                            
-                            <a href="#" class="btn btn-primary">PREINSCRIPCIÓN</a>
-                        </div>
-                    </div> -->
                 </div>
                 <!-- /.col-md-6 -->
             </div>

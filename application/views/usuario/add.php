@@ -66,7 +66,7 @@
 
                   <!-- /.card-body -->
                   <hr class="info">
-                  <div class="">                   
+                  <div class="">
                     <a href="<?php echo base_url(); ?>usuarios/usuarios" class="btn btn-app">
                       <i class="fas fa-reply-all color_rojo"></i> Cancelar
                     </a>

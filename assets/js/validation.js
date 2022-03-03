@@ -65,13 +65,13 @@ $(document).ready(function () {
 
        }
 
-       if($("#email").val().indexOf('@', 0) == -1 || $("#email").val().indexOf('.', 0) == -1) {
-        send--;
-        $("#email").addClass("error")       
-       }
+    //    if($("#email").val().indexOf('@', 0) == -1 || $("#email").val().indexOf('.', 0) == -1) {
+    //     send--;
+    //     $("#email").addClass("error")       
+    //    }
        
        if (send == 6) {
-        $( "#new_user" ).submit();
+        $( "#new_asp" ).submit();
        }
     });
    

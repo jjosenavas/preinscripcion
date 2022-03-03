@@ -2,9 +2,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-        <img src="<?php echo base_url(); ?>assets/template/dist/img/logo.png" alt="Logo seminario" class="brand-image img-circle elevation-3" style="opacity: 1">
+        <img src="<?php echo base_url(); ?>assets/img/feyalegria.png" alt="Logo seminario" class="brand-image img-circle elevation-3" style="opacity: 1">
         <span class="brand-text font-weight-light">
-            <h4><strong>Sistema <small><strong>"QR"</strong></small></strong></h4>
+            <h4><strong>Preinscripciones<small></small></strong></h4>
         </span>
     </a>
 

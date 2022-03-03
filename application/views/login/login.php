@@ -23,11 +23,13 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>Sistema</b>Preinscripción</a>
+            <img src="<?php echo base_url(); ?>assets/img/logoiujo.gif" alt="Logo Institucional" width="250" height="65"><br>
+            <a href="#"><b>Preinscripciones</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
+
                 <p class="login-box-msg">Introduzca sus datos para iniciar</p>
                 <?php if ($this->session->flashdata("error")) : ?>
                     <div class="alert alert-danger">

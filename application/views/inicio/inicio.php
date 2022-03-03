@@ -24,7 +24,7 @@
                          <div class="inner">
                              <h3>150</h3>
 
-                             <p>Total Usuarios</p>
+                             <p>Total preinscriptos</p>
                          </div>
                          <div class="icon">
                              <i class="ion ion-person-add"></i>
@@ -39,7 +39,7 @@
                          <div class="inner">
                              <h3>53<sup style="font-size: 20px"></sup></h3>
 
-                             <p>Total Seminaristas</p>
+                             <p>Total ...</p>
                          </div>
                          <div class="icon">
                              <i class="ion ion-stats-bars"></i>
@@ -54,7 +54,7 @@
                          <div class="inner">
                              <h3>44</h3>
 
-                             <p>Total Profesores</p>
+                             <p>Total ...</p>
                          </div>
                          <div class="icon">
                              <i class="ion ion-person-add"></i>
@@ -69,7 +69,7 @@
                          <div class="inner">
                              <h3>65</h3>
 
-                             <p>Total cursos</p>
+                             <p>Total ...</p>
                          </div>
                          <div class="icon">
                              <i class="ion ion-pie-graph"></i>

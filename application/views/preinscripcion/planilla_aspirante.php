@@ -19,7 +19,7 @@
                 <div class="col-lg-6">
                     <div class="card card-danger card-outline">
                         <div class="card-header">
-                            <h5 class="card-title m-0">Estimado Estudiante: <?php var_dump($data)  ?></h5>
+                            <h5 class="card-title m-0">Estimado Estudiante: </h5>
                         </div>
                         <div class="card-body">
                             <h6 class="card-title"> Te ofrecemos la oportunidad de formarte como Técnico Superior Univesitario (TSU) en las

@@ -1,0 +1,15 @@
+.error {  
+    border-color: red;
+}
+
+.send {  
+    border-color: rgb(11, 138, 49);
+}
+
+.color_rojo {
+  color: rgb(230, 17, 17);
+}
+
+.color_info {
+    color: #17a2b8;
+  }

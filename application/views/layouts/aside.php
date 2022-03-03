@@ -31,6 +31,12 @@
                                 <p>inicio</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?php echo base_url(); ?>preinscripcion/preinscripcion" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Preinscripción</p>
+                            </a>
+                        </li>
 
                     </ul>
                 </li>

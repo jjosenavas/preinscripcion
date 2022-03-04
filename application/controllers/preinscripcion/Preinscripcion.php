@@ -3,8 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Preinscripcion extends CI_Controller
 {
-
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -49,29 +47,31 @@ class Preinscripcion extends CI_Controller
 		$serial_titulo = $this->input->post("serial");
 
 		$data  = array(
-			'cedula' => $cedula,
-			'nombre1' => $p_nombre,
-			'nombre2' => $s_nombre,
-			'apellido1' => $p_apellido,
-			'apellido2' => $s_apellido,
-			'fechanac' => $fecha_nac,
-			'lugarnac' => $lug_nac,
-			'sexo' => $sexo,
-			'estadocivil' => $edo_civil,
-			'direccion' => $direccion,
-			'email' => $email,
-			'telefono' => $telefono,
-			'plantel' => $plantel,
-			'egreso' => $ano_egreso,
-			'carrera' => $carrera,
-			'rusnies'  => $rusnies,
+			'cedula'        => $cedula,
+			'nombre1'       => $p_nombre,
+			'nombre2'       => $s_nombre,
+			'apellido1'     => $p_apellido,
+			'apellido2'     => $s_apellido,
+			'fechanac'      => $fecha_nac,
+			'lugarnac'      => $lug_nac,
+			'sexo'          => $sexo,
+			'estadocivil'   => $edo_civil,
+			'direccion'     => $direccion,
+			'email'         => $email,
+			'telefono'      => $telefono,
+			'plantel'       => $plantel,
+			'egreso'        => $ano_egreso,
+			'carrera'       => $carrera,
+			'rusnies'       => $rusnies,
 			'serial_titulo' => $serial_titulo,
-			'status' => '1'
+			'status'        => '1'
 		);
 
 
 		if ($this->Aspirante_model->save($data)) {
-			redirect(base_url() . "preinscripcion/preinscripcion");
+
+			$id_aspirante = $this->Aspirante_model->lastID();
+			redirect(base_url() . "preinscripcion/preinscripcion/resultadoRegistro/$id_aspirante");			
 		} else {
 			$this->session->set_flashdata("error", "No se pudo guardar la informacion");
 			redirect(base_url() . "preinscripcion/preinscripcion/RegistroAspirante");
@@ -80,13 +80,12 @@ class Preinscripcion extends CI_Controller
 
 	public function verificarAspirante()
 	{
-		$cedula        = $this->input->post("cedula");
+		$cedula = $this->input->post("cedula");
 
+		if ($ce = $this->Aspirante_model->getAspiranteNew($cedula)) {
 
-
-		if ($this->Aspirante_model->getAspiranteNew($cedula)) {
 			$this->load->view("layouts/header_pre");
-			$this->load->view("preinscripcion/planilla_aspirante");
+			$this->load->view("preinscripcion/planilla_aspirante", $ce);
 			$this->load->view("layouts/footer");
 			$this->load->view("layouts/close_body");
 		} else {
@@ -96,5 +95,15 @@ class Preinscripcion extends CI_Controller
 			$this->load->view("layouts/validation");
 			$this->load->view("layouts/close_body");
 		}
+	}
+
+	public function resultadoRegistro($id)
+	{
+		$result = $this->Aspirante_model->getAspiranteRegi($id);
+		
+		$this->load->view("layouts/header_pre");
+		$this->load->view("preinscripcion/planilla_registro",$result);
+		$this->load->view("layouts/footer");
+		$this->load->view("layouts/close_body");
 	}
 }

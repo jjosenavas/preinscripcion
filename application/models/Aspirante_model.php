@@ -15,4 +15,22 @@ class Aspirante_model extends CI_Model
         $resultados = $this->db->get("aspirante");
         return $resultados->row();
     }
+
+    public function getAspiranteRegi($id)
+    {
+        $this->db->where("id", $id);
+        $resultados = $this->db->get("aspirante");
+        return $resultados->row();
+    }
+
+    public function lastID()
+    {
+        $maxid = 0;
+        $row = $this->db->query('SELECT MAX(id) AS `maxid` FROM `aspirante`')->row();
+        if ($row) {
+            $maxid = $row->maxid;
+        }
+
+        return (int) $maxid;
+    }
 }

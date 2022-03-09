@@ -78,7 +78,7 @@ class Preinscripcion extends CI_Controller
 		$sexo          = $this->input->post("sexo");
 		$edo_civil     = $this->input->post("estado_civil");
 		$direccion     = $this->input->post("direccion");
-		$email         = 'jjosenavasp@gmail.com';//$this->input->post("email");
+		$email         = $this->input->post("email");
 		$telefono      = $this->input->post("telefono");
 		$plantel       = $this->input->post("plantel");
 		$ano_egreso    = $this->input->post("ano_egre");

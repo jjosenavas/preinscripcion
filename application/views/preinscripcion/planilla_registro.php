@@ -74,12 +74,14 @@
                         </div>
                         <div class="card-body">
                             <p class="card-title"> Usted se ha registrado de forma satisfactoria en la carrera: <strong><?php echo $carrera; ?>.</strong>
-                            El siguiente paso es el envío de los siguentes documentos en formato digital (scaneados):</p>
+                            El siguiente paso es el envío inmediato de los siguentes documentos en formato digital con extensión .jpg (imagen debidamente escaneados) y que sean legibles:</p>
                               <li>Cédula de identidad</li>
                               <li>Título de bachiller</li>
                               <li>Planilla Opsu / Rusnies</li>
                               <li>Notas Certificadas</li>
-                             <p> al correo: <?php echo '<strong>';echo $correo_envio; echo '</strong>'; echo' y la fecha límite de envío es el día ';echo '<strong>';echo $fecha_limite;echo '</strong>'; ?>
+                             <p> Deben ser enviados al correo: <?php echo '<strong>';echo $correo_envio; echo '</strong>'; ?>
+                                 En caso de no poder enviarlos inmediatamente, tendrá como fecha límite para enviar: <?php echo '<strong>';echo $fecha_limite;echo '</strong>'; ?>
+                                 No dejes para última hora el envío de los mismos.
                             </p>
                             <br><br>
 

@@ -83,7 +83,7 @@ class Preinscripcion extends CI_Controller
 		$plantel       = $this->input->post("plantel");
 		$ano_egreso    = $this->input->post("ano_egre");
 		$carrera       = $this->input->post("carrera");
-		$rusnies       = $this->input->post("rusnie");
+		//$rusnies       = $this->input->post("rusnie");
 		$serial_titulo = $this->input->post("serial");
 
 
@@ -106,7 +106,7 @@ class Preinscripcion extends CI_Controller
 			'plantel'       => $plantel,
 			'egreso'        => $ano_egreso,
 			'carrera'       => $carrera,
-			'rusnies'       => $rusnies,
+			//'rusnies'       => $rusnies,
 			'serial_titulo' => $serial_titulo,
 			'status'        => '1',
 			'planilla'      => $nun_planilla,

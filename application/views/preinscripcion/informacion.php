@@ -123,17 +123,15 @@
                 <div class="col-lg-6">
                     <div class="card card-danger card-outline">
                         <div class="card-header">
-                            <h5 class="card-title">Para este proceso de preinscripción es importante tener:</h5><br>
+                            <h5 class="card-title">Para este proceso de selección y admisión debes tener los siguientes documentos, debidamente escaneados:</h5><br>
                         </div>
                         <div class="card-body">
+                        <li>Cédula de identidad vigente.</li>
                             <li>Título de bachiller original autenticado.</li>
-                            <li>Notas certificadas.</li>
-                            <li>Cédula de identidad vigente.</li>
-                            <li>Carta de buena conducta.</li>
-                            <li>Partida de nacimiento.</li>
-                            <li>Carnet militar. (opcional)</li>
+                            <li>Notas certificadas.</li>                            
+                            <li>Certificado OPSU</li>
                             <br>
-                            <h6 class="card-title">Si tienes toda la documentación puedes colocar el número de cédula hacer clic en "PREINSCRIPCIÓN"
+                            <h6 class="card-title">Si tienes toda la documentación puedes ingresar cédula de identidad sin puntos y hacer clic en "PREINSCRIPCIÓN"
                                 y llenar el formulario que se te presentará.</h6><br><br><br>
                             <?php if ($carrera_ofertada != 'Proceso inactivo') : ?>
                                 <form id="consulta_form" action="<?php echo base_url(); ?>preinscripcion/preinscripcion/verificarAspirante" method="POST">

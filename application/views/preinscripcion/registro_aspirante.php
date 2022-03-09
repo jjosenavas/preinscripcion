@@ -74,7 +74,7 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="cedula">Cédula</label>
-                                                            <input minlength="8" maxlength="8" type="text" class="form-control form-control-sm" name="cedula" id="cedula" onkeypress="return soloNumeros(event)" onblur="comprobarCedula()" required>
+                                                            <input minlength="8" maxlength="8" type="text"  class="form-control form-control-sm" name="cedula" id="cedula" onkeypress="return soloNumeros(event)" onblur="comprobarCedula()" required>
                                                             <span id="cedula_message"></span>
                                                             <span id="cedula_data" style="color:red; font-size: 12px;"></span>
                                                         </div>
@@ -82,7 +82,7 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="Nombres">Primer nombre</label>
-                                                            <input minlength="3" maxlength="45" type="text" class="form-control form-control-sm" name="p_nombre" id="p_nombre" onkeypress="return soloLetras(event)">
+                                                            <input minlength="3" maxlength="45" type="text" onkeypress="nextel(event)" class="form-control form-control-sm" name="p_nombre" id="p_nombre" onkeypress="return soloLetras(event)">
                                                             <span id="p_nombre_message"></span>
                                                         </div>
                                                     </div>
@@ -163,7 +163,7 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="Email">Correo Electrónico</label>
-                                                            <input type="text" class="form-control form-control-sm" name="email" id="email" required>
+                                                            <input type="text" class="form-control form-control-sm" name="email" id="email" onblur="validarEmail()" required>
                                                             <span id="email_message"></span>
                                                         </div>                                                        
                                                     </div>
@@ -189,7 +189,7 @@
                                                             <label for="ano_egre">Año de egreso</label>
                                                             <select name="ano_egre" id="ano_egre" class="form-control form-control-sm" required>
                                                                 <option value='' selected>Seleccione año</option>
-                                                                <?php for ($i = date('o'); $i >= 2000; $i--) {
+                                                                <?php for ($i = date('o'); $i >= 1985; $i--) {
 
                                                                     echo '<option value="' . $i . '">' . $i . '</option>';
                                                                 }
@@ -198,14 +198,14 @@
                                                             <span id="ano_egre_message"></span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-3">
+                                                    <!-- <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="rusnie">RUSNIES (OPSU)</label>
                                                             <input minlength="11" maxlength="16" type="text" class="form-control form-control-sm" name="rusnie" id="rusnie" onkeypress="return soloNumeros(event)" onblur="comprobarRusnies()">
                                                             <span id="rusnie_message"></span>
                                                             <span id="rusnie_data" style="color:red; font-size: 14px;"></span>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="serial">Serial del título de bachiller</label>

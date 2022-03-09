@@ -112,4 +112,19 @@
             error: function() {}
         });
     }
+
+	function validarEmail() {
+		valor = $("#email").val();
+		re=/^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+     	if(!re.exec(valor))
+			{			
+			$("#email").css("border-color", "#FF0000");
+			$("#email_message").text(
+				"El correo electrónico no cumple con el formato."
+			);
+		} else {
+			$("#email").css("border-color", "#228B22");
+			$("#email_message").text("");
+		}
+    }
 </script>

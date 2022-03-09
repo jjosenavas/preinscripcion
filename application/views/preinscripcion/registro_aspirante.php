@@ -53,7 +53,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="callout callout-danger">
-                        <h5><i class="fas fa-info"></i> Importante:</h5>
+                    <h5><i class="fas fa-info tamano_icono"></i>mportante:</h5>
                         Este es el primer paso para ti que quieres formarte en una carrera universitaria en nuestro instituto.
                         Registra cada uno de los datos que se solicitan, deben ser actualizados y reales, no dejes datos en blanco.
                     </div>

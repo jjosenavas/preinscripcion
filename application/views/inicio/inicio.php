@@ -29,7 +29,7 @@
                          <div class="icon">
                              <i class="ion ion-person-add"></i>
                          </div>
-                         <a href="#" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+                         <a href="<?php echo base_url(); ?>seguimiento/seguimiento" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                  </div>
                  <!-- ./col -->

@@ -23,22 +23,25 @@
 
     if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) {
         $correo_envio = "admisioniujoeducacion@gmail.com";
-        $fecha_limite = 'Domingo 20-03-2022';
+        $fecha_limite = 'Sábado 19-03-2022';
     } else if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) {
         $correo_envio = "admisioniujoelectro@gmail.com";
-        $fecha_limite = 'Domingo 03-04-2022';
+        $fecha_limite = 'Domingo 26-03-2022';
     } else if ($fecha_actual >= $fecha_mecanica_desde && $fecha_actual <= $fecha_mecanica_hasta) {
         $correo_envio = "admisioniujomecanica@gmail.com";
-        $fecha_limite = 'Domingo 27-03-2022';
+        $fecha_limite = 'Domingo 02-04-2022';
     } else if ($fecha_actual >= $fecha_informatica_desde && $fecha_actual <= $fecha_informatica_hasta) {
         $correo_envio = "admisioniujoinformatica@gmail.com";
-        $fecha_limite = 'Domingo 10-04-2022';
+        $fecha_limite = 'Domingo 09-04-2022';
     } else if ($fecha_actual >= $fecha_admin_empre_desde && $fecha_actual <= $fecha_admin_empre_hasta) {
         $correo_envio = "admisioniujoadm@gmail.com";
-        $fecha_limite = 'Domingo 24-04-2022';
+        $fecha_limite = 'Domingo 23-04-2022';
     } else if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) {
         $correo_envio = "admisioniujocontaduria@gmail.com";
-        $fecha_limite = 'Domingo 01-05-2022';
+        $fecha_limite = 'Domingo 30-04-2022';
+    }else if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) {
+        
+        $fecha_limite = 'Domingo 30-04-2022';
     }
     ?>
 
@@ -90,6 +93,7 @@
                                  En caso de no poder enviarlos inmediatamente, tendrá como fecha límite para enviar: <?php echo '<strong>';echo $fecha_limite;echo '</strong>'; ?>
                                  No dejes para última hora el envío de los mismos.
                             </p>
+                            <p><strong>Nota:</strong> Hemos enviado a <strong><?php echo $email ?></strong> la información necesaria para el envío de la documentación. Es posible que el correo te llegue como spam o correo no deseado, en este sentido, debes revisar la sección de spam de tu correo electrónico y marcarlo como correo deseado o seguro. </p>
                             <br><br>
 
                         </div>

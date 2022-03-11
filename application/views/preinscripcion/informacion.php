@@ -18,23 +18,23 @@
     $fecha_rezagados_desde       = strtotime("02-05-2022");
     $fecha_rezagados_hasta       = strtotime("03-05-2022");
 
-    $carrera_ofertada = 'Proceso inactivo';
+    $carrera_ofertada = 1;
     $imagen_carrera = '';
-
+    // var_dump($fecha_actual);echo 'actual <br>';var_dump($fecha_educacion_desde);echo 'desde <br>';var_dump($fecha_rezagados_hasta);echo 'hasta';exit;
     if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) {
-
-        $carrera_ofertada = "<li>EDUCACIÓN INTEGRAL</li><li>EDUCACIÓN PREESCOLAR</li><li>EDUCACIÓN ESPECIAL</li>";
-        $imagen_carrera   = "<img src='<?php echo base_url();?>assets/img/educacion.png' alt='Educación'>";
+        $carrera_ofertada = "<li>EDUCACIÓN INTEGRAL</li><li>EDUCACIÓN PREESCOLAR</li><li>EDUCACIÓN ESPECIAL</li>";        
     } else if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) {
-        $carrera_ofertada = "<li>Electrónica</li>";
+        $carrera_ofertada = "<li>ELECTRÓNICA</li><li>ELECTROTECNIA</li>";
     } else if ($fecha_actual >= $fecha_mecanica_desde && $fecha_actual <= $fecha_mecanica_hasta) {
-        $carrera_ofertada = "<li>Mecánica</li>";
+        $carrera_ofertada = "<li>MECÁNICA</li>";
     } else if ($fecha_actual >= $fecha_informatica_desde && $fecha_actual <= $fecha_informatica_hasta) {
-        $carrera_ofertada = "<li>Informatica</li>";
+        $carrera_ofertada = "<li>INFORMÁTICA</li>";
     } else if ($fecha_actual >= $fecha_admin_empre_desde && $fecha_actual <= $fecha_admin_empre_hasta) {
-        $carrera_ofertada = "<li>Administración de empresas</li>";
+        $carrera_ofertada = "<li>ADMINISTRACIÓN DE EMPRESAS</li>";
     } else if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) {
-        $carrera_ofertada = "<li>Contaduría</li>";
+        $carrera_ofertada = "<li>CONTADURÍA</li>";
+    } else if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) {
+        $carrera_ofertada = "<li>EDUCACIÓN INTEGRAL</li><li>EDUCACIÓN PREESCOLAR</li><li>EDUCACIÓN ESPECIAL</li><li>ELECTRÓNICA</li><li>ELECTROTECNIA</li><li>MECÁNICA</li><li>INFORMÁTICA</li><li>ADMINISTRACIÓN DE EMPRESAS</li><li>CONTADURÍA</li>";
     }
 
     ?>
@@ -63,37 +63,37 @@
                                 carreras de:</h6><br><br>
 
                             <p class="card-text">
-                                <?php if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) :  ?>
-                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion1.jpg' alt="First slide">
+                              <?php if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) :  ?>
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                        </ol>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion1.jpg' alt="First slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion2.jpg' alt="Second slide">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion3.jpg' alt="Third slide">
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                            <span class="carousel-control-custom-icon" aria-hidden="true">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                            <span class="carousel-control-custom-icon" aria-hidden="true">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
                                     </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion2.jpg' alt="Second slide">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion3.jpg' alt="Third slide">
-                                    </div>
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                    <span class="carousel-control-custom-icon" aria-hidden="true">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                    <span class="carousel-control-custom-icon" aria-hidden="true">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
                             <!-- <img src='<?php echo base_url(); ?>assets/img/educacion.png' alt='Educación'> -->
                         <?php endif; ?>
                         <?php if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) :  ?>
@@ -114,7 +114,12 @@
                         <?php if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) :  ?>
                             <?php echo $carrera_ofertada; ?>
                         <?php endif; ?>
-
+                        <?php if ($fecha_actual < $fecha_educacion_desde) :  ?>
+                            <?php echo '<p style="color: red; font-size: 25px;">Proceso inactivo, comienza el lunes 14-03-2022</p>'; ?>
+                        <?php endif; ?>
+                        <?php if ($fecha_actual > $fecha_rezagados_hasta) :  ?>
+                            <?php echo '<p style="color: red; font-size: 25px;">Proceso culminado</p>'; ?>
+                        <?php endif; ?>
                         </p>
                         </div>
                     </div>
@@ -126,21 +131,21 @@
                             <h5 class="card-title">Para este proceso de selección y admisión debes tener los siguientes documentos, debidamente escaneados:</h5><br>
                         </div>
                         <div class="card-body">
-                        <li>Cédula de identidad vigente.</li>
+                            <li>Cédula de identidad vigente.</li>
                             <li>Título de bachiller original autenticado.</li>
-                            <li>Notas certificadas.</li>                            
+                            <li>Notas certificadas.</li>
                             <li>Certificado OPSU</li>
                             <br>
                             <h6 class="card-title">Si tienes toda la documentación puedes ingresar cédula de identidad sin puntos y hacer clic en "PREINSCRIPCIÓN"
                                 y llenar el formulario que se te presentará.</h6><br><br><br>
-                            <?php if ($carrera_ofertada != 'Proceso inactivo') : ?>
+                            <?php if ($carrera_ofertada != 1) : ?>
                                 <form id="consulta_form" action="<?php echo base_url(); ?>preinscripcion/preinscripcion/verificarAspirante" method="POST">
                                     <div class="input-group input-group-sm">
                                         <input type="text" class="form-control" name="cedula" id="cedula" maxlength="8" minlength="7" onkeypress="return soloNumeros(event)">
-                                       
+
                                         <span class="input-group-append">
                                             <button id="btn_cedula" type="submit" class="btn btn-info btn-flat">PREINSCRIPCIÓN</button>
-                                        </span>                                        
+                                        </span>
                                     </div>
                                     <span id="cedula_message"></span>
                                 </form>

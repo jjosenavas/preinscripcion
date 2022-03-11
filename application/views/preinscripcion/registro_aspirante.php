@@ -23,15 +23,17 @@
 
         $carrera_ofertada = "<option value='Educación integral'>EDUCACIÓN INTEGRAL</option><option value='Educación preescolar'>EDUCACIÓN PREESCOLAR</option><option value='Educación especial'>EDUCACIÓN ESPECIAL</option>";
     } else if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) {
-        $carrera_ofertada = "<option value='Electrónica'>ELECTRONICA</option><option value='Electrotecnia'>ELECTROTECNIA</option>";
+        $carrera_ofertada = "<option value='Electrónica'>ELECTRÓNICA</option><option value='Electrotecnia'>ELECTROTECNIA</option>";
     } else if ($fecha_actual >= $fecha_mecanica_desde && $fecha_actual <= $fecha_mecanica_hasta) {
-        $carrera_ofertada = "<option value='Mecánica'>MECANIICA</option>";
+        $carrera_ofertada = "<option value='Mecánica'>MECÁNICA</option>";
     } else if ($fecha_actual >= $fecha_informatica_desde && $fecha_actual <= $fecha_informatica_hasta) {
         $carrera_ofertada = "<option value='Informática'>INFORMÁTICA</option>";
     } else if ($fecha_actual >= $fecha_admin_empre_desde && $fecha_actual <= $fecha_admin_empre_hasta) {
         $carrera_ofertada = "<option value='Administración de empresas'>ADMINISTRACIÓN DE EMPRESAS</option>";
     } else if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) {
         $carrera_ofertada = "<option value='Contaduría'>CONTADURÍA</option>";
+    }else if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) {
+        $carrera_ofertada = "<option value='Educación integral'>EDUCACIÓN INTEGRAL</option><option value='Educación preescolar'>EDUCACIÓN PREESCOLAR</option><option value='Educación especial'>EDUCACIÓN ESPECIAL</option><option value='Electrónica'>ELECTRÓNICA</option><option value='Electrotecnia'>ELECTROTECNIA</option><option value='Mecánica'>MECÁNICA</option><option value='Informática'>INFORMÁTICA</option><option value='Administración de empresas'>ADMINISTRACIÓN DE EMPRESAS</option><option value='Contaduría'>CONTADURÍA</option>";
     }
 
     ?>
@@ -210,7 +212,7 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="serial">Serial del título de bachiller</label>
-                                                            <input minlength="11" maxlength="16" title="Coloca el serial que tiene tu título de bachiller, debe tener una longitud de 10 caracteres" type="text" class="form-control form-control-sm" name="serial" id="serial" onkeypress="return alfanumerico(event)" onblur="comprobarTitulo()">
+                                                            <input minlength="10" maxlength="11" title="Coloca el serial que tiene tu título de bachiller, debe tener una longitud de 10 caracteres" type="text" class="form-control form-control-sm" name="serial" id="serial" onkeypress="return alfanumerico(event)" onblur="comprobarTitulo()">
                                                             <span id="serial_message"></span>
                                                             <span id="titulo_data" style="color:red; font-size: 14px;"></span>
                                                         </div>

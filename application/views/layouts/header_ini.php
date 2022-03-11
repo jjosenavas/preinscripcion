@@ -10,6 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>Sistema preinscripción</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/feyalegria.ico">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/template/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->

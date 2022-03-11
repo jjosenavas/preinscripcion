@@ -162,11 +162,11 @@ $(document).ready(function () {
 		}
 
 
-		if (serial.length < 16) {
+		if (serial.length < 10 || serial.length > 11) {
 			send--;
 			$("#serial").css("border-color", "#FF0000");
 			$("#serial_message").text(
-				"El campo serial no puede estar vacío o es menor a 16 caracteres"
+				"El campo serial no puede estar vacío y bede estar entre 10 u 11 caracteres"
 			);
 		} else {
 			send++;

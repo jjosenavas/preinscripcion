@@ -6,7 +6,7 @@
 		key = e.keyCode || e.which;
 		teclado = String.fromCharCode(key);
 		letras =
-			" abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+			" abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ";
 		especiales = "9-8-37-38-46-164";
 		teclado_especial = false;
 		for (var i in especiales) {
@@ -257,5 +257,9 @@
 			delay: 250
 		}
 		});    
+    } );
+
+	$( function() {
+		$( "#p_nombre" ).focus();
     } );
 </script>

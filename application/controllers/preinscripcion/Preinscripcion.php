@@ -45,57 +45,7 @@ class Preinscripcion extends CI_Controller
 		$ano_egreso    = $this->input->post("ano_egre");
 		$carrera       = $this->input->post("carrera");
 		$rusnies       = $this->input->post("rusnie");
-		$serial_titulo = $this->input->post("serial");
-
-		//Indicamos el protocolo a utilizar
-		$config['protocol'] = 'smtp';
-
-		//El servidor de correo que utilizaremos
-		$config["smtp_host"] = 'smtp.gmail.com';
-
-		//Nuestro usuario
-		$config["smtp_user"] = 'jjosenavasp@gmail.com';
-
-		//Nuestra contraseña
-		$config["smtp_pass"] = 'oriana20';
-
-		//El puerto que utilizará el servidor smtp
-		$config["smtp_port"] = '587';
-
-		//El juego de caracteres a utilizar
-		$config['charset'] = 'utf-8';
-
-		//Permitimos que se puedan cortar palabras
-		$config['wordwrap'] = TRUE;
-
-		//El email debe ser valido 
-		$config['validate'] = true;
-
-		//Establecemos esta configuración
-		$this->email->initialize($config);
-
-		//Ponemos la dirección de correo que enviará el email y un nombre
-		$this->email->from('jjosenavasp@gmail.com', 'Prueba');
-		/*
-         Ponemos el o los destinatarios para los que va el email
-      
-       */
-		$this->email->to($email, $p_nombre . ' ' . $p_apellido);
-
-		
-
-		//Definimos el mensaje a enviar
-		$this->email->message(
-			"Email: " . $email .
-				" Mensaje: " . 'Esto es el mensaje'
-		);
-		if ($env = $this->email->send()) {
-			$si =2;
-		} else {
-			$si =0;
-		}
-
-       
+		$serial_titulo = $this->input->post("serial");       
 
 
 		$nun_planilla = $this->Aspirante_model->numeroPlanilla();
@@ -125,6 +75,16 @@ class Preinscripcion extends CI_Controller
 
 
 		if ($this->Aspirante_model->save($data)) {
+
+			$this->load->library('email');       
+
+			$this->email->from('jjosenavas@hotmail.com', 'Jose Navas');
+			$this->email->to('jjosenavasp@gmail.com');
+			$this->email->cc('jjosenavas@hotmail.com');
+			$this->email->bcc('jjosenavasp@gmail.com');
+			$this->email->subject('Envío de documentos luego de la preinscripción.');
+			$this->email->message('Esto es una prueba de correo con gmail. Por favor revisa la bandeja de spam por si acaso. Envia tus documentos al correo jjosenavasp@gmail.com');
+			$this->email->send();
 
 			$id_aspirante = $this->Aspirante_model->lastID();
 			redirect(base_url() . "preinscripcion/preinscripcion/resultadoRegistro/$id_aspirante");

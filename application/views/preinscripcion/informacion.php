@@ -24,7 +24,7 @@
     if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) {
 
         $carrera_ofertada = "<li>EDUCACIÓN INTEGRAL</li><li>EDUCACIÓN PREESCOLAR</li><li>EDUCACIÓN ESPECIAL</li>";
-        $imagen_carrera   = "<img src='<?php echo base_url(); ?>assets/img/educacion.png' alt='Educación'>";
+        $imagen_carrera   = "<img src='<?php echo base_url();?>assets/img/educacion.png' alt='Educación'>";
     } else if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) {
         $carrera_ofertada = "<li>Electrónica</li>";
 
@@ -60,19 +60,17 @@
                 <div class="col-lg-6">
                     <div class="card card-danger card-outline">
                         <div class="card-header">
-                            <h5 class="card-title m-0">Estimado Estudiante</h5>
+                            <h5 class="card-title m-0">Estimado Aspirante</h5>
                         </div>
                         <div class="card-body">
                             <h6 class="card-title"> Te ofrecemos la oportunidad de formarte como Técnico Superior Univesitario (TSU) en las
-                                carreras de:</h6>
+                                carreras de:</h6><br><br>
 
                             <p class="card-text">
-                                <?php echo '<h1 class="color_rojo">';
-                                echo $carrera_ofertada;                                
-                                echo '</h1>'; 
-                                echo $imagen_carrera;
-                                ?>
-                               <!-- <img src="<?php //echo base_url(); ?>assets/img/educacion.png" alt="Educación"> -->
+                                <?php if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) :  ?>                              
+                                   <img src='<?php echo base_url();?>assets/img/educacion.png' alt='Educación'>                            
+                                <?php endif;?>
+                               
                             </p>
                         </div>
                     </div>
@@ -91,8 +89,8 @@
                             <li>Partida de nacimiento.</li>
                             <li>Carnet militar.</li>
                             <br>
-                            <h6 class="card-title">Si tienes toda la documentación puedes hacer clic en "PREINSCRIPCIÓN"
-                                y llenar el formulario.</h6><br><br><br>
+                            <h6 class="card-title">Si tienes toda la documentación puedes colocar el número de cédula hacer clic en "PREINSCRIPCIÓN"
+                                y llenar el formulario que se te presentará.</h6><br><br><br>
                             <?php if ($carrera_ofertada != 'Proceso inactivo') : ?>
                                 <form action="<?php echo base_url(); ?>preinscripcion/preinscripcion/verificarAspirante" method="POST">
                                     <div class="input-group input-group-sm">

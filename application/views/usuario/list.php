@@ -7,6 +7,19 @@
   </section>
   <!-- Main content -->
   <section class="content">
+  <?php if($this->session->flashdata("procede")):?>
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <p><i class="icon fa fa-check"></i><?php echo $this->session->flashdata("procede"); ?></p>
+          </div>
+      <?php endif;?>
+      <?php if($this->session->flashdata("error")):?>
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <p><i class="icon fa  fa-check"></i><?php echo $this->session->flashdata("error"); ?></p>
+
+        </div>
+    <?php endif;?>
     <!-- Default box -->
     <div class="row">
       <div class="col-md-12">
@@ -32,19 +45,16 @@
             </tr>
           </thead>
           <tbody>
-            <?php if (!empty($usuarios)) : ?>
+            <?php $num=0; if (!empty($usuarios)) : ?>
               <?php foreach ($usuarios as $usuarios) : ?>
                 <tr>
-                  <td><?php echo $usuarios->id; ?></td>
+                  <td><?php echo ++$num ?></td>
                   <td><?php echo $usuarios->nombres; ?></td>
                   <td><?php echo $usuarios->apellidos; ?></td>
                   <td><?php echo $usuarios->email; ?></td>
                   <td><?php echo $usuarios->username; ?></td>
                   <td>
-                    <div class="btn-group">
-                      <button type="submit" class="btn btn-info btn-view" data-toggle="modal" data-target="#modal-default" value="<?php echo $usuarios->id; ?>">
-                        <span class="fa fa-eye"></span>
-                      </button>
+                    <div class="btn-group">                      
                       <a href="<?php echo base_url() ?>usuarios/usuarios/edit/<?php echo $usuarios->id; ?>" class="btn btn-warning"><span class="fa fa-pen"></span></a>
                       <!-- <a href="< ?php echo base_url(); ?>usuarios/usuarios/delete/< ?php echo $usuarios->id; ?>" class="btn btn-danger btn_remover"><span class="fa fa-trash"></span></a> -->
                       <button id="eliminar" value="<?php echo $usuarios->id; ?>" type="button" class="btn btn-danger btn_remover"><span class="fa fa-trash"></button>

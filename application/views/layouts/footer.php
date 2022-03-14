@@ -32,19 +32,4 @@
 <script src="<?php echo base_url(); ?>assets/template/plugins/jquery-ui/jquery-ui.js"></script>
 <!-- page script -->
 <script src="<?php echo base_url(); ?>assets/js/lib/moment.js"></script>
-
-<script>
-  $(function () {
-    $("#example1").DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
-        },
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ],
-      "responsive": true,
-      "autoWidth": false,
-    });
-  });
-</script>
+<script src="<?php echo base_url(); ?>assets/js/lib/datetime.js"></script>

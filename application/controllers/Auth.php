@@ -36,8 +36,8 @@ class Auth extends CI_Controller
                 'id' => $res->id,
                 'nombre' => $res->nombres,
                 'username' => $res->username,
-                'login' => TRUE,
-                'foto' =>$res->foto
+                'id_rol' => $res->id_rol,
+                'login' => TRUE
             );
 
             $this->session->set_userdata($data);

@@ -1,8 +1,9 @@
 $(document).ready(function(){
     $('#btn_cedula').click(function() {
         if ($('#cedula').val().length > 8 || $('#cedula').val().length < 7) {
-            $('#cedula').css('border-color','#FF0000');
-            alert('El número de cédula debe ser de 7 u 8 digitos.');
+            $('#cedula').css('border-color','#FF0000');          
+			$("#cedula_message").text("La cédula debe tener 7 u 8 dígitos.").css('color','red');
+            $('#cedula').focus();
             return false;
         }
     });

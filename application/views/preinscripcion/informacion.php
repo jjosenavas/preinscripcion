@@ -72,7 +72,7 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion1.png' alt="First slide">
+                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion1.jpg' alt="First slide">
                                     </div>
                                     <div class="carousel-item">
                                         <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion2.jpg' alt="Second slide">
@@ -137,11 +137,12 @@
                                 <form id="consulta_form" action="<?php echo base_url(); ?>preinscripcion/preinscripcion/verificarAspirante" method="POST">
                                     <div class="input-group input-group-sm">
                                         <input type="text" class="form-control" name="cedula" id="cedula" maxlength="8" minlength="7" onkeypress="return soloNumeros(event)">
+                                       
                                         <span class="input-group-append">
                                             <button id="btn_cedula" type="submit" class="btn btn-info btn-flat">PREINSCRIPCIÓN</button>
-                                        </span>
+                                        </span>                                        
                                     </div>
-
+                                    <span id="cedula_message"></span>
                                 </form>
                             <?php endif; ?>
                         </div>

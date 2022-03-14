@@ -74,25 +74,29 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="cedula">Cédula</label>
-                                                            <input minlength="7" maxlength="8" type="text" class="form-control form-control-sm" name="cedula" id="cedula" onkeypress="return soloNumeros(event)">
+                                                            <input minlength="8" type="text" class="form-control form-control-sm" name="cedula" id="cedula" onkeypress="return soloNumeros(event)" required>
+                                                            <span id="cedula_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="Nombres">Primer nombre</label>
                                                             <input minlength="3" maxlength="45" type="text" class="form-control form-control-sm" name="p_nombre" id="p_nombre" onkeypress="return soloLetras(event)">
+                                                            <span id="p_nombre_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="s_nombre">Segundo nombre</label>
-                                                            <input minlength="3" maxlength="45" type="text" class="form-control form-control-sm" name="s_nombre" id="s_nombre">
+                                                            <input minlength="3" maxlength="45" type="text" class="form-control form-control-sm" name="s_nombre" id="s_nombre" onkeypress="return soloLetras(event)">
+                                                            <span id="s_nombre_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="p_apellido">Primer apellido</label>
                                                             <input minlength="3" maxlength="45" type="text" class="form-control form-control-sm" name="p_apellido" id="p_apellido" onkeypress="return soloLetras(event)">
+                                                            <span id="p_apellido_message"></span>
                                                         </div>
                                                     </div>
 
@@ -107,23 +111,26 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="fecha_nac">Fecha de nacimiento</label>
-                                                            <input type="date" class="form-control form-control-sm" name="fecha_nac" id="fecha_nac">
+                                                            <input type="date" class="form-control form-control-sm" name="fecha_nac" id="fecha_nac" required>
+                                                            <span id="fecha_nac_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="lug_nac">Lugar de nacimiento</label>
-                                                            <input type="text" class="form-control form-control-sm" name="lug_nac" id="lug_nac">
+                                                            <input type="text" class="form-control form-control-sm" name="lug_nac" id="lug_nac" onkeypress="return soloLetras(event)" required>
+                                                            <span id="lug_nac_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="Username">Sexo</label>
-                                                            <select name="sexo" id="sexo" class="form-control form-control-sm">
+                                                            <select name="sexo" id="sexo" class="form-control form-control-sm" required>
                                                                 <option value="">Seleccione...</option>
                                                                 <option value="femenino">Femenino</option>
                                                                 <option value="masculino">Masculino</option>
                                                             </select>
+                                                            <span id="sexo_message"></span>
                                                         </div>
                                                     </div>
 
@@ -141,19 +148,23 @@
                                                                 <option value="concubino">Concubino(a)</option>
                                                                 <option value="divorciado">Divorciado(a)</option>
                                                             </select>
+                                                            <span id="estado_civil_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="direccion">Dirección</label>
-                                                            <input minlength="10" maxlength="300" type="text" class="form-control form-control-sm" name="direccion" id="direccion">
+                                                            <input minlength="10" maxlength="300" type="text" class="form-control form-control-sm" name="direccion" id="direccion" onkeypress="return alfaNumerico(event)" required>
+                                                            <span id="direccion_message"></span>
                                                         </div>
+                                                       
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="Email">Correo Electronico</label>
-                                                            <input type="email" class="form-control form-control-sm" name="email" id="emaill">
-                                                        </div>
+                                                            <input type="text" class="form-control form-control-sm" name="email" id="email" required>
+                                                            <span id="email_message"></span>
+                                                        </div>                                                        
                                                     </div>
                                                 </div>
 
@@ -162,18 +173,20 @@
                                                         <div class="form-group">
                                                             <label for="telefono">Número de teléfono</label>
                                                             <input minlength="10" maxlength="11" type="text" class="form-control form-control-sm" name="telefono" id="telefono" onkeypress="return soloNumeros(event)">
+                                                            <span id="telefono_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="plantel">Nombre del plantel de procedencia</label>
-                                                            <input minlength="10" maxlength="100" type="text" class="form-control form-control-sm" name="plantel" id="plantel">
+                                                            <input minlength="10" maxlength="100" type="text" class="form-control form-control-sm" name="plantel" id="plantel" required>
+                                                            <span id="plantel_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="ano_egre">Año de egreso</label>
-                                                            <select name="ano_egre" id="ano_egre" class="form-control form-control-sm">
+                                                            <select name="ano_egre" id="ano_egre" class="form-control form-control-sm" required>
                                                                 <option value='' selected>Seleccione año</option>
                                                                 <?php for ($i = date('o'); $i >= 2000; $i--) {
 
@@ -181,18 +194,21 @@
                                                                 }
                                                                 ?>
                                                             </select>
+                                                            <span id="ano_egre_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="rusnie">RUSNIES (OPSU)</label>
                                                             <input minlength="11" maxlength="16" type="text" class="form-control form-control-sm" name="rusnie" id="rusnie" onkeypress="return soloNumeros(event)">
+                                                            <span id="rusnie_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="serial">Serial del título de bachiller</label>
                                                             <input minlength="11" maxlength="16" type="text" class="form-control form-control-sm" name="serial" id="serial" onkeypress="return alfanumerico(event)">
+                                                            <span id="serial_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">

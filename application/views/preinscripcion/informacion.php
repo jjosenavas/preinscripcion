@@ -27,16 +27,12 @@
         $imagen_carrera   = "<img src='<?php echo base_url();?>assets/img/educacion.png' alt='Educación'>";
     } else if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) {
         $carrera_ofertada = "<li>Electrónica</li>";
-
     } else if ($fecha_actual >= $fecha_mecanica_desde && $fecha_actual <= $fecha_mecanica_hasta) {
         $carrera_ofertada = "<li>Mecánica</li>";
-
     } else if ($fecha_actual >= $fecha_informatica_desde && $fecha_actual <= $fecha_informatica_hasta) {
         $carrera_ofertada = "<li>Informatica</li>";
-
     } else if ($fecha_actual >= $fecha_admin_empre_desde && $fecha_actual <= $fecha_admin_empre_hasta) {
         $carrera_ofertada = "<li>Administración de empresas</li>";
-
     } else if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) {
         $carrera_ofertada = "<li>Contaduría</li>";
     }
@@ -67,10 +63,10 @@
                                 carreras de:</h6><br><br>
 
                             <p class="card-text">
-                                <?php if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) :  ?>                              
-                                   <img src='<?php echo base_url();?>assets/img/educacion.png' alt='Educación'>                            
-                                <?php endif;?>
-                               
+                                <?php if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) :  ?>
+                                    <img src='<?php echo base_url(); ?>assets/img/educacion.png' alt='Educación'>
+                                <?php endif; ?>
+
                             </p>
                         </div>
                     </div>
@@ -92,11 +88,11 @@
                             <h6 class="card-title">Si tienes toda la documentación puedes colocar el número de cédula hacer clic en "PREINSCRIPCIÓN"
                                 y llenar el formulario que se te presentará.</h6><br><br><br>
                             <?php if ($carrera_ofertada != 'Proceso inactivo') : ?>
-                                <form action="<?php echo base_url(); ?>preinscripcion/preinscripcion/verificarAspirante" method="POST">
+                                <form id="consulta_form" action="<?php echo base_url(); ?>preinscripcion/preinscripcion/verificarAspirante" method="POST">
                                     <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" name="cedula">
+                                        <input type="text" class="form-control" name="cedula" id="cedula" maxlength="8" required onkeypress="return soloNumeros(event)">
                                         <span class="input-group-append">
-                                            <button type="submit" class="btn btn-info btn-flat">PREINSCRIPCIÓN</button>
+                                            <button id="btn_cedula" type="submit" class="btn btn-info btn-flat">PREINSCRIPCIÓN</button>
                                         </span>
                                     </div>
 

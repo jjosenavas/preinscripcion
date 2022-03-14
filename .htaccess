@@ -1,5 +1,4 @@
-Options +FollowSymLinks
-Options -Indexes
+Options Indexes SymLinksIfOwnerMatch
 DirectoryIndex index.html index.php
 RewriteEngine on
 RewriteCond $1 !^(index\.php|images|robots\.txt)

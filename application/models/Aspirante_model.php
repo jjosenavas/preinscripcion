@@ -52,4 +52,20 @@ class Aspirante_model extends CI_Model
 
         return $resultado->num_rows();
     }
+
+    public function comprobarRusnieAspirante($rusnies)
+    { 
+        $this->db->where("rusnies", $rusnies);
+        $resultado = $this->db->get("aspirante");
+
+        return $resultado->num_rows();
+    }
+
+    public function comprobarTituloAspirante($serial)
+    { 
+        $this->db->where("serial_titulo", $serial);
+        $resultado = $this->db->get("aspirante");
+
+        return $resultado->num_rows();
+    }
 }

@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Preinscrición</title>
+    <title>Sistema preinscripción</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -44,9 +44,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
       <a href="" class="navbar-brand">
-      <img src="<?php echo base_url(); ?>assets/img/logoiujo.gif" alt="Logo Institucional" width="200" height="50">
-        <!-- <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-        <!-- <span class="brand-text font-weight-light">AdminLTE 3</span> -->
+      <img src="<?php echo base_url(); ?>assets/img/logoiujo.gif" alt="Logo Institucional" width="200" height="50">        
       </a>
 
 

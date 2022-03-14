@@ -169,5 +169,25 @@ class Preinscripcion extends CI_Controller
        if($respuesta>0) {
           echo "Cédula ya registrado en la base de datos";
         }
-     }
+    }
+
+	public function comprobarRusnies()
+    {   
+        $rusnie_aspirante = $this->input->post("rusnie");
+         $respuesta = $this->Aspirante_model->comprobarRusnieAspirante($rusnie_aspirante);
+      
+       if($respuesta>0) {
+          echo "Código RUSNIES ya registrado en la base de datos";
+        }
+    }
+
+	public function comprobarTitulo()
+    {   
+        $titulo_aspirante = $this->input->post("serial");
+         $respuesta = $this->Aspirante_model->comprobarTituloAspirante($titulo_aspirante);
+      
+       if($respuesta>0) {
+          echo "Serial del título ya está registrado en la base de datos";
+        }
+    }
 }

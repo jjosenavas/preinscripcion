@@ -201,15 +201,17 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="rusnie">RUSNIES (OPSU)</label>
-                                                            <input minlength="11" maxlength="16" type="text" class="form-control form-control-sm" name="rusnie" id="rusnie" onkeypress="return soloNumeros(event)">
+                                                            <input minlength="11" maxlength="16" type="text" class="form-control form-control-sm" name="rusnie" id="rusnie" onkeypress="return soloNumeros(event)" onblur="comprobarRusnies()">
                                                             <span id="rusnie_message"></span>
+                                                            <span id="rusnie_data" style="color:red; font-size: 14px;"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="serial">Serial del título de bachiller</label>
-                                                            <input minlength="11" maxlength="16" type="text" class="form-control form-control-sm" name="serial" id="serial" onkeypress="return alfanumerico(event)">
+                                                            <input minlength="11" maxlength="16" type="text" class="form-control form-control-sm" name="serial" id="serial" onkeypress="return alfanumerico(event)" onblur="comprobarTitulo()">
                                                             <span id="serial_message"></span>
+                                                            <span id="titulo_data" style="color:red; font-size: 14px;"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">

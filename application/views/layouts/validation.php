@@ -74,4 +74,42 @@
             error: function() {}
         });
     }
+
+	function comprobarRusnies() {
+        
+        jQuery.ajax({
+            url: base_url + "preinscripcion/preinscripcion/comprobarRusnies",
+            data: "rusnie=" + $("#rusnie").val(),
+            type: "POST",
+            success: function(data) {
+                if (data == "Código RUSNIES ya registrado en la base de datos") {
+                    
+                    $("#rusnie").focus();
+                }
+    
+                $("#rusnie_data").html(data);
+               
+            },
+            error: function() {}
+        });
+    }
+
+	function comprobarTitulo() {
+        
+        jQuery.ajax({
+            url: base_url + "preinscripcion/preinscripcion/comprobarTitulo",
+            data: "serial=" + $("#serial").val(),
+            type: "POST",
+            success: function(data) {
+                if (data == "Serial del título ya está registrado en la base de datos") {
+                    
+                    $("#serial").focus();
+                }
+    
+                $("#titulo_data").html(data);
+               
+            },
+            error: function() {}
+        });
+    }
 </script>

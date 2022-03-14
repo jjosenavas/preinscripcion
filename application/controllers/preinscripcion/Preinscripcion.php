@@ -29,6 +29,45 @@ class Preinscripcion extends CI_Controller
 
 	public function store()
 	{
+		$fecha_actual                = strtotime(date("d-m-Y", time()));
+		$fecha_educacion_desde       = strtotime("14-03-2022");
+		$fecha_educacion_hasta       = strtotime("18-03-2022");
+		$fecha_electronica_desde     = strtotime("21-03-2022");
+		$fecha_electronica_hasta     = strtotime("25-03-2022");
+		$fecha_mecanica_desde        = strtotime("28-03-2022");
+		$fecha_mecanica_hasta        = strtotime("01-04-2022");
+		$fecha_informatica_desde     = strtotime("04-04-2022");
+		$fecha_informatica_hasta     = strtotime("08-04-2022");
+		$fecha_admin_empre_desde     = strtotime("18-04-2022");
+		$fecha_admin_empre_hasta     = strtotime("22-04-2022");
+		$fecha_contaduria_desde      = strtotime("25-04-2022");
+		$fecha_contaduria_hasta      = strtotime("29-04-2022");
+		$fecha_rezagados_desde       = strtotime("02-05-2022");
+		$fecha_rezagados_hasta       = strtotime("03-05-2022");
+
+		$correo_envio = '';
+		$fecha_limite = '';
+
+		if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) {
+			$correo_envio = "admisioniujoeducacion@gmail.com";
+			$fecha_limite = 'Domingo 20-03-2022';
+		} else if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) {
+			$correo_envio = "admisioniujoelectro@gmail.com";
+			$fecha_limite = 'Domingo 03-04-2022';
+		} else if ($fecha_actual >= $fecha_mecanica_desde && $fecha_actual <= $fecha_mecanica_hasta) {
+			$correo_envio = "admisioniujomecanica@gmail.com";
+			$fecha_limite = 'Domingo 27-03-2022';
+		} else if ($fecha_actual >= $fecha_informatica_desde && $fecha_actual <= $fecha_informatica_hasta) {
+			$correo_envio = "admisioniujoinformatica@gmail.com";
+			$fecha_limite = 'Domingo 10-04-2022';
+		} else if ($fecha_actual >= $fecha_admin_empre_desde && $fecha_actual <= $fecha_admin_empre_hasta) {
+			$correo_envio = "admisioniujoadm@gmail.com";
+			$fecha_limite = 'Domingo 24-04-2022';
+		} else if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) {
+			$correo_envio = "admisioniujocontaduria@gmail.com";
+			$fecha_limite = 'Domingo 01-05-2022';
+		}
+
 		$cedula        = $this->input->post("cedula");
 		$p_nombre      = $this->input->post("p_nombre");
 		$s_nombre      = $this->input->post("s_nombre");
@@ -39,13 +78,13 @@ class Preinscripcion extends CI_Controller
 		$sexo          = $this->input->post("sexo");
 		$edo_civil     = $this->input->post("estado_civil");
 		$direccion     = $this->input->post("direccion");
-		$email         = $this->input->post("email");
+		$email         = 'jjosenavasp@gmail.com';//$this->input->post("email");
 		$telefono      = $this->input->post("telefono");
 		$plantel       = $this->input->post("plantel");
 		$ano_egreso    = $this->input->post("ano_egre");
 		$carrera       = $this->input->post("carrera");
 		$rusnies       = $this->input->post("rusnie");
-		$serial_titulo = $this->input->post("serial");       
+		$serial_titulo = $this->input->post("serial");
 
 
 		$nun_planilla = $this->Aspirante_model->numeroPlanilla();
@@ -76,14 +115,13 @@ class Preinscripcion extends CI_Controller
 
 		if ($this->Aspirante_model->save($data)) {
 
-			$this->load->library('email');       
+			$this->load->library('email');
 
-			$this->email->from('jjosenavas@hotmail.com', 'Jose Navas');
-			$this->email->to('jjosenavasp@gmail.com');
-			$this->email->cc('jjosenavas@hotmail.com');
-			$this->email->bcc('jjosenavasp@gmail.com');
+			$this->email->from($correo_envio);
+			$this->email->to($email);
 			$this->email->subject('Envío de documentos luego de la preinscripción.');
-			$this->email->message('Esto es una prueba de correo con gmail. Por favor revisa la bandeja de spam por si acaso. Envia tus documentos al correo jjosenavasp@gmail.com');
+			$this->email->message('Estimado (a) aspirante, usted se ha registrado de forma satisfactoria en la carrera: '.$carrera.'El siguiente paso es el envío de los siguentes documentos en formato digital (scaneados):
+				Cédula de identidad, Título de bachiller, Planilla Opsu / Rusnies, Notas Certificadas al correo: '.$correo_envio.' y la fecha límite de envío es el día'.$fecha_limite);
 			$this->email->send();
 
 			$id_aspirante = $this->Aspirante_model->lastID();
@@ -122,4 +160,14 @@ class Preinscripcion extends CI_Controller
 		$this->load->view("layouts/footer");
 		$this->load->view("layouts/close_body");
 	}
+
+	public function comprobarCedula()
+    {   
+        $cedula_aspirante = $this->input->post("cedula");
+         $respuesta = $this->Aspirante_model->comprobarCedulaAspirante($cedula_aspirante);
+      
+       if($respuesta>0) {
+          echo "Cédula ya registrado en la base de datos";
+        }
+     }
 }

@@ -26,6 +26,8 @@
 <script src="<?php echo base_url(); ?>assets/template/plugins/jquery-validation/jquery.validate.min.js"></script>
 <!-- confirm jquery -->
 <script src="<?php echo base_url(); ?>assets/template/plugins/jquery-confirm/jquery-confirm.js"></script>
+<!-- jquery-print -->
+<script src="<?php echo base_url(); ?>assets/template/plugins/jquery-print/jQuery.print.min.js"></script>
 <!-- page script -->
 <script src="<?php echo base_url(); ?>assets/js/lib/moment.js"></script>
 

@@ -155,7 +155,7 @@ $(document).ready(function () {
         if (rusnie.length <16) {
             send--;
             $("#rusnie").css("border-color", "#FF0000");
-            $("#rusnie_message").text("El campo RUSNEI no puede estar vacío o en menor a 16 caracteres");
+            $("#rusnie_message").text("El campo RUSNEI no puede estar vacío o es menor a 16 caracteres");
         } else {
             send++;
             $("#rusnie").css("border-color", "#228B22");
@@ -165,7 +165,7 @@ $(document).ready(function () {
         if (serial.length <16) {
             send--;
             $("#serial").css("border-color", "#FF0000");
-            $("#serial_message").text("El campo serial no puede estar vacío o en menor a 16 caracteres");
+            $("#serial_message").text("El campo serial no puede estar vacío o es menor a 16 caracteres");
         } else {
             send++;
             $("#serial").css("border-color", "#228B22");
@@ -228,4 +228,5 @@ $(document).ready(function () {
             return false;
         }
     }
+
 });

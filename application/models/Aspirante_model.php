@@ -44,4 +44,12 @@ class Aspirante_model extends CI_Model
 
         return (int) $maxplanilla;
     }
+
+    public function comprobarCedulaAspirante($cedula)
+    { 
+        $this->db->where("cedula", $cedula);
+        $resultado = $this->db->get("aspirante");
+
+        return $resultado->num_rows();
+    }
 }

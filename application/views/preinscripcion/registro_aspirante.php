@@ -74,8 +74,9 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="cedula">Cédula</label>
-                                                            <input minlength="8" type="text" class="form-control form-control-sm" name="cedula" id="cedula" onkeypress="return soloNumeros(event)" required>
+                                                            <input minlength="8" maxlength="8" type="text" class="form-control form-control-sm" name="cedula" id="cedula" onkeypress="return soloNumeros(event)" onblur="comprobarCedula()" required>
                                                             <span id="cedula_message"></span>
+                                                            <span id="cedula_data" style="color:red; font-size: 12px;"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">

@@ -1,6 +1,7 @@
 <script src="<?php echo base_url(); ?>assets/js/validation.js"></script>
 
 <script>
+	base_url = '<?php echo base_url(); ?>';
 	function soloLetras(e) {
 		key = e.keyCode || e.which;
 		teclado = String.fromCharCode(key);
@@ -54,4 +55,23 @@
 			return false;
 		}
 	}
+
+	function comprobarCedula() {
+        
+        jQuery.ajax({
+            url: base_url + "preinscripcion/preinscripcion/comprobarCedula",
+            data: "cedula=" + $("#cedula").val(),
+            type: "POST",
+            success: function(data) {
+                if (data == "Cédula ya registrado en la base de datos") {
+                    
+                    $("#cedula").focus();
+                }
+    
+                $("#cedula_data").html(data);
+               
+            },
+            error: function() {}
+        });
+    }
 </script>

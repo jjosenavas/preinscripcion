@@ -2,8 +2,8 @@
 <div class="content-wrapper">
     <?php
     $fecha_actual                = strtotime(date("d-m-Y", time()));
-    $fecha_educacion_desde       = strtotime("14-03-2022");
-    $fecha_educacion_hasta       = strtotime("18-03-2022");
+    $fecha_educacion_desde       = strtotime("08-03-2022");
+    $fecha_educacion_hasta       = strtotime("11-03-2022");
     $fecha_electronica_desde     = strtotime("21-03-2022");
     $fecha_electronica_hasta     = strtotime("25-03-2022");
     $fecha_mecanica_desde        = strtotime("28-03-2022");
@@ -62,7 +62,8 @@
                 <div class="col-lg-12">
                     <div class="card card-danger card-outline">
                         <div class="card-header">
-                            <h5 class="card-title m-0">Estimado(a) Aspirante: <strong><?php echo $nombre1;
+                            <h5 class="card-title m-0">Estimado(a) Aspirante: <strong><?php 
+                                                                                        echo $nombre1;
                                                                                         echo ' ';
                                                                                         echo $apellido1;
                                                                                         echo ', cédula de identidad número: ';
@@ -70,14 +71,12 @@
                             <h1 class="m-0 float-right"> <?php echo 'Planilla n° ' . $planilla; ?></h1>
                         </div>
                         <div class="card-body">
-                        <p class="card-title"> Usted se ha registrado de forma satisfactoria en la carrera: <strong><?php echo $carrera; ?>.</strong>
-                            El siguiente paso es el envío inmediato de los siguentes documentos en formato digital con extensión .jpg (imagen debidamente escaneados) y que sean legibles:</p>
+                        <p class="card-title"> Usted se ha registrado de forma satisfactoria en la carrera: <strong><?php echo $carrera; ?>.</strong> El siguiente paso es el envío inmediato de los siguentes documentos en formato digital con extensión .jpg (imagen debidamente escaneados) y que sean legibles:</p>
                             <li>Cédula de identidad</li>
                             <li>Título de bachiller</li>
                             <li>Planilla Opsu / Rusnies</li>
                             <li>Notas Certificadas</li>
-                            <p> Deben ser enviados al correo: <?php echo '<strong>';echo $correo_envio; echo '</strong>'; ?>
-                                 En caso de no poder enviarlos inmediatamente, tendrá como fecha límite para enviar: <?php echo '<strong>';echo $fecha_limite;echo '</strong>'; ?>. No dejes para última hora el envío de los mismos.
+                            <p> Deben ser enviados al correo: <?php echo '<strong>';echo $correo_envio; echo '</strong>'; ?> En caso de no poder enviarlos inmediatamente, tendrá como fecha límite para enviar: <?php echo '<strong>';echo $fecha_limite;echo '</strong>'; ?>. No dejes para última hora el envío de los mismos.
                             </p>
                         </div>
                         <div class="">

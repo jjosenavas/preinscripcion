@@ -19,7 +19,7 @@ $(document).ready(function () {
 
 		let send = 0;
 
-		if (cedula.length != 8) {
+		if (cedula.length <7 || cedula.length >8) {
 			send--;
 			$("#cedula").css("border-color", "#FF0000");
 			$("#cedula_message").text("la cédula debe ser de 8 dígitos.");

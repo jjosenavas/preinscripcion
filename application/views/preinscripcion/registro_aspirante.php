@@ -2,8 +2,8 @@
 <div class="content-wrapper">
     <?php
     $fecha_actual                = strtotime(date("d-m-Y", time()));
-    $fecha_educacion_desde       = strtotime("14-03-2022");
-    $fecha_educacion_hasta       = strtotime("18-03-2022");
+    $fecha_educacion_desde       = strtotime("08-03-2022");
+    $fecha_educacion_hasta       = strtotime("11-03-2022");
     $fecha_electronica_desde     = strtotime("21-03-2022");
     $fecha_electronica_hasta     = strtotime("25-03-2022");
     $fecha_mecanica_desde        = strtotime("28-03-2022");
@@ -49,6 +49,7 @@
 
     <!-- Main content -->
     <div class="content">
+        
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -74,7 +75,7 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="cedula">Cédula</label>
-                                                            <input minlength="8" maxlength="8" type="text"  class="form-control form-control-sm" name="cedula" id="cedula" onkeypress="return soloNumeros(event)" onblur="comprobarCedula()" required>
+                                                            <input minlength="8" maxlength="8" type="text" class="form-control form-control-sm" name="cedula" id="cedula"  onblur="comprobarCedula()" value="<?php echo $cedula;?>" readonly required>
                                                             <span id="cedula_message"></span>
                                                             <span id="cedula_data" style="color:red; font-size: 12px;"></span>
                                                         </div>
@@ -82,21 +83,21 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="Nombres">Primer nombre</label>
-                                                            <input minlength="3" maxlength="45" type="text" onkeypress="nextel(event)" class="form-control form-control-sm" name="p_nombre" id="p_nombre" onkeypress="return soloLetras(event)">
+                                                            <input minlength="3" maxlength="45" type="text" title="Coloca tu primer nombre, debe tener mínimo tres caracteres" class="form-control form-control-sm" name="p_nombre" id="p_nombre" onkeypress="return soloLetras(event)">
                                                             <span id="p_nombre_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="s_nombre">Segundo nombre</label>
-                                                            <input minlength="3" maxlength="45" type="text" class="form-control form-control-sm" name="s_nombre" id="s_nombre" onkeypress="return soloLetras(event)">
+                                                            <input minlength="3" maxlength="45" type="text" title="Coloca tu segundo nombre, este campo es opcional,  debe tener mínimo tres caracteres" class="form-control form-control-sm" name="s_nombre" id="s_nombre" onkeypress="return soloLetras(event)">
                                                             <span id="s_nombre_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="p_apellido">Primer apellido</label>
-                                                            <input minlength="3" maxlength="45" type="text" class="form-control form-control-sm" name="p_apellido" id="p_apellido" onkeypress="return soloLetras(event)">
+                                                            <input minlength="3" maxlength="45" type="text" title="Coloca tu primer apellido, debe tener mínimo tres caracteres"  class="form-control form-control-sm" name="p_apellido" id="p_apellido" onkeypress="return soloLetras(event)">
                                                             <span id="p_apellido_message"></span>
                                                         </div>
                                                     </div>
@@ -106,27 +107,27 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="p_apellido">Segundo apellido</label>
-                                                            <input minlength="3" maxlength="45" type="text" class="form-control form-control-sm" name="s_apellido" id="s_apellido" onkeypress="return soloLetras(event)">
+                                                            <input minlength="3" maxlength="45" type="text" title="Coloca tu segundo apellido, este campo es opcional,  debe tener mínimo tres caracteres"  class="form-control form-control-sm" name="s_apellido" id="s_apellido" onkeypress="return soloLetras(event)">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="fecha_nac">Fecha de nacimiento</label>
-                                                            <input type="date" class="form-control form-control-sm" name="fecha_nac" id="fecha_nac" required>
+                                                            <input type="date" class="form-control form-control-sm" title="Selecciona tu fecha de nacimiento" name="fecha_nac" id="fecha_nac" max="2007-12-01" required>
                                                             <span id="fecha_nac_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="lug_nac">Lugar de nacimiento</label>
-                                                            <input type="text" class="form-control form-control-sm" name="lug_nac" id="lug_nac" onkeypress="return soloLetras(event)" required>
+                                                            <input type="text" class="form-control form-control-sm" minlength="10" maxlength="45" name="lug_nac" id="lug_nac" title="Coloca tu lugar de nacimiento, debe tener mínimo diez caracteres" onkeypress="return soloLetras(event)" required>
                                                             <span id="lug_nac_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="Username">Sexo</label>
-                                                            <select name="sexo" id="sexo" class="form-control form-control-sm" required>
+                                                            <select name="sexo" id="sexo" class="form-control form-control-sm" title="Selecciona tu sexo" required>
                                                                 <option value="">Seleccione...</option>
                                                                 <option value="femenino">Femenino</option>
                                                                 <option value="masculino">Masculino</option>
@@ -141,7 +142,7 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="Username">Estado civil</label>
-                                                            <select name="estado_civil" id="estado_civil" class="form-control form-control-sm">
+                                                            <select name="estado_civil" id="estado_civil" class="form-control form-control-sm" title="Selecciona tu estado civil">
                                                                 <option value="">Seleccione...</option>
                                                                 <option value="soltero">Soltero(a)</option>
                                                                 <option value="casado">Casado(a)</option>
@@ -155,7 +156,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="direccion">Dirección</label>
-                                                            <input minlength="10" maxlength="300" type="text" class="form-control form-control-sm" name="direccion" id="direccion" onkeypress="return alfaNumerico(event)" required>
+                                                            <input minlength="10" maxlength="300" type="text" title="Coloca tu dirección, debe tener al menos diez caracteres" class="form-control form-control-sm" name="direccion" id="direccion" onkeypress="return alfaNumerico(event)" required>
                                                             <span id="direccion_message"></span>
                                                         </div>
                                                        
@@ -163,7 +164,7 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="Email">Correo Electrónico</label>
-                                                            <input type="text" class="form-control form-control-sm" name="email" id="email" onblur="validarEmail()" required>
+                                                            <input type="text" class="form-control form-control-sm" title="Coloca tu correo electrónico y verifica que esté bien escrito. Ten presente que al mismo te enviaremos información" name="email" id="email" onblur="validarEmail()" required>
                                                             <span id="email_message"></span>
                                                         </div>                                                        
                                                     </div>
@@ -173,21 +174,21 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="telefono">Número de teléfono</label>
-                                                            <input minlength="10" maxlength="11" type="text" class="form-control form-control-sm" name="telefono" id="telefono" onkeypress="return soloNumeros(event)">
+                                                            <input minlength="10" maxlength="11" type="text" title="Coloca tu número de teléfono" class="form-control form-control-sm" name="telefono" id="telefono" onkeypress="return soloNumeros(event)">
                                                             <span id="telefono_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="plantel">Nombre del plantel de procedencia</label>
-                                                            <input minlength="10" maxlength="100" type="text" class="form-control form-control-sm" name="plantel" id="plantel" required>
+                                                            <input minlength="10" maxlength="100" type="text" title="Coloca el nombre del plantel de egreso" class="form-control form-control-sm" name="plantel" id="plantel" required>
                                                             <span id="plantel_message"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="ano_egre">Año de egreso</label>
-                                                            <select name="ano_egre" id="ano_egre" class="form-control form-control-sm" required>
+                                                            <select name="ano_egre" id="ano_egre" title="Selecciona el año en que egresastes como bachiller" class="form-control form-control-sm" required>
                                                                 <option value='' selected>Seleccione año</option>
                                                                 <?php for ($i = date('o'); $i >= 1985; $i--) {
 
@@ -209,7 +210,7 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="serial">Serial del título de bachiller</label>
-                                                            <input minlength="11" maxlength="16" type="text" class="form-control form-control-sm" name="serial" id="serial" onkeypress="return alfanumerico(event)" onblur="comprobarTitulo()">
+                                                            <input minlength="11" maxlength="16" title="Coloca el serial que tiene tu título de bachiller, debe tener una longitud de 10 caracteres" type="text" class="form-control form-control-sm" name="serial" id="serial" onkeypress="return alfanumerico(event)" onblur="comprobarTitulo()">
                                                             <span id="serial_message"></span>
                                                             <span id="titulo_data" style="color:red; font-size: 14px;"></span>
                                                         </div>
@@ -217,7 +218,7 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="carrera">Carrera</label>
-                                                            <select name="carrera" id="carrera" class="form-control form-control-sm">
+                                                            <select name="carrera" title="Selecciona la carrera que quieres cursar" id="carrera" class="form-control form-control-sm">
                                                                 <?php echo $carrera_ofertada; ?>
                                                             </select>
                                                         </div>

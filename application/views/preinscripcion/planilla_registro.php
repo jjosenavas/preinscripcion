@@ -71,10 +71,11 @@
                 <div class="col-lg-12">
                     <div class="card card-danger card-outline">
                         <div class="card-header">
-                            <h3 class="card-title m-0">Estimado (a) Aspirante: <strong> <?php echo $nombre1;
+                            <h3 class="card-title m-0">Estimado (a) Aspirante: <strong> <?php 
+                                                                                        echo $nombre1;
                                                                                         echo ' ';
                                                                                         echo $apellido1;
-                                                                                        echo ', cédula de indentidad número: ';
+                                                                                        echo ', cédula de identidad número: ';
                                                                                         echo $cedula; ?></strong></h3>
                                                                                         <h1 class="m-0 float-right"> <?php echo 'Planilla n° ' . $planilla; ?></h1>
                         </div>

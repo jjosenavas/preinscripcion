@@ -11,7 +11,7 @@ class Preinscripcion extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view("layouts/header_pre");
+		$this->load->view("layouts/header_ini");
 		$this->load->view("preinscripcion/informacion");
 		$this->load->view("layouts/footer");
 		$this->load->view("layouts/fechas");
@@ -30,8 +30,8 @@ class Preinscripcion extends CI_Controller
 	public function store()
 	{
 		$fecha_actual                = strtotime(date("d-m-Y", time()));
-		$fecha_educacion_desde       = strtotime("14-03-2022");
-		$fecha_educacion_hasta       = strtotime("18-03-2022");
+		$fecha_educacion_desde       = strtotime("08-03-2022");
+		$fecha_educacion_hasta       = strtotime("11-03-2022");
 		$fecha_electronica_desde     = strtotime("21-03-2022");
 		$fecha_electronica_hasta     = strtotime("25-03-2022");
 		$fecha_mecanica_desde        = strtotime("28-03-2022");
@@ -89,6 +89,18 @@ class Preinscripcion extends CI_Controller
 
 		$nun_planilla = $this->Aspirante_model->numeroPlanilla();
 		++$nun_planilla;
+		$cantidad = strlen($nun_planilla);
+		$cero = '';
+		if ($cantidad == 1) {
+			$cero = '0000'.$nun_planilla;
+		}else if ($cantidad == 2) {
+			$cero = '000'.$nun_planilla;
+		}else if ($cantidad == 3) {
+			$cero = '00'.$nun_planilla;
+		}else if ($cantidad >= 4) {
+			$cero = '0'.$nun_planilla;
+		}
+        
 
 		$data  = array(
 			'cedula'        => $cedula,
@@ -108,7 +120,7 @@ class Preinscripcion extends CI_Controller
 			'carrera'       => $carrera,
 			'serial_titulo' => $serial_titulo,
 			'status'        => '1',
-			'planilla'      => $nun_planilla,
+			'planilla'      => $cero,
 		);
 
 
@@ -119,8 +131,7 @@ class Preinscripcion extends CI_Controller
 			$this->email->from($correo_envio);
 			$this->email->to($email);
 			$this->email->subject('Envío de documentos luego de la preinscripción.');
-			$this->email->message('Estimado (a) aspirante, usted se ha registrado de forma satisfactoria en la carrera: '.$carrera.'El siguiente paso es el envío de los siguentes documentos en formato digital (scaneados):
-				Cédula de identidad, Título de bachiller, Planilla Opsu / Rusnies, Notas Certificadas al correo: '.$correo_envio.' y la fecha límite de envío es el día'.$fecha_limite);
+			$this->email->message('Estimado (a) aspirante '.ucwords($p_nombre).' '.ucwords($p_apellido).' cédula de identidad '.$cedula.', usted se ha registrado de forma satisfactoria en la carrera: '.$carrera.' El siguiente paso es el envío inmediato de los siguentes documentos en formato digital con extensión .jpg (imagen debidamente escaneados) y que sean legibles: Cédula de identidad, Título de bachiller, Planilla Opsu / Rusnies, Notas Certificadas. Deben ser enviados al correo: '.$correo_envio.'. En caso de no poder enviarlos inmediatamente, tendrá como fecha límite para enviar: '.$fecha_limite.'. No dejes para última hora el envío de los mismos.');
 			$this->email->send();
 
 			$id_aspirante = $this->Aspirante_model->lastID();
@@ -135,6 +146,10 @@ class Preinscripcion extends CI_Controller
 	{		
 		$cedula = $this->input->post("cedula");
 		
+		$data = array(
+			'cedula' => $cedula
+		 ); 
+		
 		if ($ce = $this->Aspirante_model->getAspiranteNew($cedula)) {
 			
 			$this->load->view("layouts/header_pre");
@@ -143,8 +158,8 @@ class Preinscripcion extends CI_Controller
 			$this->load->view("layouts/close_body");
 		} else {
 			
-			$this->load->view("layouts/header_pre");
-			$this->load->view("preinscripcion/registro_aspirante");
+			$this->load->view("layouts/header_ini");
+			$this->load->view("preinscripcion/registro_aspirante",$data);
 			$this->load->view("layouts/footer");
 			$this->load->view("layouts/validation");
 			$this->load->view("layouts/close_body");

@@ -127,4 +127,135 @@
 			$("#email_message").text("");
 		}
     }
+
+	$( function() {
+		$( "#p_nombre" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+
+  $( function() {
+		$( "#s_nombre" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+
+	$( function() {
+		$( "#p_apellido" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+
+	$( function() {
+		$( "#s_apellido" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+
+	$( function() {
+		$( "#fecha_nac" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+
+	$( function() {
+		$( "#lug_nac" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+
+	$( function() {
+		$( "#sexo" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+
+	$( function() {
+		$( "#estado_civil" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+
+	$( function() {
+		$( "#direccion" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+	$( function() {
+		$( "#email" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+
+	$( function() {
+		$( "#telefono" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+	$( function() {
+		$( "#plantel" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+	$( function() {
+		$( "#ano_egre" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+
+	$( function() {
+		$( "#carrera" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
+	$( function() {
+		$( "#serial" ).tooltip({
+		show: {
+			effect: "slideDown",
+			delay: 250
+		}
+		});    
+    } );
 </script>

@@ -47,7 +47,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
       <a href="" class="navbar-brand">
-      <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="Logo Institucional" width="220" height="70">        
+      <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="Logo Institucional" width="270" height="70">        
       </a>   
     </div>
   </nav>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-03-2022 a las 20:21:45
+-- Tiempo de generación: 14-03-2022 a las 20:19:33
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -38,7 +38,7 @@ CREATE TABLE `aspirante` (
   `direccion` varchar(300) CHARACTER SET utf8 NOT NULL,
   `email` varchar(60) CHARACTER SET utf8 NOT NULL,
   `status` int(11) NOT NULL,
-  `planilla` int(11) NOT NULL,
+  `planilla` varchar(11) COLLATE utf8_spanish_ci NOT NULL,
   `fechanac` date NOT NULL,
   `carrera` varchar(70) CHARACTER SET utf8 NOT NULL,
   `rusnies` varchar(16) COLLATE utf8_spanish_ci NOT NULL,
@@ -64,8 +64,7 @@ CREATE TABLE `aspirante` (
 --
 
 INSERT INTO `aspirante` (`id`, `cedula`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `telefono`, `direccion`, `email`, `status`, `planilla`, `fechanac`, `carrera`, `rusnies`, `serial_titulo`, `sexo`, `lugarnac`, `estadocivil`, `plantel`, `egreso`, `etnia`, `computer`, `porc_pago`, `justporcenta`, `medio`, `trabaja`, `prioridad`, `modalidad`, `habilidad`) VALUES
-(1, '12020454', 'Jose', '', 'Navas', '', '04245273263', 'Montesuma II carrera 1 entre 2 y 3', 'jjosenavasp@gmail.com', 1, 1, '1992-06-09', 'Educación preescolar', '1234567891011121', '12121212121', 'masculino', 'Barquisimeto', 'casado', 'Mario briceño', '2017', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, '20350294', 'Carolina', '', 'Perez', '', '04245273263', 'Montesuma II carrera 1 entre 2 y 3', 'jjosenavasp@gmail.com', 1, 2, '2022-03-03', 'Educación preescolar', '1234567891011121', '12121212121', 'femenino', 'Barquisimeto', 'casado', 'Mario briceño', '2014', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, '12020454', 'Jose', 'Joanylin', 'Navas', 'Peraza', '04245273263', 'Pilas de Montesuma dos carrera 1 entre 2 y 3', 'jjosenavasp@gmail.com', 1, '00001', '1973-06-09', 'Educación integral', '', '123456789qq11111', 'masculino', 'Barquisimeto', 'casado', 'Mario Briceño', '1989', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -154,7 +153,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `aspirante`
 --
 ALTER TABLE `aspirante`
-  MODIFY `id` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`

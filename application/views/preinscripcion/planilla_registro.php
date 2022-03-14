@@ -64,7 +64,7 @@
         <div class="container">
         
            <a href="" class="navbar-brand">
-              <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="Logo Institucional" width="220" height="70">        
+              <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="Logo Institucional" width="270" height="70">        
           </a>   <br><br>
        
             <div class="row">

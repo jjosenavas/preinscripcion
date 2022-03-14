@@ -23,7 +23,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <img src="<?php echo base_url(); ?>assets/img/logoiujo.gif" alt="Logo Institucional" width="250" height="65"><br>
+            <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="Logo Institucional" width="270" height="70"><br>
             <a href="#"><b>Preinscripciones</b></a>
         </div>
         <!-- /.login-logo -->

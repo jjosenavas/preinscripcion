@@ -69,7 +69,7 @@ class Preinscripcion extends CI_Controller
 			'carrera'       => $carrera,
 			'rusnies'       => $rusnies,
 			'serial_titulo' => $serial_titulo,
-			'status'        => $si,
+			'status'        => '1',
 			'planilla'      => $nun_planilla,
 		);
 

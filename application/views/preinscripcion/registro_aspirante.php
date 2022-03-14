@@ -1,5 +1,40 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+    <?php
+    $fecha_actual                = strtotime(date("d-m-Y", time()));
+    $fecha_educacion_desde       = strtotime("14-03-2022");
+    $fecha_educacion_hasta       = strtotime("18-03-2022");
+    $fecha_electronica_desde     = strtotime("21-03-2022");
+    $fecha_electronica_hasta     = strtotime("25-03-2022");
+    $fecha_mecanica_desde        = strtotime("28-03-2022");
+    $fecha_mecanica_hasta        = strtotime("01-04-2022");
+    $fecha_informatica_desde     = strtotime("04-04-2022");
+    $fecha_informatica_hasta     = strtotime("08-04-2022");
+    $fecha_admin_empre_desde     = strtotime("18-04-2022");
+    $fecha_admin_empre_hasta     = strtotime("22-04-2022");
+    $fecha_contaduria_desde      = strtotime("25-04-2022");
+    $fecha_contaduria_hasta      = strtotime("29-04-2022");
+    $fecha_rezagados_desde       = strtotime("02-05-2022");
+    $fecha_rezagados_hasta       = strtotime("03-05-2022");
+
+    $carrera_ofertada = 'Proceso inactivo';
+
+    if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) {
+
+        $carrera_ofertada = "<option value='Educación integral'>EDUCACIÓN INTEGRAL</option><option value='Educación preescolar'>EDUCACIÓN PREESCOLAR</option><option value='Educación especial'>EDUCACIÓN ESPECIAL</option>";
+    } else if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) {
+        $carrera_ofertada = "<option value='Electrónica'>ELECTRONICA</option><option value='Electrotecnia'>ELECTROTECNIA</option>";
+    } else if ($fecha_actual >= $fecha_mecanica_desde && $fecha_actual <= $fecha_mecanica_hasta) {
+        $carrera_ofertada = "<option value='Mecánica'>MECANIICA</option>";
+    } else if ($fecha_actual >= $fecha_informatica_desde && $fecha_actual <= $fecha_informatica_hasta) {
+        $carrera_ofertada = "<option value='Informática'>INFORMÁTICA</option>";
+    } else if ($fecha_actual >= $fecha_admin_empre_desde && $fecha_actual <= $fecha_admin_empre_hasta) {
+        $carrera_ofertada = "<option value='Administración de empresas'>ADMINISTRACIÓN DE EMPRESAS</option>";
+    } else if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) {
+        $carrera_ofertada = "<option value='Contaduría'>CONTADURÍA</option>";
+    }
+
+    ?>
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container">
@@ -164,10 +199,7 @@
                                                         <div class="form-group">
                                                             <label for="carrera">Carrera</label>
                                                             <select name="carrera" id="carrera" class="form-control form-control-sm">
-                                                                <option value="">Seleccione una carrera</option>
-                                                                <option value="Educación especial">Educación especial</option>
-                                                                <option value="Educación integral">Educación integral(a)</option>
-                                                                <option value="Educación preescolar">Educación preescolar(a)</option>
+                                                                <?php echo $carrera_ofertada; ?>
                                                             </select>
                                                         </div>
                                                     </div>

@@ -47,6 +47,9 @@ class Preinscripcion extends CI_Controller
 		$rusnies       = $this->input->post("rusnie");
 		$serial_titulo = $this->input->post("serial");
 
+		$nun_planilla = $this->Aspirante_model->numeroPlanilla();
+		++$nun_planilla;
+		//var_dump($nun_planilla);exit;
 		$data  = array(
 			'cedula'        => $cedula,
 			'nombre1'       => $p_nombre,
@@ -65,7 +68,8 @@ class Preinscripcion extends CI_Controller
 			'carrera'       => $carrera,
 			'rusnies'       => $rusnies,
 			'serial_titulo' => $serial_titulo,
-			'status'        => '1'
+			'status'        => '1',
+			'planilla'      => $nun_planilla,
 		);
 
 

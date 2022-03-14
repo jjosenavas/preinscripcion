@@ -33,4 +33,15 @@ class Aspirante_model extends CI_Model
 
         return (int) $maxid;
     }
+
+    public function numeroPlanilla()
+    {
+        $maxplanilla = 0;
+        $row = $this->db->query('SELECT MAX(planilla) AS `maxplanilla` FROM `aspirante`')->row();
+        if ($row) {
+            $maxplanilla = $row->maxplanilla;
+        }
+
+        return (int) $maxplanilla;
+    }
 }

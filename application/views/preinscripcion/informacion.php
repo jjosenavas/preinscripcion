@@ -108,7 +108,7 @@
                             <?php if ($carrera_ofertada != 'Proceso inactivo') : ?>
                                 <form id="consulta_form" action="<?php echo base_url(); ?>preinscripcion/preinscripcion/verificarAspirante" method="POST">
                                     <div class="input-group input-group-sm">
-                                        <input type="number" class="form-control" name="cedula" id="cedula" maxlength="8" required onkeypress="return soloNumeros(event)">
+                                        <input type="number" class="form-control" name="cedula" id="cedula" maxlength="8" minlength="8" required onkeypress="return soloNumeros(event)">
                                         <span class="input-group-append">
                                             <button id="btn_cedula" type="submit" class="btn btn-info btn-flat">PREINSCRIPCIÓN</button>
                                         </span>

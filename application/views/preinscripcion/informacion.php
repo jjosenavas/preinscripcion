@@ -64,28 +64,58 @@
 
                             <p class="card-text">
                                 <?php if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) :  ?>
-                                    <img src='<?php echo base_url(); ?>assets/img/educacion.png' alt='Educación'>
-                                <?php endif; ?>
-                                <?php if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) :  ?>
-                                    <?php echo $carrera_ofertada; ?>
-                                <?php endif; ?>
-                                <?php if ($fecha_actual >= $fecha_mecanica_desde && $fecha_actual <= $fecha_mecanica_hasta) :  ?>
-                                    <?php echo $carrera_ofertada; ?>
-                                <?php endif; ?>
-                                <?php if ($fecha_actual >= $fecha_informatica_desde && $fecha_actual <= $fecha_informatica_hasta) :  ?>
-                                    <?php echo $carrera_ofertada; ?>
-                                <?php endif; ?>
-                                <?php if ($fecha_actual >= $fecha_admin_empre_desde && $fecha_actual <= $fecha_admin_empre_hasta) :  ?>
-                                    <?php echo $carrera_ofertada; ?>
-                                <?php endif; ?>
-                                <?php if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) :  ?>
-                                    <?php echo $carrera_ofertada; ?>
-                                <?php endif; ?>
-                                <?php if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) :  ?>
-                                    <?php echo $carrera_ofertada; ?>
-                                <?php endif; ?>
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion1.png' alt="First slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion2.jpg' alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion3.jpg' alt="Third slide">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-custom-icon" aria-hidden="true">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-custom-icon" aria-hidden="true">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                            <!-- <img src='<?php echo base_url(); ?>assets/img/educacion.png' alt='Educación'> -->
+                        <?php endif; ?>
+                        <?php if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) :  ?>
+                            <?php echo $carrera_ofertada; ?>
+                        <?php endif; ?>
+                        <?php if ($fecha_actual >= $fecha_mecanica_desde && $fecha_actual <= $fecha_mecanica_hasta) :  ?>
+                            <?php echo $carrera_ofertada; ?>
+                        <?php endif; ?>
+                        <?php if ($fecha_actual >= $fecha_informatica_desde && $fecha_actual <= $fecha_informatica_hasta) :  ?>
+                            <?php echo $carrera_ofertada; ?>
+                        <?php endif; ?>
+                        <?php if ($fecha_actual >= $fecha_admin_empre_desde && $fecha_actual <= $fecha_admin_empre_hasta) :  ?>
+                            <?php echo $carrera_ofertada; ?>
+                        <?php endif; ?>
+                        <?php if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) :  ?>
+                            <?php echo $carrera_ofertada; ?>
+                        <?php endif; ?>
+                        <?php if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) :  ?>
+                            <?php echo $carrera_ofertada; ?>
+                        <?php endif; ?>
 
-                            </p>
+                        </p>
                         </div>
                     </div>
                 </div>
@@ -101,14 +131,14 @@
                             <li>Cédula de identidad vigente.</li>
                             <li>Carta de buena conducta.</li>
                             <li>Partida de nacimiento.</li>
-                            <li>Carnet militar.</li>
+                            <li>Carnet militar. (opcional)</li>
                             <br>
                             <h6 class="card-title">Si tienes toda la documentación puedes colocar el número de cédula hacer clic en "PREINSCRIPCIÓN"
                                 y llenar el formulario que se te presentará.</h6><br><br><br>
                             <?php if ($carrera_ofertada != 'Proceso inactivo') : ?>
                                 <form id="consulta_form" action="<?php echo base_url(); ?>preinscripcion/preinscripcion/verificarAspirante" method="POST">
                                     <div class="input-group input-group-sm">
-                                        <input type="number" class="form-control" name="cedula" id="cedula" maxlength="8" minlength="8" required onkeypress="return soloNumeros(event)">
+                                        <input type="text" class="form-control" name="cedula" id="cedula" maxlength="8" minlength="7" onkeypress="return soloNumeros(event)">
                                         <span class="input-group-append">
                                             <button id="btn_cedula" type="submit" class="btn btn-info btn-flat">PREINSCRIPCIÓN</button>
                                         </span>

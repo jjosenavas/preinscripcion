@@ -57,7 +57,7 @@
                         Este es el primer paso para ti que quieres formarte en una carrera universitaria en nuestro instituto.
                         Registra cada uno de los datos que se solicitan, deben ser actualizados y reales, no dejes datos en blanco.
                     </div>
-
+          
                     <section class="content">
                         <div class="container-fluid">
                             <div class="row">

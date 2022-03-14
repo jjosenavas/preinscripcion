@@ -133,16 +133,17 @@ class Preinscripcion extends CI_Controller
 	}
 
 	public function verificarAspirante()
-	{
+	{		
 		$cedula = $this->input->post("cedula");
-
+		
 		if ($ce = $this->Aspirante_model->getAspiranteNew($cedula)) {
-
+			
 			$this->load->view("layouts/header_pre");
 			$this->load->view("preinscripcion/planilla_aspirante", $ce);
 			$this->load->view("layouts/footer");
 			$this->load->view("layouts/close_body");
 		} else {
+			
 			$this->load->view("layouts/header_pre");
 			$this->load->view("preinscripcion/registro_aspirante");
 			$this->load->view("layouts/footer");

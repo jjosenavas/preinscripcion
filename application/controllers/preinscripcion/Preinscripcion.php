@@ -30,8 +30,8 @@ class Preinscripcion extends CI_Controller
 	public function store()
 	{
 		$fecha_actual                = strtotime(date("d-m-Y", time()));
-		$fecha_educacion_desde       = strtotime("08-03-2022");
-		$fecha_educacion_hasta       = strtotime("11-03-2022");
+		$fecha_educacion_desde       = strtotime("14-03-2022");
+		$fecha_educacion_hasta       = strtotime("18-03-2022");
 		$fecha_electronica_desde     = strtotime("21-03-2022");
 		$fecha_electronica_hasta     = strtotime("25-03-2022");
 		$fecha_mecanica_desde        = strtotime("28-03-2022");

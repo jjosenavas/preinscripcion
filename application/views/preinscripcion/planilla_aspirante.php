@@ -2,8 +2,8 @@
 <div class="content-wrapper">
     <?php
     $fecha_actual                = strtotime(date("d-m-Y", time()));
-    $fecha_educacion_desde       = strtotime("08-03-2022");
-    $fecha_educacion_hasta       = strtotime("11-03-2022");
+    $fecha_educacion_desde       = strtotime("14-03-2022");
+    $fecha_educacion_hasta       = strtotime("18-03-2022");
     $fecha_electronica_desde     = strtotime("21-03-2022");
     $fecha_electronica_hasta     = strtotime("25-03-2022");
     $fecha_mecanica_desde        = strtotime("28-03-2022");
@@ -56,7 +56,7 @@
     <div class="content">
         <div class="container">
         <a href="" class="navbar-brand">
-              <img src="<?php echo base_url(); ?>assets/img/logoiujo.gif" alt="Logo Institucional" width="200" height="50">        
+              <img src="<?php echo base_url(); ?>assets/img/logo.png" alt="Logo Institucional" width="220" height="70">        
           </a>   <br><br>
             <div class="row">
                 <div class="col-lg-12">

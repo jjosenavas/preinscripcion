@@ -45,7 +45,7 @@
         <div class="container">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0"> PROCESO DE PREINSCRIPCIÓN</h1>
+                    <!-- <h1 class="m-0"> PROCESO DE PREINSCRIPCIÓN</h1> -->
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -55,6 +55,9 @@
     <!-- Main content -->
     <div class="content">
         <div class="container">
+        <a href="" class="navbar-brand">
+              <img src="<?php echo base_url(); ?>assets/img/logoiujo.gif" alt="Logo Institucional" width="200" height="50">        
+          </a>   <br><br>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card card-danger card-outline">

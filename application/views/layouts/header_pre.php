@@ -41,16 +41,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+  <!-- <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
       <a href="" class="navbar-brand">
       <img src="<?php echo base_url(); ?>assets/img/logoiujo.gif" alt="Logo Institucional" width="200" height="50">        
-      </a>
-
-
-      
-
-    
+      </a>   
     </div>
-  </nav>
+  </nav> -->
   <!-- /.navbar -->

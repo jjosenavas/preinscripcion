@@ -14,6 +14,7 @@ class Preinscripcion extends CI_Controller
 		$this->load->view("layouts/header_pre");
 		$this->load->view("preinscripcion/informacion");
 		$this->load->view("layouts/footer");
+		$this->load->view("layouts/fechas");
 		$this->load->view("layouts/close_body");
 	}
 

@@ -26,6 +26,7 @@
 <!-- confirm jquery -->
 <script src="<?php echo base_url(); ?>assets/template/plugins/jquery-confirm/jquery-confirm.js"></script>
 <!-- page script -->
+<script src="<?php echo base_url(); ?>assets/js/lib/moment.js"></script>
 
 <script>
   $(function () {

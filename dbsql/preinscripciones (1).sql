@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-03-2022 a las 20:19:33
+-- Tiempo de generación: 15-03-2022 a las 20:45:47
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -20,6 +20,36 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `preinscripciones`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `admitidos`
+--
+
+CREATE TABLE `admitidos` (
+  `id` int(45) NOT NULL,
+  `fecha` date NOT NULL,
+  `cedula` varchar(8) DEFAULT NULL,
+  `nombre1` varchar(45) DEFAULT NULL,
+  `nombre2` varchar(45) DEFAULT NULL,
+  `apellido1` varchar(45) DEFAULT NULL,
+  `apellido2` varchar(45) DEFAULT NULL,
+  `telefono` varchar(11) DEFAULT NULL,
+  `direccion` varchar(300) DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `fechanac` date DEFAULT NULL,
+  `carrera` varchar(70) DEFAULT NULL,
+  `sexo` varchar(10) DEFAULT NULL,
+  `titulo_check` varchar(4) DEFAULT NULL,
+  `cedula_check` varchar(4) DEFAULT NULL,
+  `notas_check` varchar(4) DEFAULT NULL,
+  `rusnies_check` varchar(4) DEFAULT NULL,
+  `observaciones` varchar(300) DEFAULT NULL,
+  `verificado_por` varchar(45) DEFAULT NULL,
+  `lapso` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -64,7 +94,35 @@ CREATE TABLE `aspirante` (
 --
 
 INSERT INTO `aspirante` (`id`, `cedula`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `telefono`, `direccion`, `email`, `status`, `planilla`, `fechanac`, `carrera`, `rusnies`, `serial_titulo`, `sexo`, `lugarnac`, `estadocivil`, `plantel`, `egreso`, `etnia`, `computer`, `porc_pago`, `justporcenta`, `medio`, `trabaja`, `prioridad`, `modalidad`, `habilidad`) VALUES
-(1, '12020454', 'Jose', 'Joanylin', 'Navas', 'Peraza', '04245273263', 'Pilas de Montesuma dos carrera 1 entre 2 y 3', 'jjosenavasp@gmail.com', 1, '00001', '1973-06-09', 'Educación integral', '', '123456789qq11111', 'masculino', 'Barquisimeto', 'casado', 'Mario Briceño', '1989', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, '12020454', 'Jose', NULL, 'Navas', 'Peraza', '04245273263', 'Pilas de Montesuma dos carrera 1 entre 2 y 3', 'jjosenavasp@gmail.com', 1, '00001', '1973-06-09', 'Educación integral', '', '123456789qq11111', 'masculino', 'Barquisimeto', 'casado', 'Mario Briceño', '1989', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, '20350294', 'Carolina', NULL, 'Viscaya', NULL, '04245273263', 'Pilas de Montesuma dos carrera 1 entre 2 y 3', 'jjosenavasp@gmail.com', 1, '00002', '1985-01-29', 'Educación integral', '', 'aa123456789', 'femenino', 'Barquisimeto', 'casado', 'Simin Bolivar', '2009', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, '33666999', 'Jesus', NULL, 'Navas', '', '04245273263', 'Pilas de Montesuma dos carrera 1 entre 2 y 3', 'jjosenavasp@gmail.com', 1, '00003', '2009-01-14', 'Educación preescolar', '', '1234569811', 'masculino', 'Barquisimeto', 'soltero', 'Simin Bolivar', '2021', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `carreras`
+--
+
+CREATE TABLE `carreras` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `carreras`
+--
+
+INSERT INTO `carreras` (`id`, `nombre`) VALUES
+(1, 'Educación integral'),
+(2, 'Educación preescolar'),
+(3, 'Educación especial'),
+(4, 'Informática'),
+(5, 'Mecánica'),
+(6, 'Electrónica'),
+(7, 'Electrotecnia'),
+(8, 'Administración de empresas'),
+(9, 'Contaduría');
 
 -- --------------------------------------------------------
 
@@ -102,24 +160,38 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) DEFAULT NULL,
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL
+  `estado` int(11) DEFAULT NULL,
+  `id_rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `email`, `username`, `password`, `estado`) VALUES
-(1, 'admin', 'admin', 'admin@gmail.com', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1);
+INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `email`, `username`, `password`, `estado`, `id_rol`) VALUES
+(2, 'Jose', 'Navas', 'jjosenavasp@gmail.com', 'jjosenavas', 'a5d4a27ec39b9a91a6c48c07546e9a00b71684ae', 1, 1),
+(3, 'Milangel ', 'Freitez ', 'milangelfreitez@iujo.edu.ve', 'milangelfreitez', 'a5d4a27ec39b9a91a6c48c07546e9a00b71684ae', 1, 0);
 
 --
 -- Índices para tablas volcadas
 --
 
 --
+-- Indices de la tabla `admitidos`
+--
+ALTER TABLE `admitidos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `aspirante`
 --
 ALTER TABLE `aspirante`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `carreras`
+--
+ALTER TABLE `carreras`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -150,10 +222,22 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `admitidos`
+--
+ALTER TABLE `admitidos`
+  MODIFY `id` int(45) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `aspirante`
 --
 ALTER TABLE `aspirante`
-  MODIFY `id` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `carreras`
+--
+ALTER TABLE `carreras`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -171,7 +255,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

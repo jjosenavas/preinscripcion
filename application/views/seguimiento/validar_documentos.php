@@ -17,7 +17,7 @@
                                             <h3 class="card-title">Proceso de verificación</h3>
                                         </div>
                                         <div class="card-body">
-                                            <form id="new_asp" role="form" action="<?php echo base_url(); ?>seguimiento/seguimiento/admitidos" method="POST">
+                                            <form id="new_admitido" role="form" action="<?php echo base_url(); ?>seguimiento/seguimiento/admitidos" method="POST">
                                                 <input type="hidden" id="carrera" name="carrera" value="<?php echo (isset($data_aspirante->carrera)) ?  ($data_aspirante->carrera) : "No selecciono"; ?>" />
                                                 <input type="hidden" id="telefono" name="telefono" value="<?php echo (isset($data_aspirante->telefono)) ?  ($data_aspirante->telefono) : "No tiene"; ?>" />
                                                 <input type="hidden" id="direccion" name="direccion" value="<?php echo (isset($data_aspirante->direccion)) ?  ($data_aspirante->direccion) : "No tiene"; ?>" />
@@ -36,9 +36,8 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="cedula">Cédula</label>
-                                                            <input minlength="8" maxlength="8" type="text" class="form-control form-control-sm" name="cedula" id="cedula" onblur="comprobarCedula()" value="<?php echo (isset($data_aspirante->cedula)) ?  ($data_aspirante->cedula) : "No tiene"; ?>" required>
+                                                            <input minlength="8" maxlength="8" type="text" class="form-control form-control-sm" name="cedula" id="cedula" onkeypress="return soloNumeros(event)" value="<?php echo (isset($data_aspirante->cedula)) ?  ($data_aspirante->cedula) : "No tiene"; ?>" required>
                                                             <span id="cedula_message"></span>
-                                                            <span id="cedula_data" style="color:red; font-size: 12px;"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
@@ -80,11 +79,12 @@
                                                         </div>
                                                     </div>
 
+
                                                 </div>
                                                 <hr class="color_info">
                                                 <div class="row">
                                                     <div class="col-sm-6">
-                                                        <div class="card card-success">
+                                                        <div class="card card-info">
                                                             <div class="card-header">
                                                                 <h3 class="card-title">Documentos Consignados</h3>
                                                             </div>
@@ -147,28 +147,21 @@
                                                 <hr class="color_info">
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <div class="form-group">
-                                                            <label for="estatus">Estatus</label>
-                                                            <select name="estatus" id="estatus" class="form-control form-control-sm">
-                                                                <option value="">Seleccione un estatus por favor</option>
-                                                                <option value="Aceptado">Aceptado</option>
-                                                                <option value="Aceptado con observaciones">Aceptado con observaciones</option>
-                                                                <option value="No aceptado">No aceptado</option>
-                                                            </select>
+                                                        <div class="info-box">
+                                                            <span class="info-box-icon bg-info"><i class="fa fa-user"></i></span>
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text">Total admitidos</span>
+                                                                <span class="info-box-number"><?php echo $cantidad_admitidos ?></span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-3">
-                                                        <div class="form-group">
-                                                            <label for="verificado_por">Verificado por</label>
-                                                            <input minlength="3" maxlength="45" type="text" class="form-control form-control-sm" name="verificado_por" id="verificado_por" onkeypress="return soloLetras(event)">
-                                                        </div>
-                                                    </div>
+
 
                                                 </div>
 
                                                 <hr class="color_info">
                                                 <div class="">
-                                                    <a href="<?php echo base_url(); ?>preinscripcion/preinscripcion" class="btn btn-app">
+                                                    <a href="<?php echo base_url(); ?>seguimiento/seguimiento" class="btn btn-app">
                                                         <i class="fas fa-reply-all"></i> Volver
                                                     </a>
                                                     <button type="submit" id="btn_save" class="btn btn-app"><i class="fas fa-save"></i> Registrar</button>

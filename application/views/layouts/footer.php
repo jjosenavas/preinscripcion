@@ -30,6 +30,11 @@
 <script src="<?php echo base_url(); ?>assets/template/plugins/jquery-print/jQuery.print.min.js"></script>
 
 <script src="<?php echo base_url(); ?>assets/template/plugins/jquery-ui/jquery-ui.js"></script>
+<script src="<?php echo base_url(); ?>assets/template/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/template/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/template/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/template/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/template/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- page script -->
 <script src="<?php echo base_url(); ?>assets/js/lib/moment.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/lib/datetime.js"></script>

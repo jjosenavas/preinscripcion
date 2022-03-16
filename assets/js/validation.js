@@ -40,16 +40,7 @@ $(document).ready(function () {
 			$("#p_nombre").css("border-color", "#228B22");
 			$("#p_nombre_message").text("");
 		}
-
-		//    if (s_nombre.length < 3 || s_nombre.length >45) {
-		//     send--;
-		//     $("#s_nombre").css('border-color','#FF0000');
-		//     $("#s_nombre_message").text('El segundo nombre debe ser mayor a 3 caracteres');
-		//    }else{
-		//     send++;
-		//     $("#s_nombre").css('border-color','#228B22');
-		//     $("#s_nombre_message").text('');
-		//    }
+	
 
 		if (p_apellido.length < 3 || p_apellido.length > 45) {
 			send--;
@@ -114,21 +105,7 @@ $(document).ready(function () {
 			$("#direccion").css("border-color", "#228B22");
 			$("#direccion_message").text("");
 		}
-
-		// if (
-		// 	$("#email").val().indexOf("@", 0) == -1 ||
-		// 	$("#email").val().indexOf(".", 0) == -1 
-		// ) {
-		// 	send--;
-		// 	$("#email").css("border-color", "#FF0000");
-		// 	$("#email_message").text(
-		// 		"El correo electrónico no cumple con el formato."
-		// 	);
-		// } else {
-		// 	$("#email").css("border-color", "#228B22");
-		// 	$("#email_message").text("");
-		// }
-
+		
 		if (telefono.length < 11) {
 			send--;
 			$("#telefono").css("border-color", "#FF0000");

@@ -7,6 +7,44 @@
     if ($("#carrera").val() != "") {
 
       $('#listado_preinscripto').DataTable({
+        dom: 'Bfrtip',
+      //   buttons: [
+      //   'csv', 'print'
+      // ],
+      buttons: [{
+                    extend: 'print',
+                    text: '<i class="fas fa-print"></i> IMPRIMIR',
+                    className: "btn-sm btn-info",
+                    header: true,
+                    margin: [0, 0, 30, 0],
+                    title: '',
+                    pageSize: 'A4',
+                    exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+                    order: 'applied'},
+                    customize: function(win) {
+                            {
+                                var last = null;
+                                var current = null;
+                                var bod = [];
+
+                                var css = '@page { size: landscape; }',
+                                    head = win.document.head || win.document
+                                    .getElementsByTagName('head')[0],
+                                    style = win.document.createElement('style');
+
+                                style.type = 'text/css';
+                                style.media = 'print';
+
+                                if (style.styleSheet) {
+                                    style.styleSheet.cssText = css;
+                                } else {
+                                    style.appendChild(win.document.createTextNode(css));
+                                }
+
+                                head.appendChild(style);
+                            }},
+                }], 
         "columnDefs": [{
                     targets: [6],
                     render: $.fn.dataTable.render.moment('DD-MM-YYYY')
@@ -48,17 +86,5 @@
   });
 
 
-  $(function() {
-    $("#listado_preinscripto").DataTable({
-      "language": {
-        "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
-      },
-      dom: 'Bfrtip',
-      buttons: [
-        'copy', 'csv', 'excel', 'pdf', 'print'
-      ],
-      "responsive": true,
-      "autoWidth": false,
-    });
-  });
+ 
 </script>

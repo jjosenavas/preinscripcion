@@ -116,4 +116,44 @@ class Seguimiento_model extends CI_Model
       return $this->db->trans_status();
        
     }
+
+    public function getCantidadAdmitidos($lapso)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('admitidos');
+        $this->db->where("lapso", $lapso);
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+    public function getAdmitidosPorCarrera($carrera)
+    {
+        $this->db->select(
+            '   id,
+                cedula,
+                nombre1,
+                nombre2,
+                apellido1,
+                apellido2,
+                telefono,
+                direccion,
+                email,
+                fechanac,
+                carrera,
+                sexo
+            '
+        );
+        $this->db->from('admitidos');
+        if ($carrera != 'todas') {
+            $this->db->where('carrera', $carrera);
+            //$this->db->where('status', '1');
+        }
+       // $this->db->where('status', '1');
+        $resultado = $this->db->get();
+        return $resultado->result();
+    }
+    
 }

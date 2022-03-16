@@ -22,6 +22,19 @@ class Seguimiento extends CI_Controller
 		$this->load->view("layouts/close_body");
 	}
 
+	public function listAdmitidos()
+	{
+		$data = array(
+			'carreras' => $this->Seguimiento_model->getCarreras()
+		);
+		$this->load->view('layouts/header');
+		$this->load->view('layouts/aside');
+		$this->load->view('seguimiento/list_admitidos', $data);
+		$this->load->view('layouts/footer');
+		$this->load->view('layouts/list_admitidos');
+		$this->load->view("layouts/close_body");
+	}
+
 	public function totalInscripto()
 	{
 		$carrera = $this->input->post("data_carrera");
@@ -64,8 +77,10 @@ class Seguimiento extends CI_Controller
 
 	public function getDataAspirante($id)
 	{
+		$lapso ='2-2022';
 		$data = array(
-			'data_aspirante' => $this->Seguimiento_model->getValidarDataAspirante($id)
+			'data_aspirante'     => $this->Seguimiento_model->getValidarDataAspirante($id),
+			'cantidad_admitidos' => intval($this->Seguimiento_model->getCantidadAdmitidos($lapso)->total)
 		);
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');
@@ -90,42 +105,70 @@ class Seguimiento extends CI_Controller
 		$email_to        = $this->input->post("email");
 		$telefono      = $this->input->post("telefono");
 		$carrera       = $this->input->post("carrera");
-		$estatus       = $this->input->post("estatus");
 		$sexo          = $this->input->post("sexo");
 		$titulo_check  = $this->input->post("titulo_check");
 		$notas_check   = $this->input->post("notas_check");
 		$cedula_check  = $this->input->post("cedula_check");
 		$rusnies_check = $this->input->post("rusnies_check");
 		$observaciones = $this->input->post("observaciones");
-		$verificado_por= $this->input->post("verificado_por");
+		$verificado_por= $this->session->userdata('username');
 		$lapso         = '2-2022';
-
+		$estatus = '';
 		$fecha_preuniversitario = '';
 		$mensaje_email = '';
 		$email_from = '';
 
-		if (($carrera == 'Educación integral' && $estatus == 'Aceptado con observaciones') || ($carrera == 'Educación preescolar' && $estatus == 'Aceptado con observaciones') || ($carrera == 'Educación especial' && $estatus == 'Aceptado con observaciones')) {
-			$fecha_preuniversitario = '22 de marzo de 2022 a las 9:00 a.m.';
-			$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
-			$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . 'Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
-		} else if (($carrera == 'Educación integral' && $estatus == 'Aceptado') || ($carrera == 'Educación preescolar' && $estatus == 'Aceptado') || ($carrera == 'Educación especial' && $estatus == 'Aceptado')) {
-			$fecha_preuniversitario = '22 de marzo de 2022 a las 8:00 a.m.';
-			$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
-			$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
-		} else if (($carrera == 'Educación integral' && $estatus == 'No aceptado') || ($carrera == 'Educación preescolar' && $estatus == 'No aceptado') || ($carrera == 'Educación especial' && $estatus == 'No aceptado')) {
-			$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
-			$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+		//con este condicional le damos el estatus al aspirante dependiendo de los documentos entregados
+		if ($titulo_check == 'on' && $notas_check == 'on' && $cedula_check == 'on' && $rusnies_check == 'on') {
+			$estatus = 'Aceptado';
+		} else if ($titulo_check == 'on' && $notas_check == 'on' && $cedula_check == 'on' && $rusnies_check == '') {
+			$estatus = 'Aceptado con observaciones';
+		} else {
+			$estatus = 'No aceptado';
 		}
 
-		$fecha = date("Y-m-d", strtotime($fecha));
-		
-			$this->load->library('email');
-			$this->email->from($email_from);
-			$this->email->to($email_to);
-			$this->email->subject('Selección de aspirante.');
-			$this->email->message('Estimado (a) aspirante ' . $p_nombre . ' ' . $p_apellido . ' cédula de identidad ' . $cedula . ', ' . $mensaje_email);
-			$this->email->send();
-		
+		$cantidad_admitidos = intval($this->Seguimiento_model->getCantidadAdmitidos($lapso)->total);// verifico en la tabla admitidos cuantos van para hacer los grupos y convierto a entero el resultado
+       
+		if ($cantidad_admitidos <= 50) {//verifico la cantidad de admitidos y se crea el primer grupo de 50
+			if (($carrera == 'Educación integral' && $estatus == 'Aceptado con observaciones') || ($carrera == 'Educación preescolar' && $estatus == 'Aceptado con observaciones') || ($carrera == 'Educación especial' && $estatus == 'Aceptado con observaciones')) {
+				$fecha_preuniversitario = '22 de marzo de 2022 a las 08:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . 'Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if (($carrera == 'Educación integral' && $estatus == 'Aceptado') || ($carrera == 'Educación preescolar' && $estatus == 'Aceptado') || ($carrera == 'Educación especial' && $estatus == 'Aceptado')) {
+				$fecha_preuniversitario = '22 de marzo de 2022 a las 8:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if (($carrera == 'Educación integral' && $estatus == 'No aceptado') || ($carrera == 'Educación preescolar' && $estatus == 'No aceptado') || ($carrera == 'Educación especial' && $estatus == 'No aceptado')) {
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+			}
+			
+		} else if ($cantidad_admitidos > 50) {//verifico la cantidad de admitidos y se crea el segundo grupo de 50
+			if (($carrera == 'Educación integral' && $estatus == 'Aceptado con observaciones') || ($carrera == 'Educación preescolar' && $estatus == 'Aceptado con observaciones') || ($carrera == 'Educación especial' && $estatus == 'Aceptado con observaciones')) {
+				$fecha_preuniversitario = '22 de marzo de 2022 a las 10:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . 'Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if (($carrera == 'Educación integral' && $estatus == 'Aceptado') || ($carrera == 'Educación preescolar' && $estatus == 'Aceptado') || ($carrera == 'Educación especial' && $estatus == 'Aceptado')) {
+				$fecha_preuniversitario = '22 de marzo de 2022 a las 10:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if (($carrera == 'Educación integral' && $estatus == 'No aceptado') || ($carrera == 'Educación preescolar' && $estatus == 'No aceptado') || ($carrera == 'Educación especial' && $estatus == 'No aceptado')) {
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+			}
+			
+		}
+
+		$fecha = date("Y-m-d", strtotime($fecha)); //cambio formato a la fecha para guardarla en la base de datos
+
+		//se prepara para enviar el email con los datos seleccionados
+		$this->load->library('email');
+		$this->email->from($email_from);
+		$this->email->to($email_to);
+		$this->email->subject('Selección de aspirante.');
+		$this->email->message('Estimado (a) aspirante ' . $p_nombre . ' ' . $p_apellido . ' cédula de identidad ' . $cedula . ', ' . $mensaje_email);
+		$this->email->send();
+
 		$data  = array(
 			'fecha'         => $fecha,
 			'cedula'        => $cedula,
@@ -152,7 +195,7 @@ class Seguimiento extends CI_Controller
 
 		$data_update = array(
 			'status' => '0'
-		);
+		);//con este valor le cambio el estatus al aspirante en la tabla aspirante
 
 
 		if ($this->Seguimiento_model->saveAdmitido($data, $data_update, $id_aspirante)) {
@@ -162,5 +205,42 @@ class Seguimiento extends CI_Controller
 			$this->session->set_flashdata("falseee", "No se pudo guardar el registro...");
 			redirect(base_url() . "seguimiento/seguimiento");
 		}
+	}
+
+	public function totalAdmitidos()
+	{
+		$carrera = $this->input->post("data_carrera");
+		$num = 1;
+		$data = array();
+		$observacion ='';
+
+		$result = $this->Seguimiento_model->getAdmitidosPorCarrera($carrera);		
+
+		if (!empty($result)) {
+
+			foreach ($result as $r) {
+				
+				$data[] = array(
+					$num++,
+					$r->cedula,
+					$r->nombre1,
+					$r->nombre2,
+					$r->apellido1,
+					$r->apellido2,
+					$r->fechanac,
+					$r->email,
+					$r->carrera,	
+					$observacion			
+				);
+			}
+		} else {
+			$data = [];
+		}
+
+		$result = array(
+			"data" => $data
+		);
+
+		echo json_encode($result);
 	}
 }

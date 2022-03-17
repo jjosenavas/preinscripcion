@@ -150,7 +150,7 @@
                                                         <div class="info-box">
                                                             <span class="info-box-icon bg-info"><i class="fa fa-user"></i></span>
                                                             <div class="info-box-content">
-                                                                <span class="info-box-text">Total admitidos</span>
+                                                                <span class="info-box-text">Total aceptados</span>
                                                                 <span class="info-box-number"><?php echo $cantidad_admitidos ?></span>
                                                             </div>
                                                         </div>

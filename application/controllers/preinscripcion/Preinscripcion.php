@@ -94,6 +94,8 @@ class Preinscripcion extends CI_Controller
 		++$nun_planilla;
 		$cantidad = strlen($nun_planilla);
 		$cero = '';
+		$lapso = '2-2022';
+
 		if ($cantidad == 1) {
 			$cero = '0000'.$nun_planilla;
 		}else if ($cantidad == 2) {
@@ -124,6 +126,7 @@ class Preinscripcion extends CI_Controller
 			'serial_titulo' => $serial_titulo,
 			'status'        => '1',
 			'planilla'      => $cero,
+			'lapso'         => $lapso
 		);
 
 

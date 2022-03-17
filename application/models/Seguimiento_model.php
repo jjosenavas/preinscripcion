@@ -117,6 +117,16 @@ class Seguimiento_model extends CI_Model
        
     }
 
+    public function saveNoAceptado($data_update, $id_aspirante)
+    {
+        $this->db->trans_start();
+        $this->db->where("id", $id_aspirante);
+        $this->db->update('aspirante', $data_update);
+        $this->db->trans_complete();
+      return $this->db->trans_status();
+       
+    }
+
     public function getCantidadAdmitidos($lapso)
     {
         $this->db->select(
@@ -124,7 +134,7 @@ class Seguimiento_model extends CI_Model
             '
         );
         $this->db->from('admitidos');
-        $this->db->where("lapso", $lapso);
+        $this->db->where('lapso', $lapso);
         $resultado = $this->db->get();
         return $resultado->row();
     }

@@ -40,7 +40,13 @@
                         <li class="nav-item">
                             <a href="<?php echo base_url(); ?>seguimiento/seguimiento/listAdmitidos" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>listado admitidos</p>
+                                <p>listado aceptados</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo base_url(); ?>seguimiento/seguimiento/listNoAceptados" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>listado no aceptados</p>
                             </a>
                         </li>
 

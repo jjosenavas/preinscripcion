@@ -34,6 +34,7 @@ class Seguimiento extends CI_Controller
 		$this->load->view('layouts/list_admitidos');
 		$this->load->view("layouts/close_body");
 	}
+	
 
 	public function totalInscripto()
 	{
@@ -244,6 +245,55 @@ class Seguimiento extends CI_Controller
 					$r->email,
 					$r->carrera,
 					$observacion
+				);
+			}
+		} else {
+			$data = [];
+		}
+
+		$result = array(
+			"data" => $data
+		);
+
+		echo json_encode($result);
+	}
+
+	public function listNoAceptados()
+	{
+		$data = array(
+			'carreras' => $this->Seguimiento_model->getCarreras()
+		);
+		$this->load->view('layouts/header');
+		$this->load->view('layouts/aside');
+		$this->load->view('seguimiento/list_no_aceptados', $data);
+		$this->load->view('layouts/footer');
+		$this->load->view('layouts/list_no_aceptados');
+		$this->load->view("layouts/close_body");
+	}
+
+	public function totalNoAceptados()
+	{
+		$carrera = $this->input->post("data_carrera");
+		$num = 1;
+		$data = array();
+		
+
+		$result = $this->Seguimiento_model->getNoAceptadosPorCarrera($carrera);
+
+		if (!empty($result)) {
+
+			foreach ($result as $r) {
+
+				$data[] = array(
+					$num++,
+					$r->cedula,
+					$r->nombre1,
+					$r->nombre2,
+					$r->apellido1,
+					$r->apellido2,
+					$r->fechanac,
+					$r->email,
+					$r->carrera
 				);
 			}
 		} else {

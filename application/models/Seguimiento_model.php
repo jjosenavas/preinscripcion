@@ -165,5 +165,32 @@ class Seguimiento_model extends CI_Model
         $resultado = $this->db->get();
         return $resultado->result();
     }
+
+    public function getNoAceptadosPorCarrera($carrera)
+    {
+        $this->db->select(
+            '   id,
+                cedula,
+                nombre1,
+                nombre2,
+                apellido1,
+                apellido2,
+                telefono,
+                direccion,
+                email,
+                fechanac,
+                carrera,
+                sexo
+            '
+        );
+        $this->db->from('aspirante');
+        if ($carrera != 'todas') {
+            $this->db->where('carrera', $carrera);
+            $this->db->where('status', '2');
+        }
+        $this->db->where('status', '2');
+        $resultado = $this->db->get();
+        return $resultado->result();
+    }
     
 }

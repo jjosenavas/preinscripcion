@@ -27,7 +27,7 @@
         <div class="card card-info">
 
           <div class="card-header">
-            <h3 class="card-title">Listado de aceptados</h3>
+            <h3 class="card-title">Listado de no aceptados</h3>
           </div>
           <div class="card-body">
             <div class="row">
@@ -53,7 +53,7 @@
             </div>
 
             <div class="table-responsive">
-              <table id="listado_admitidos" class="table table-bordered table-striped">
+              <table id="listado_no_aceptados" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -65,7 +65,6 @@
                     <th>fecha de nacimiento</th>
                     <th>Correo</th>
                     <th>Carrera</th>
-                    <th>Observación</th>
                   </tr>
                 </thead>
                 <tbody>

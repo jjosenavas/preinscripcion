@@ -15,12 +15,15 @@ class Welcome extends CI_Controller {
 
 
 	public function index()
-	{	
-		$data = array(
-		'total'      => $this->Seguimiento_model->getCantidadPreinscriptos(),
-		'integral'   => $this->Seguimiento_model->getCantidadEducacionIntegral(),
-		'preescolar' => $this->Seguimiento_model->getCantidadEducacionPreescolar(),
-		'especial'   => $this->Seguimiento_model->getCantidadEducacionEspecial()
+	{	$lapso = '2-2022'
+;		$data = array(
+	    'total_total'   => $this->Seguimiento_model->getCantidadPreinscriptos($lapso),
+		'total'         => $this->Seguimiento_model->getCantidadPreinscriptosEducacion($lapso),
+		'integral'      => $this->Seguimiento_model->getCantidadEducacionIntegral($lapso),
+		'preescolar'    => $this->Seguimiento_model->getCantidadEducacionPreescolar($lapso),
+		'especial'      => $this->Seguimiento_model->getCantidadEducacionEspecial($lapso),
+		'electronica'   => $this->Seguimiento_model->getCantidadElectronica($lapso),
+		'electrotecnia' => $this->Seguimiento_model->getCantidadElectrotecnia($lapso)
 	   );
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');

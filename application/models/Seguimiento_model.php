@@ -15,19 +15,37 @@ class Seguimiento_model extends CI_Model
         return $resultado->result();
     }
 
-    public function getCantidadPreinscriptos()
+    public function getCantidadPreinscriptos($lapso)
     {
         $this->db->select(
             'count(*) AS total
             '
         );
         $this->db->from('aspirante');
+        $this->db->where('lapso', $lapso);
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+    public function getCantidadPreinscriptosEducacion($lapso)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('aspirante');
+        $this->db->where('lapso', $lapso);
+        $this->db->group_start();
+        $this->db->where('carrera', 'Educación especial');
+        $this->db->or_where('carrera', 'Educación preescolar');
+        $this->db->or_where('carrera', 'Educación integral');
+        $this->db->group_end();
 
         $resultado = $this->db->get();
         return $resultado->row();
     }
 
-    public function getCantidadEducacionPreescolar()
+    public function getCantidadEducacionPreescolar($lapso)
     {
         $this->db->select(
             'count(*) AS preescolar
@@ -35,12 +53,13 @@ class Seguimiento_model extends CI_Model
         );
         $this->db->from('aspirante');
         $this->db->where('carrera', 'Educación preescolar');
+        $this->db->where('lapso', $lapso);
 
         $resultado = $this->db->get();
         return $resultado->row();
     }
 
-    public function getCantidadEducacionIntegral()
+    public function getCantidadEducacionIntegral($lapso)
     {
         $this->db->select(
             'count(*) AS integral
@@ -48,12 +67,13 @@ class Seguimiento_model extends CI_Model
         );
         $this->db->from('aspirante');
         $this->db->where('carrera', 'Educación integral');
+        $this->db->where('lapso', $lapso);
 
         $resultado = $this->db->get();
         return $resultado->row();
     }
 
-    public function getCantidadEducacionEspecial()
+    public function getCantidadEducacionEspecial($lapso)
     {
         $this->db->select(
             'count(*) AS especial
@@ -61,6 +81,34 @@ class Seguimiento_model extends CI_Model
         );
         $this->db->from('aspirante');
         $this->db->where('carrera', 'Educación especial');
+        $this->db->where('lapso', $lapso);
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+    public function getCantidadElectronica($lapso)
+    {
+        $this->db->select(
+            'count(*) AS electronica
+            '
+        );
+        $this->db->from('aspirante');
+        $this->db->where('carrera', 'Electrónica');
+        $this->db->where('lapso', $lapso);
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+    public function getCantidadElectrotecnia($lapso)
+    {
+        $this->db->select(
+            'count(*) AS electrotecnia
+            '
+        );
+        $this->db->from('aspirante');
+        $this->db->where('carrera', 'Electrotecnia');
+        $this->db->where('lapso', $lapso);
 
         $resultado = $this->db->get();
         return $resultado->row();

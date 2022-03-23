@@ -129,8 +129,20 @@ class Seguimiento extends CI_Controller
 		}
 
 		$cantidad_admitidos = intval($this->Seguimiento_model->getCantidadAdmitidos($lapso)->total); // verifico en la tabla admitidos cuantos van para hacer los grupos y convierto a entero el resultado
+		$electronica = 'Electrónica';
+		$electrotecnia = 'Electrotecnia';
+		$mecanica = 'Mecánica';
+		$informatica = 'Informática';
+		$adm_empresa = 'Administración de empresas';
+		$contaduria = 'Contaduría';
 
-		if ($cantidad_admitidos <= 50) { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+		$cantidad_procesados_elect = intval($this->Seguimiento_model->getCantidadProcesadosElect($lapso, $electronica, $electrotecnia)->total); // verifico en la tabla admitidos cuantos van para hacer los grupos y convierto a entero el resultado
+		$cantidad_procesados_mecanica = intval($this->Seguimiento_model->getCantidadProcesadosMecanica($lapso, $mecanica)->total); // verifico en la tabla admitidos cuantos van para hacer los grupos y convierto a entero el resultado
+		$cantidad_procesados_informatica = intval($this->Seguimiento_model->getCantidadProcesadosInformatica($lapso, $informatica)->total); // verifico en la tabla admitidos cuantos van para hacer los grupos y convierto a entero el resultado
+		$cantidad_procesados_admempresa = intval($this->Seguimiento_model->getCantidadProcesadosAdministacionEmpresa($lapso, $adm_empresa)->total); // verifico en la tabla admitidos cuantos van para hacer los grupos y convierto a entero el resultado
+		$cantidad_procesados_contaduria = intval($this->Seguimiento_model->getCantidadProcesadosContaduria($lapso, $contaduria)->total); // verifico en la tabla admitidos cuantos van para hacer los grupos y convierto a entero el resultado
+		
+		if (($cantidad_admitidos <= 50 && $carrera == 'Educación integral') || ($cantidad_admitidos <= 50 && $carrera == 'Educación preescolar') || ($cantidad_admitidos <= 50 && $carrera == 'Educación especial')) { //verifico la cantidad de admitidos y se crea el primer grupo de 50
 			if (($carrera == 'Educación integral' && $estatus == 'Aceptado con observaciones') || ($carrera == 'Educación preescolar' && $estatus == 'Aceptado con observaciones') || ($carrera == 'Educación especial' && $estatus == 'Aceptado con observaciones')) {
 				$fecha_preuniversitario = '22 de marzo de 2022 a las 08:00 a.m.';
 				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
@@ -143,7 +155,7 @@ class Seguimiento extends CI_Controller
 				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
 				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
 			}
-		} else if ($cantidad_admitidos > 50) { //verifico la cantidad de admitidos y se crea el segundo grupo de 50
+		} else if (($cantidad_admitidos > 50 && $carrera == 'Educación integral') || ($cantidad_admitidos > 50 && $carrera == 'Educación preescolar') || ($cantidad_admitidos > 50 && $carrera == 'Educación especial')) { //verifico la cantidad de admitidos y se crea el segundo grupo de 50
 			if (($carrera == 'Educación integral' && $estatus == 'Aceptado con observaciones') || ($carrera == 'Educación preescolar' && $estatus == 'Aceptado con observaciones') || ($carrera == 'Educación especial' && $estatus == 'Aceptado con observaciones')) {
 				$fecha_preuniversitario = '22 de marzo de 2022 a las 10:00 a.m.';
 				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
@@ -157,6 +169,148 @@ class Seguimiento extends CI_Controller
 				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
 			}
 		}
+
+		if (($cantidad_procesados_elect <= 60 && $carrera == 'Electrónica') || ($cantidad_procesados_elect <= 60 && $carrera == 'Electrotecnia')) { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+			if (($estatus == 'Aceptado con observaciones')) {
+				$fecha_preuniversitario = '29 de marzo de 2022 a las 08:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . ' Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'Aceptado') {
+				$fecha_preuniversitario = '29 de marzo de 2022 a las 8:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'No aceptado') {
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+			}
+		} else if (($cantidad_procesados_elect > 60 && $carrera == 'Electrónica') || ($cantidad_procesados_elect > 60 && $carrera == 'Electrotecnia') ) { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+			if (($estatus == 'Aceptado con observaciones')) {
+				$fecha_preuniversitario = '29 de marzo de 2022 a las 10:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . ' Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'Aceptado') {
+				$fecha_preuniversitario = '29 de marzo de 2022 a las 10:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'No aceptado') {
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+			}
+		} 
+
+		if ($cantidad_procesados_mecanica <= 60 && $carrera == 'Mecánica') { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+			if (($estatus == 'Aceptado con observaciones')) {
+				$fecha_preuniversitario = '29 de marzo de 2022 a las 08:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . ' Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'Aceptado') {
+				$fecha_preuniversitario = '29 de marzo de 2022 a las 8:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'No aceptado') {
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+			}
+		} else if ($cantidad_procesados_mecanica > 60 && $carrera == 'Mecánica') { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+			if (($estatus == 'Aceptado con observaciones')) {
+				$fecha_preuniversitario = '05 de abril de 2022 a las 10:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . ' Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'Aceptado') {
+				$fecha_preuniversitario = '05 de abril de 2022 a las 10:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'No aceptado') {
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+			}
+		}
+
+		if ($cantidad_procesados_informatica <= 60 && $carrera == 'Informática') { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+			if (($estatus == 'Aceptado con observaciones')) {
+				$fecha_preuniversitario = '12 de abril de 2022 a las 08:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . ' Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'Aceptado') {
+				$fecha_preuniversitario = '12 de abril de 2022 a las 8:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'No aceptado') {
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+			}
+		} else if ($cantidad_procesados_informatica > 60  && $carrera == 'Informática') { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+			if (($estatus == 'Aceptado con observaciones')) {
+				$fecha_preuniversitario = '12 de abril de 2022 a las 10:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . ' Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'Aceptado') {
+				$fecha_preuniversitario = '12 de abril de 2022 a las 10:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'No aceptado') {
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+			}
+		}
+
+		if ($cantidad_procesados_admempresa <= 60 && $carrera == 'Administración de empresas') { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+			if (($estatus == 'Aceptado con observaciones')) {
+				$fecha_preuniversitario = '26 de abril de 2022 a las 08:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . ' Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'Aceptado') {
+				$fecha_preuniversitario = '26 de abril de 2022 a las 8:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'No aceptado') {
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+			}
+		} else if ($cantidad_procesados_admempresa > 60  && $carrera == 'Administración de empresas') { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+			if (($estatus == 'Aceptado con observaciones')) {
+				$fecha_preuniversitario = '26 de abril de 2022 a las 10:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . ' Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'Aceptado') {
+				$fecha_preuniversitario = '26 de abril de 2022 a las 10:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'No aceptado') {
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+			}
+		}
+
+		if ($cantidad_procesados_contaduria <= 60 && $carrera == 'Contaduría') { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+			if (($estatus == 'Aceptado con observaciones')) {
+				$fecha_preuniversitario = '03 de mayo de 2022 a las 08:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . ' Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'Aceptado') {
+				$fecha_preuniversitario = '03 de mayo de 2022 a las 8:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'No aceptado') {
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+			}
+		} else if ($cantidad_procesados_contaduria > 60  && $carrera == 'Contaduría') { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+			if (($estatus == 'Aceptado con observaciones')) {
+				$fecha_preuniversitario = '03 de mayo de 2022 a las 10:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . ' Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'Aceptado') {
+				$fecha_preuniversitario = '03 de mayo de 2022 a las 10:00 a.m.';
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
+			} else if ($estatus == 'No aceptado') {
+				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
+				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
+			}
+		}
+
+		
 
 		$fecha = date("Y-m-d", strtotime($fecha)); //cambio formato a la fecha para guardarla en la base de datos
 

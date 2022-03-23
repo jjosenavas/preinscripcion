@@ -82,6 +82,7 @@
                             <p> Deben ser enviados al correo: <?php echo '<strong>';echo $correo_envio; echo '</strong>'; ?> En caso de no poder enviarlos inmediatamente, tendrá como fecha límite para enviar: <?php echo '<strong>';echo $fecha_limite;echo '</strong>'; ?>. No dejes para última hora el envío de los mismos.
                             </p>
                             <p><strong>Nota:</strong> Hemos enviado a <strong><?php echo $email ?></strong> la información necesaria para el envío de la documentación. Es posible que el correo te llegue como spam o correo no deseado, en este sentido, debes revisar la sección de spam de tu correo electrónico y marcarlo como correo deseado o seguro. </p>
+                            <p>Deben estar al pendiente del correo electrónico suministrado ya que se les estará enviando información de interés.</p>
                         </div>
                         <div class="">
                             <a href="<?php echo base_url(); ?>preinscripcion/preinscripcion" class="btn btn-app no-print">

@@ -187,6 +187,82 @@ class Seguimiento_model extends CI_Model
         return $resultado->row();
     }
 
+    public function getCantidadProcesadosElect($lapso, $electronica, $electrotecnia)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('admitidos');
+        $this->db->where('lapso', $lapso);
+        $this->db->group_start();
+        $this->db->where('carrera', $electronica);
+        $this->db->or_where('carrera', $electrotecnia);
+        $this->db->group_end();
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+    public function getCantidadProcesadosMecanica($lapso, $mecanica)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('admitidos');
+        $this->db->where('lapso', $lapso);
+        $this->db->group_start();
+        $this->db->where('carrera', $mecanica);
+        $this->db->group_end();
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+    public function getCantidadProcesadosInformatica($lapso, $informatica)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('admitidos');
+        $this->db->where('lapso', $lapso);
+        $this->db->group_start();
+        $this->db->where('carrera', $informatica);
+        $this->db->group_end();
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+    public function getCantidadProcesadosAdministacionEmpresa($lapso, $adm_empresa)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('admitidos');
+        $this->db->where('lapso', $lapso);
+        $this->db->group_start();
+        $this->db->where('carrera', $adm_empresa);
+        $this->db->group_end();
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+    public function getCantidadProcesadosContaduria($lapso, $contaduria)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('admitidos');
+        $this->db->where('lapso', $lapso);
+        $this->db->group_start();
+        $this->db->where('carrera', $contaduria);
+        $this->db->group_end();
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
     public function getAdmitidosPorCarrera($carrera)
     {
         $this->db->select(

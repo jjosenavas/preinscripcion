@@ -7,6 +7,7 @@ class Foc extends CI_Controller
     {
         parent::__construct();
         $this->load->model("Usuario_model");
+        $this->load->model("Foc_model");        
     }
 
     public function index()
@@ -22,14 +23,14 @@ class Foc extends CI_Controller
 
         if (!$res) {
             $this->session->set_flashdata("error", "El usuario o la contraseña son incorrectos");
-            redirect(base_url(). "foc/foc/");
+            redirect(base_url(). "foc/foc");
         } else {
 
             $data  = array(
 
                 'id' => $res->id,
-                'nombre' => $res->usuarios,
-                'login' => TRUE
+                'usuarios' => $res->usuarios,
+                'login_foc' => TRUE
             );
 
             $this->session->set_userdata($data);
@@ -39,8 +40,15 @@ class Foc extends CI_Controller
 
     public function focRegistro()
     {
+       $cedula_foc = $this->session->userdata('usuarios');
+      
+       $data_estudiante = $this->Foc_model->getDataParticipante($cedula_foc)->semestre;
+
+       $data = array(
+			'cursos' => $this->Foc_model->getCursosFoc($data_estudiante)
+		 ); 
         $this->load->view("layouts/header_ini");
-        // $this->load->view("foc/foc_info");
+        $this->load->view("foc/registro_curso", $data);
         $this->load->view("layouts/footer");
 		$this->load->view("layouts/close_body");
     }
@@ -48,6 +56,6 @@ class Foc extends CI_Controller
     public function logout()
     {
         $this->session->sess_destroy();
-        redirect(base_url());
+        redirect(base_url().'foc/foc/');
     }
 }

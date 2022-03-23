@@ -35,8 +35,9 @@
                     <div class="alert alert-danger">
                         <p><?php echo $this->session->flashdata("error") ?></p>
                     </div>
+                   
                 <?php endif; ?>
-                <form action="<?php echo base_url(); ?>foc/foc/login" method="post">
+                <form action="<?php echo base_url(); ?>foc/foc/login" method="post">                 
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Usuario" name="username" autofocus="autofocus">
                         <div class="input-group-append">

@@ -156,4 +156,38 @@
              </div>
          </div>
      </section>
+
+      <section class="content">
+         <div class="container-fluid">
+             <div class="card card-default">
+                 <div class="">
+                     <div class="card-header">
+                         <label>Resumen de Mecánica</label>
+
+                         <div class="card-tools">
+                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+
+                         </div>
+                     </div>
+                 </div>
+                 <div class="card-body">
+                     <div class="row">
+                         <div class="col-md-3">
+                             <div class="small-box bg-info">
+                                 <div class="inner">
+                                     <h3><?php echo $mecanica->mecanica; ?></h3>
+
+                                     <p>Total Mecánica</p>
+                                 </div>
+                                 <div class="icon">
+                                     <i class="ion ion-person-add"></i>
+                                 </div>
+                                 <a href="<?php echo base_url(); ?>seguimiento/seguimiento" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+                             </div>
+                         </div>                         
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
  </div>

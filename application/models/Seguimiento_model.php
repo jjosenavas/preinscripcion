@@ -113,6 +113,19 @@ class Seguimiento_model extends CI_Model
         $resultado = $this->db->get();
         return $resultado->row();
     }
+    public function getCantidadMecanica($lapso)
+    {
+        $this->db->select(
+            'count(*) AS mecanica
+            '
+        );
+        $this->db->from('aspirante');
+        $this->db->where('carrera', 'Mecánica');
+        $this->db->where('lapso', $lapso);
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
 
     public function getInscriptoPorCarrera($carrera)
     {

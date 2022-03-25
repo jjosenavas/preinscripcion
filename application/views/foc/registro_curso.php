@@ -29,18 +29,19 @@
                                             <h3 class="card-title">Registrar curso</h3>
                                         </div>
                                         <div class="card-body">
-
-                                            <form id="new_asp" role="form" action="<?php echo base_url(); ?>preinscripcion/preinscripcion/store" method="POST">
-                                                <div class="row">
+                                            <form id="new_curso_foc" role="form" action="<?php echo base_url(); ?>foc/foc/store" method="POST">
+                                             <input type="hidden" name="id_estudiante" value="<?php echo $id_estudiante ?>"/>   
+                                            <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="Username">Académica</label>
-                                                            <select name="sexo" id="sexo" class="form-control form-control-sm" title="Selecciona tu sexo" required>
+                                                            <select name="curso_1" id="curso_1" class="form-control form-control-sm" title="Selecciona un curso por favor" required>
                                                                 <option value="">Seleccione...</option>
+                                                               
                                                                 <?php if (!empty($cursos)) : ?>
                                                                     <?php foreach ($cursos as $curso) : ?>
                                                                         <?php if ($curso->nombre_d == 'Académica') : ?>
-                                                                            <option value="<?php echo $curso->nombre_c ?>">
+                                                                            <option value="<?php echo $curso->id ?>">
                                                                                 <?php echo $curso->nombre_c ?>
                                                                             </option>
                                                                         <?php endif ?>
@@ -53,12 +54,12 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="Username">Humana</label>
-                                                            <select name="sexo" id="sexo" class="form-control form-control-sm" title="Selecciona tu sexo" required>
+                                                            <select name="curso_2" id="curso_2" class="form-control form-control-sm" title="Selecciona un curso por favor" required>
                                                                 <option value="">Seleccione...</option>
                                                                <?php if (!empty($cursos)) : ?>
                                                                     <?php foreach ($cursos as $curso) : ?>
                                                                         <?php if ($curso->nombre_d == 'Cultural') : ?>
-                                                                            <option value="<?php echo $curso->nombre_c ?>">
+                                                                            <option value="<?php echo $curso->id ?>">
                                                                                 <?php echo $curso->nombre_c ?>
                                                                             </option>
                                                                         <?php endif ?>
@@ -73,9 +74,9 @@
                                                 <!-- /.card-body -->
                                                 <hr class="info">
                                                 <div class="">
-                                                    <a href="<?php echo base_url(); ?>foc/foc/logout" class="btn btn-app">
+                                                    <!-- <a href="<?php echo base_url(); ?>foc/foc/logout" class="btn btn-app">
                                                         <i class="fas fa-reply-all color_rojo"></i> Volver
-                                                    </a>
+                                                    </a> -->
                                                     <button type="submit" id="btn_save" class="btn btn-app"><i class="fas fa-save color_rojo"></i> Registrar</button>
                                                 </div>
                                                 <hr>

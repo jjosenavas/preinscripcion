@@ -127,6 +127,101 @@ class Seguimiento_model extends CI_Model
         return $resultado->row();
     }
 
+    // monitoreo por carrera en el proceso de aceptacion
+    public function getCantidadAceptadosElectronicaElectrotecnia($lapso)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('admitidos');
+        $this->db->where('lapso', $lapso);
+        $this->db->group_start();
+        $this->db->where('carrera', 'Electrónica');
+        $this->db->or_where('carrera', 'Electrotecnia');
+        $this->db->group_end();
+       
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+    public function getCantidadAceptadosEducacion($lapso)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('admitidos');
+        $this->db->where('lapso', $lapso);
+       $this->db->group_start();
+        $this->db->where('carrera', 'Educación especial');
+        $this->db->or_where('carrera', 'Educación preescolar');
+        $this->db->or_where('carrera', 'Educación integral');
+        $this->db->group_end();        
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+    public function getCantidadAceptadosMecanica($lapso)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('admitidos');
+        $this->db->where('lapso', $lapso);      
+        $this->db->where('carrera', 'Mecánica');
+       
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+    public function getCantidadAceptadosInformatica($lapso)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('admitidos');
+        $this->db->where('lapso', $lapso);      
+        $this->db->where('carrera', 'Informática');
+        
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+    public function getCantidadAceptadosAdministracionEmpresa($lapso)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('admitidos');
+        $this->db->where('lapso', $lapso);      
+        $this->db->where('carrera', 'Administración de empresas');
+        
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+     public function getCantidadAceptadosContaduria($lapso)
+    {
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('admitidos');
+        $this->db->where('lapso', $lapso);      
+        $this->db->where('carrera', 'Contaduría');
+        
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
     public function getInscriptoPorCarrera($carrera)
     {
         $this->db->select(

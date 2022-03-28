@@ -80,8 +80,15 @@ class Seguimiento extends CI_Controller
 	{
 		$lapso = '2-2022';
 		$data = array(
-			'data_aspirante'     => $this->Seguimiento_model->getValidarDataAspirante($id),
-			'cantidad_admitidos' => intval($this->Seguimiento_model->getCantidadAdmitidos($lapso)->total)
+			'data_aspirante'        => $this->Seguimiento_model->getValidarDataAspirante($id),
+			'cantidad_admitidos'    => intval($this->Seguimiento_model->getCantidadAdmitidos($lapso)->total),
+			'cantidad_electro'      => intval($this->Seguimiento_model->getCantidadAceptadosElectronicaElectrotecnia($lapso)->total),
+			'cantidad_educacion'    => intval($this->Seguimiento_model->getCantidadAceptadosEducacion($lapso)->total),
+			'cantidad_mecanica'     => intval($this->Seguimiento_model->getCantidadAceptadosMecanica($lapso)->total),
+			'cantidad_informatica'  => intval($this->Seguimiento_model->getCantidadAceptadosInformatica($lapso)->total),
+			'cantidad_admin_empre'  => intval($this->Seguimiento_model->getCantidadAceptadosAdministracionEmpresa($lapso)->total),
+			'cantidad_contaduria'   => intval($this->Seguimiento_model->getCantidadAceptadosContaduria($lapso)->total)
+
 		);
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');
@@ -170,7 +177,7 @@ class Seguimiento extends CI_Controller
 			}
 		}
 
-		if (($cantidad_procesados_elect <= 60 && $carrera == 'Electrónica') || ($cantidad_procesados_elect <= 60 && $carrera == 'Electrotecnia')) { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+		if (($cantidad_procesados_elect <= 65 && $carrera == 'Electrónica') || ($cantidad_procesados_elect <= 65 && $carrera == 'Electrotecnia')) { //verifico la cantidad de admitidos y se crea el primer grupo de 65
 			if (($estatus == 'Aceptado con observaciones')) {
 				$fecha_preuniversitario = '29 de marzo de 2022 a las 08:00 a.m.';
 				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
@@ -183,7 +190,7 @@ class Seguimiento extends CI_Controller
 				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
 				$mensaje_email = 'usted no ha cumplido con los requisitos correspondientes, le invitamos a participar en el siguiente proceso de Selección y Admisión. Debe estar pendiente de la página web del instituto y nuestras redes sociales. Pronto habrá una nueva oportunidad, prepare los recaudos. Estaremos esperando su regreso.';
 			}
-		} else if (($cantidad_procesados_elect > 60 && $carrera == 'Electrónica') || ($cantidad_procesados_elect > 60 && $carrera == 'Electrotecnia') ) { //verifico la cantidad de admitidos y se crea el primer grupo de 50
+		} else if (($cantidad_procesados_elect > 65 && $carrera == 'Electrónica') || ($cantidad_procesados_elect > 65 && $carrera == 'Electrotecnia') ) { //verifico la cantidad de admitidos y se crea el primer grupo de 65
 			if (($estatus == 'Aceptado con observaciones')) {
 				$fecha_preuniversitario = '29 de marzo de 2022 a las 10:00 a.m.';
 				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';

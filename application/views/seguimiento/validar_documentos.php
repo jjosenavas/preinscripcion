@@ -154,9 +154,69 @@
                                                                 <span class="info-box-number"><?php echo $cantidad_admitidos ?></span>
                                                             </div>
                                                         </div>
+                                                    </div>                                                    
+                                                </div>
+                                                <label for="">Procesados por especialidad</label>   
+                                                <div class="row">      
+                                                                                               
+                                                    <div class="col-sm-3">
+                                                        <div class="info-box">
+                                                            <span class="info-box-icon bg-success"><i class="fa fa-user"></i></span>
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text">Educación</span>
+                                                                <span class="info-box-number"><?php echo $cantidad_educacion ?></span>
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="info-box">
+                                                            <span class="info-box-icon bg-warning"><i class="fa fa-user"></i></span>
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text">Electrónica-electrotecnia</span>
+                                                                <span class="info-box-number"><?php echo $cantidad_electro ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-3">
+                                                        <div class="info-box">
+                                                            <span class="info-box-icon bg-danger"><i class="fa fa-user"></i></span>
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text">Mecánica</span>
+                                                                <span class="info-box-number"><?php echo $cantidad_mecanica ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-
+                                                <div class="row">      
+                                                                                               
+                                                    <div class="col-sm-3">
+                                                        <div class="info-box">
+                                                            <span class="info-box-icon bg-primary"><i class="fa fa-user"></i></span>
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text">Informática</span>
+                                                                <span class="info-box-number"><?php echo $cantidad_informatica ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="info-box">
+                                                            <span class="info-box-icon bg-gray"><i class="fa fa-user"></i></span>
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text">Adm. Empresas</span>
+                                                                <span class="info-box-number"><?php echo $cantidad_admin_empre ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-sm-3">
+                                                        <div class="info-box">
+                                                            <span class="info-box-icon bg-olive"><i class="fa fa-user"></i></span>
+                                                            <div class="info-box-content">
+                                                                <span class="info-box-text">Contaduría</span>
+                                                                <span class="info-box-number"><?php echo $cantidad_contaduria ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <hr class="color_info">

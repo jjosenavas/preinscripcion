@@ -22,6 +22,19 @@ class Seguimiento extends CI_Controller
 		$this->load->view("layouts/close_body");
 	}
 
+	public function aspirantesTotal()
+	{
+		$data = array(
+			'carreras' => $this->Seguimiento_model->getCarreras()
+		);
+		$this->load->view('layouts/header');
+		$this->load->view('layouts/aside');
+		$this->load->view('seguimiento/list_preinscriptos_total', $data);
+		$this->load->view('layouts/footer');
+		$this->load->view('layouts/list_preinscripto');
+		$this->load->view("layouts/close_body");
+	}
+
 	public function listAdmitidos()
 	{
 		$data = array(
@@ -43,6 +56,46 @@ class Seguimiento extends CI_Controller
 		$data = array();
 
 		$result = $this->Seguimiento_model->getInscriptoPorCarrera($carrera);
+		$path = base_url() . 'seguimiento/seguimiento/getDataAspirante/';
+
+		if (!empty($result)) {
+
+			foreach ($result as $r) {
+				$boton = "<a href='" . $path . $r->id . "' class='btn btn-info'><span class='fa  fa-search'></span></a>";
+				$data[] = array(
+					$num++,
+					$r->cedula,
+					$r->nombre1,
+					$r->nombre2,
+					$r->apellido1,
+					$r->apellido2,
+					$r->fechanac,
+					$r->sexo,
+					$r->direccion,
+					$r->telefono,
+					$r->email,
+					$r->carrera,
+					$boton
+				);
+			}
+		} else {
+			$data = [];
+		}
+
+		$result = array(
+			"data" => $data
+		);
+
+		echo json_encode($result);
+	}
+
+	public function totalInscriptoTotal()
+	{
+		$carrera = $this->input->post("data_carrera");
+		$num = 1;
+		$data = array();
+
+		$result = $this->Seguimiento_model->getInscriptoPorCarreraTotal($carrera);
 		$path = base_url() . 'seguimiento/seguimiento/getDataAspirante/';
 
 		if (!empty($result)) {
@@ -207,11 +260,11 @@ class Seguimiento extends CI_Controller
 
 		if ($cantidad_procesados_mecanica <= 60 && $carrera == 'Mecánica') { //verifico la cantidad de admitidos y se crea el primer grupo de 50
 			if (($estatus == 'Aceptado con observaciones')) {
-				$fecha_preuniversitario = '29 de marzo de 2022 a las 08:00 a.m.';
+				$fecha_preuniversitario = '05 de abril de 2022 a las 08:00 a.m.';
 				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
 				$mensaje_email = 'usted ha cumplido con parte de los requisitos solicitados, resultando faltante o no correspondiente el certificado de OPSU/Rusnies, por tanto, queda en la condición de pendiente por consignar y le será solicitado más adelante. Deberá tramitarlo para consignarlo en su momento. Para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . ' Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
 			} else if ($estatus == 'Aceptado') {
-				$fecha_preuniversitario = '29 de marzo de 2022 a las 8:00 a.m.';
+				$fecha_preuniversitario = '05 de abril de 2022 a las 8:00 a.m.';
 				$email_from = 'bqtoverificacionyseleccion@iujo.edu.ve';
 				$mensaje_email = 'usted ha cumplido con los requisitos correspondientes para continuar con el proceso de Selección y Admisión 2-2022. Debe asistir a las instalaciones del IUJO Barquisimeto el día ' . $fecha_preuniversitario . '. Se requiere: Traer cuaderno y lápiz. Cumplir con todas las normas de bioseguridad. Le esperamos. La puntualidad es indispensable.';
 			} else if ($estatus == 'No aceptado') {
@@ -322,12 +375,12 @@ class Seguimiento extends CI_Controller
 		$fecha = date("Y-m-d", strtotime($fecha)); //cambio formato a la fecha para guardarla en la base de datos
 
 		//se prepara para enviar el email con los datos seleccionados
-		$this->load->library('email');
-		$this->email->from($email_from);
-		$this->email->to($email_to);
-		$this->email->subject('Selección de aspirante.');
-		$this->email->message('Estimado (a) aspirante ' . $p_nombre . ' ' . $p_apellido . ' cédula de identidad ' . $cedula . ', ' . $mensaje_email);
-		$this->email->send();
+		// $this->load->library('email');
+		// $this->email->from($email_from);
+		// $this->email->to($email_to);
+		// $this->email->subject('Selección de aspirante.');
+		// $this->email->message('Estimado (a) aspirante ' . $p_nombre . ' ' . $p_apellido . ' cédula de identidad ' . $cedula . ', ' . $mensaje_email);
+		// $this->email->send();
         
 		if ($estatus == 'Aceptado' || $estatus == 'Aceptado con observaciones') {
 

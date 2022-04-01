@@ -126,6 +126,19 @@ class Seguimiento_model extends CI_Model
         $resultado = $this->db->get();
         return $resultado->row();
     }
+     public function getCantidadInformatica($lapso)
+    {
+        $this->db->select(
+            'count(*) AS informatica
+            '
+        );
+        $this->db->from('aspirante');
+        $this->db->where('carrera', 'Informática');
+        $this->db->where('lapso', $lapso);
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
 
     // monitoreo por carrera en el proceso de aceptacion
     public function getCantidadAceptadosElectronicaElectrotecnia($lapso)
@@ -245,6 +258,32 @@ class Seguimiento_model extends CI_Model
             $this->db->where('status', '1');
         }
         $this->db->where('status', '1');
+        $resultado = $this->db->get();
+        return $resultado->result();
+    }
+
+    public function getInscriptoPorCarreraTotal($carrera)
+    {
+        $this->db->select(
+            '   id,
+                cedula,
+                nombre1,
+                nombre2,
+                apellido1,
+                apellido2,
+                telefono,
+                direccion,
+                email,
+                fechanac,
+                carrera,
+                sexo
+            '
+        );
+        $this->db->from('aspirante');
+        if ($carrera != 'todas') {
+            $this->db->where('carrera', $carrera);
+            $this->db->where('lapso', '2-2022');
+        }       
         $resultado = $this->db->get();
         return $resultado->result();
     }

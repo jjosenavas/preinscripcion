@@ -11,8 +11,28 @@ class Preinscripcion extends CI_Controller
 
 	public function index()
 	{
+	$fecha_actual                = strtotime(date("d-m-Y", time()));
+    $fecha_informatica_desde     = strtotime("04-04-2022");
+    $fecha_informatica_hasta     = strtotime("08-04-2022");
+    $fecha_admin_empre_desde     = strtotime("18-04-2022");
+    $fecha_admin_empre_hasta     = strtotime("22-04-2022");
+    $fecha_contaduria_desde      = strtotime("25-04-2022");
+    $fecha_contaduria_hasta      = strtotime("29-04-2022");
+
+    $carrera_ofertada = '';
+    if ($fecha_actual >= $fecha_informatica_desde && $fecha_actual <= $fecha_informatica_hasta) {
+        $carrera_ofertada = "Informática";
+    } else if ($fecha_actual >= $fecha_admin_empre_desde && $fecha_actual <= $fecha_admin_empre_hasta) {
+        $carrera_ofertada = "Administración de empresas";
+    } else if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) {
+        $carrera_ofertada = "Contaduría";
+    } 
+		$periodo = "2-2022";
+		$data = array(
+			'total' => $this->Aspirante_model->getCantidadPreinscriptos($periodo, $carrera_ofertada)			
+		);
 		$this->load->view("layouts/header_ini");
-		$this->load->view("preinscripcion/informacion");
+		$this->load->view("preinscripcion/informacion", $data);
 		$this->load->view("layouts/footer");
 		$this->load->view("layouts/fechas");
 		$this->load->view("layouts/close_body");
@@ -66,8 +86,8 @@ class Preinscripcion extends CI_Controller
 		} else if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) {
 			$correo_envio = "admisioniujocontaduria@gmail.com";
 			$fecha_limite = 'Sábado 30-04-2022';
-		}else if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) {
-			
+		} else if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) {
+
 			$fecha_limite = 'Sábado 30-04-2022';
 		}
 
@@ -97,15 +117,15 @@ class Preinscripcion extends CI_Controller
 		$lapso = '2-2022';
 
 		if ($cantidad == 1) {
-			$cero = '0000'.$nun_planilla;
-		}else if ($cantidad == 2) {
-			$cero = '000'.$nun_planilla;
-		}else if ($cantidad == 3) {
-			$cero = '00'.$nun_planilla;
-		}else if ($cantidad >= 4) {
-			$cero = '0'.$nun_planilla;
+			$cero = '0000' . $nun_planilla;
+		} else if ($cantidad == 2) {
+			$cero = '000' . $nun_planilla;
+		} else if ($cantidad == 3) {
+			$cero = '00' . $nun_planilla;
+		} else if ($cantidad >= 4) {
+			$cero = '0' . $nun_planilla;
 		}
-        
+
 
 		$data  = array(
 			'cedula'        => $cedula,
@@ -137,7 +157,7 @@ class Preinscripcion extends CI_Controller
 			$this->email->from($correo_envio);
 			$this->email->to($email);
 			$this->email->subject('Envío de documentos luego de la preinscripción.');
-			$this->email->message('Estimado (a) aspirante '.ucwords($p_nombre).' '.ucwords($p_apellido).' cédula de identidad '.$cedula.', usted se ha registrado de forma satisfactoria en la carrera: '.$carrera.' El siguiente paso es el envío inmediato de los siguentes documentos en formato digital con extensión .jpg (imagen debidamente escaneados) y que sean legibles: Cédula de identidad, Título de bachiller, Planilla Opsu / Rusnies, Notas Certificadas. Deben ser enviados al correo: '.$correo_envio.'. En caso de no poder enviarlos inmediatamente, tendrá como fecha límite para enviar: '.$fecha_limite.'. No dejes para última hora el envío de los mismos.');
+			$this->email->message('Estimado (a) aspirante ' . ucwords($p_nombre) . ' ' . ucwords($p_apellido) . ' cédula de identidad ' . $cedula . ', usted se ha registrado de forma satisfactoria en la carrera: ' . $carrera . ' El siguiente paso es el envío inmediato de los siguentes documentos en formato digital con extensión .jpg (imagen debidamente escaneados) y que sean legibles: Cédula de identidad, Título de bachiller, Planilla Opsu / Rusnies, Notas Certificadas. Deben ser enviados al correo: ' . $correo_envio . '. En caso de no poder enviarlos inmediatamente, tendrá como fecha límite para enviar: ' . $fecha_limite . '. No dejes para última hora el envío de los mismos.');
 			$this->email->send();
 
 			$id_aspirante = $this->Aspirante_model->lastID();
@@ -149,23 +169,23 @@ class Preinscripcion extends CI_Controller
 	}
 
 	public function verificarAspirante()
-	{		
+	{
 		$cedula = $this->input->post("cedula");
-		
+
 		$data = array(
 			'cedula' => $cedula
-		 ); 
-		
+		);
+
 		if ($ce = $this->Aspirante_model->getAspiranteNew($cedula)) {
-			
+
 			$this->load->view("layouts/header_pre");
 			$this->load->view("preinscripcion/planilla_aspirante", $ce);
 			$this->load->view("layouts/footer");
 			$this->load->view("layouts/close_body");
 		} else {
-			
+
 			$this->load->view("layouts/header_ini");
-			$this->load->view("preinscripcion/registro_aspirante",$data);
+			$this->load->view("preinscripcion/registro_aspirante", $data);
 			$this->load->view("layouts/footer");
 			$this->load->view("layouts/validation");
 			$this->load->view("layouts/close_body");
@@ -183,32 +203,32 @@ class Preinscripcion extends CI_Controller
 	}
 
 	public function comprobarCedula()
-    {   
-        $cedula_aspirante = $this->input->post("cedula");
-         $respuesta = $this->Aspirante_model->comprobarCedulaAspirante($cedula_aspirante);
-      
-       if($respuesta>0) {
-          echo "Cédula ya registrado en la base de datos";
-        }
-    }
+	{
+		$cedula_aspirante = $this->input->post("cedula");
+		$respuesta = $this->Aspirante_model->comprobarCedulaAspirante($cedula_aspirante);
+
+		if ($respuesta > 0) {
+			echo "Cédula ya registrado en la base de datos";
+		}
+	}
 
 	public function comprobarRusnies()
-    {   
-        $rusnie_aspirante = $this->input->post("rusnie");
-         $respuesta = $this->Aspirante_model->comprobarRusnieAspirante($rusnie_aspirante);
-      
-       if($respuesta>0) {
-          echo "Código RUSNIES ya registrado en la base de datos";
-        }
-    }
+	{
+		$rusnie_aspirante = $this->input->post("rusnie");
+		$respuesta = $this->Aspirante_model->comprobarRusnieAspirante($rusnie_aspirante);
+
+		if ($respuesta > 0) {
+			echo "Código RUSNIES ya registrado en la base de datos";
+		}
+	}
 
 	public function comprobarTitulo()
-    {   
-        $titulo_aspirante = $this->input->post("serial");
-         $respuesta = $this->Aspirante_model->comprobarTituloAspirante($titulo_aspirante);
-      
-       if($respuesta>0) {
-          echo "Serial del título ya está registrado en la base de datos";
-        }
-    }
+	{
+		$titulo_aspirante = $this->input->post("serial");
+		$respuesta = $this->Aspirante_model->comprobarTituloAspirante($titulo_aspirante);
+
+		if ($respuesta > 0) {
+			echo "Serial del título ya está registrado en la base de datos";
+		}
+	}
 }

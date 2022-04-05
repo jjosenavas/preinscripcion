@@ -2,6 +2,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <?php
+    
     $fecha_actual                = strtotime(date("d-m-Y", time()));
     $fecha_educacion_desde       = strtotime("14-03-2022");
     $fecha_educacion_hasta       = strtotime("18-03-2022");
@@ -146,7 +147,7 @@
                                     </div>
                                     <div class="carousel-item">
                                         <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/pmecanica2.jpg' alt="Second slide">
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                     <span class="carousel-control-custom-icon" aria-hidden="true">
@@ -163,7 +164,7 @@
                             </div>
                         <?php endif; ?>
                         <?php if ($fecha_actual >= $fecha_informatica_desde && $fecha_actual <= $fecha_informatica_hasta) :  ?>
-                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -173,7 +174,7 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/informatica1.jpg' alt="First slide">
-                                    </div>                                  
+                                    </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                     <span class="carousel-control-custom-icon" aria-hidden="true">
@@ -222,18 +223,23 @@
                             <br>
                             <h6 class="card-title">Si tienes toda la documentación puedes ingresar cédula de identidad sin puntos y hacer clic en "PREINSCRIPCIÓN"
                                 y llenar el formulario que se te presentará.</h6><br><br><br>
-                            <?php if ($carrera_ofertada != 1) : ?>
-                                <form id="consulta_form" action="<?php echo base_url(); ?>preinscripcion/preinscripcion/verificarAspirante" method="POST">
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" name="cedula" id="cedula" maxlength="8" minlength="7" onkeypress="return soloNumeros(event)">
+                            <?php if ($total->total <=200) : ?>
+                                <?php if ($carrera_ofertada != 1) : ?>
+                                    <form id="consulta_form" action="<?php echo base_url(); ?>preinscripcion/preinscripcion/verificarAspirante" method="POST">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" name="cedula" id="cedula" maxlength="8" minlength="7" onkeypress="return soloNumeros(event)">
 
-                                        <span class="input-group-append">
-                                            <button id="btn_cedula" type="submit" class="btn btn-info btn-flat">PREINSCRIPCIÓN</button>
-                                        </span>
-                                    </div>
-                                    <span id="cedula_message"></span>
-                                </form>
+                                            <span class="input-group-append">
+                                                <button id="btn_cedula" type="submit" class="btn btn-info btn-flat">PREINSCRIPCIÓN</button>
+                                            </span>
+                                        </div>
+                                        <span id="cedula_message"></span>
+                                    </form>
+                                <?php  endif; ?>
                             <?php endif; ?>
+                             <?php if ($total->total >200) : ?>
+                                 <?php echo '<h2 style="color: red; font: size 20px;">Cupos agotados</h2>' ?>
+                                <?php endif; ?>
                         </div>
 
                     </div><!-- /.card -->

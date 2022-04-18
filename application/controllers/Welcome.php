@@ -25,7 +25,9 @@ class Welcome extends CI_Controller {
 		'electronica'   => $this->Seguimiento_model->getCantidadElectronica($lapso),
 		'electrotecnia' => $this->Seguimiento_model->getCantidadElectrotecnia($lapso),
 		'mecanica'      => $this->Seguimiento_model->getCantidadMecanica($lapso),
-		'informatica'   => $this->Seguimiento_model->getCantidadInformatica($lapso)
+		'informatica'   => $this->Seguimiento_model->getCantidadInformatica($lapso),
+		'administracion'=> $this->Seguimiento_model->getCantidadAdministracion($lapso),
+		'contaduria'    => $this->Seguimiento_model->getCantidadContaduria($lapso)
 	   );
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');

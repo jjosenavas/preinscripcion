@@ -140,6 +140,34 @@ class Seguimiento_model extends CI_Model
         return $resultado->row();
     }
 
+    public function getCantidadAdministracion($lapso)
+    {
+        $this->db->select(
+            'count(*) AS administracion
+            '
+        );
+        $this->db->from('aspirante');
+        $this->db->where('carrera', 'Administración de empresas');
+        $this->db->where('lapso', $lapso);
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+    public function getCantidadContaduria($lapso)
+    {
+        $this->db->select(
+            'count(*) AS contaduria
+            '
+        );
+        $this->db->from('aspirante');
+        $this->db->where('carrera', 'Contaduría');
+        $this->db->where('lapso', $lapso);
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
     // monitoreo por carrera en el proceso de aceptacion
     public function getCantidadAceptadosElectronicaElectrotecnia($lapso)
     {

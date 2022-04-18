@@ -2,7 +2,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <?php
-    
+
     $fecha_actual                = strtotime(date("d-m-Y", time()));
     $fecha_educacion_desde       = strtotime("14-03-2022");
     $fecha_educacion_hasta       = strtotime("18-03-2022");
@@ -191,10 +191,58 @@
                             </div>
                         <?php endif; ?>
                         <?php if ($fecha_actual >= $fecha_admin_empre_desde && $fecha_actual <= $fecha_admin_empre_hasta) :  ?>
-                            <?php echo $carrera_ofertada; ?>
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/administracion1.jpg' alt="First slide">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-custom-icon" aria-hidden="true">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-custom-icon" aria-hidden="true">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
                         <?php endif; ?>
                         <?php if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) :  ?>
-                            <?php echo $carrera_ofertada; ?>
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/contaduria1.jpg' alt="First slide">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-custom-icon" aria-hidden="true">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-custom-icon" aria-hidden="true">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
                         <?php endif; ?>
                         <?php if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) :  ?>
                             <?php echo $carrera_ofertada; ?>
@@ -223,7 +271,7 @@
                             <br>
                             <h6 class="card-title">Si tienes toda la documentación puedes ingresar cédula de identidad sin puntos y hacer clic en "PREINSCRIPCIÓN"
                                 y llenar el formulario que se te presentará.</h6><br><br><br>
-                            <?php if ($total->total <=200) : ?>
+                            <?php if ($total->total <= 200) : ?>
                                 <?php if ($carrera_ofertada != 1) : ?>
                                     <form id="consulta_form" action="<?php echo base_url(); ?>preinscripcion/preinscripcion/verificarAspirante" method="POST">
                                         <div class="input-group input-group-sm">
@@ -235,11 +283,11 @@
                                         </div>
                                         <span id="cedula_message"></span>
                                     </form>
-                                <?php  endif; ?>
-                            <?php endif; ?>
-                             <?php if ($total->total >200) : ?>
-                                 <?php echo '<h2 style="color: red; font: size 20px;">Cupos agotados</h2>' ?>
                                 <?php endif; ?>
+                            <?php endif; ?>
+                            <?php if ($total->total > 200) : ?>
+                                <?php echo '<h2 style="color: red; font: size 20px;">Cupos agotados</h2>' ?>
+                            <?php endif; ?>
                         </div>
 
                     </div><!-- /.card -->

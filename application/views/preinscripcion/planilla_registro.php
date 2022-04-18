@@ -89,9 +89,7 @@
                               <li>Título de bachiller</li>
                               <li>Planilla Opsu / Rusnies</li>
                               <li>Notas Certificadas</li>
-                             <p> Deben ser enviados al correo: <?php echo '<strong>';echo $correo_envio; echo '</strong>'; ?>
-                                 En caso de no poder enviarlos inmediatamente, tendrá como fecha límite para enviar: <?php echo '<strong>';echo $fecha_limite;echo '</strong>'; ?>
-                                 No dejes para última hora el envío de los mismos.
+                             <p> Deben ser enviados de <strong>forma inmediata</strong> al correo: <?php echo '<strong>';echo $correo_envio; echo '</strong>';?>
                             </p>
                             <p><strong>Nota:</strong> Hemos enviado a <strong><?php echo $email ?></strong> la información necesaria para el envío de la documentación. Es posible que el correo te llegue como spam o correo no deseado, en este sentido, debes revisar la sección de spam de tu correo electrónico y marcarlo como correo deseado o seguro. </p>
                             <br><br>

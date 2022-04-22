@@ -52,4 +52,20 @@ class Foc_model extends CI_Model
           $this->db->trans_complete();
           return $this->db->trans_status();
      }
+
+     public function getInscriptoPorCarrera($carrera)
+     {
+          $this->db->select(
+               '   
+            '
+          );
+          $this->db->from('matricula_foc');
+          if ($carrera != 'todas') {
+               $this->db->where('carrera', $carrera);
+               $this->db->where('status', '1');
+          }
+          $this->db->where('status', '1');
+          $resultado = $this->db->get();
+          return $resultado->result();
+     }
 }

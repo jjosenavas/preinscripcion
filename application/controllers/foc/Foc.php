@@ -29,7 +29,7 @@ class Foc extends CI_Controller
         $num = 1;
         $data = array();
 
-        $result = $this->Seguimiento_model->getInscriptoPorCarrera($carrera);
+        $result = $this->Foc_model->getInscriptoPorCarrera($carrera);
         $path = base_url() . 'seguimiento/seguimiento/getDataAspirante/';
 
         if (!empty($result)) {

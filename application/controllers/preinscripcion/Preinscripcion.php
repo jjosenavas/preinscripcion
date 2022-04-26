@@ -70,25 +70,25 @@ class Preinscripcion extends CI_Controller
 
 		if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) {
 			$correo_envio = "admisioniujoeducacion@gmail.com";
-			$fecha_limite = 'Sábado 19-03-2022';
+			$fecha_limite = 'De inmediato';
 		} else if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) {
 			$correo_envio = "admisioniujoelectro@gmail.com";
-			$fecha_limite = 'Sábado 26-03-2022';
+			$fecha_limite = 'De inmediato';
 		} else if ($fecha_actual >= $fecha_mecanica_desde && $fecha_actual <= $fecha_mecanica_hasta) {
 			$correo_envio = "admisioniujomecanica@gmail.com";
-			$fecha_limite = 'Sábado 02-04-2022';
+			$fecha_limite = 'De inmediato';
 		} else if ($fecha_actual >= $fecha_informatica_desde && $fecha_actual <= $fecha_informatica_hasta) {
 			$correo_envio = "admisioniujoinformatica@gmail.com";
-			$fecha_limite = 'Sábado 09-04-2022';
+			$fecha_limite = 'De inmediato';
 		} else if ($fecha_actual >= $fecha_admin_empre_desde && $fecha_actual <= $fecha_admin_empre_hasta) {
 			$correo_envio = "admisioniujoadm@gmail.com";
-			$fecha_limite = 'Sábado 23-04-2022';
+			$fecha_limite = 'De inmediato';
 		} else if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) {
 			$correo_envio = "admisioniujocontaduria@gmail.com";
-			$fecha_limite = 'Sábado 30-04-2022';
+			$fecha_limite = 'De inmediato';
 		} else if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) {
 
-			$fecha_limite = 'Sábado 30-04-2022';
+			$fecha_limite = 'De inmediato';
 		}
 
 		$cedula        = $this->input->post("cedula");

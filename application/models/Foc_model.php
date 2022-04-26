@@ -56,13 +56,16 @@ class Foc_model extends CI_Model
      public function getInscriptoPorCarrera($carrera)
      {
           $this->db->select(
-               '   
+               '   mf.*
             '
           );
-          $this->db->from('matricula_foc');
+          $this->db->from('matricula_foc mf');
+          $this->db->join('estudiante_curso_foc ec','ec.id_estudiante = mf.id');
+          $this->db->join('registros_magis_humano rm', 'rm.id_estudiante = mf.id');
+          $this->db->join('cursos_foc cf', 'cf.id = mf.id_curso');
+          $this->db->join('cursos_foc cfh', 'cfh.id = rm.id_curso');
           if ($carrera != 'todas') {
                $this->db->where('carrera', $carrera);
-               $this->db->where('status', '1');
           }
           $this->db->where('status', '1');
           $resultado = $this->db->get();

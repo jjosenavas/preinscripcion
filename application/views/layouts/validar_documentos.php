@@ -1,11 +1,12 @@
 <script>
+  let base_url = 'http://localhost/preinscripcion/';
   $("#btn_save").on("click", function(event) {
     event.preventDefault();
     let base_url = "<?php echo base_url(); ?>";
-    let cedula     = $("#cedula").val();
-    let p_nombre   = $("#p_nombre").val();
+    let cedula = $("#cedula").val();
+    let p_nombre = $("#p_nombre").val();
     let p_apellido = $("#p_apellido").val();
-    let email      = $("#email").val();    
+    let email = $("#email").val();
     let re = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/; //expresión regular para validad el email
     let send = 0;
 
@@ -43,7 +44,7 @@
       $("#p_apellido_message").text("");
     }
 
-    
+
     if (!re.exec(email)) {
       send--;
       $("#email").css("border-color", "#FF0000");
@@ -64,54 +65,84 @@
   });
 
   function soloNumeros(e) {
-		key = e.keyCode || e.which;
-		teclado = String.fromCharCode(key);
-		letras = "1234567890";
-		especiales = "9-8-37-38-46-164";
-		teclado_especial = false;
-		for (var i in especiales) {
-			if (key == especiales[i]) {
-				teclado_especial = true;
-				break;
-			}
-		}
-		if (letras.indexOf(teclado) == -1 && !teclado_especial) {
-			return false;
-		}
-	}
+    key = e.keyCode || e.which;
+    teclado = String.fromCharCode(key);
+    letras = "1234567890";
+    especiales = "9-8-37-38-46-164";
+    teclado_especial = false;
+    for (var i in especiales) {
+      if (key == especiales[i]) {
+        teclado_especial = true;
+        break;
+      }
+    }
+    if (letras.indexOf(teclado) == -1 && !teclado_especial) {
+      return false;
+    }
+  }
 
-	function soloLetras(e) {
-		key = e.keyCode || e.which;
-		teclado = String.fromCharCode(key);
-		letras = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-		especiales = "9-8-37-38-46-164";
-		teclado_especial = false;
-		for (var i in especiales) {
-			if (key == especiales[i]) {
-				teclado_especial = true;
-				break;
-			}
-		}
-		if (letras.indexOf(teclado) == -1 && !teclado_especial) {
-			return false;
-		}
-	}
+  function soloLetras(e) {
+    key = e.keyCode || e.which;
+    teclado = String.fromCharCode(key);
+    letras = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    especiales = "9-8-37-38-46-164";
+    teclado_especial = false;
+    for (var i in especiales) {
+      if (key == especiales[i]) {
+        teclado_especial = true;
+        break;
+      }
+    }
+    if (letras.indexOf(teclado) == -1 && !teclado_especial) {
+      return false;
+    }
+  }
 
-	function alfaNumerico(e) {
-		key = e.keyCode || e.which;
-		teclado = String.fromCharCode(key);
-		letras =
-			" -1234567890abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-		especiales = "9-8-37-38-46-164";
-		teclado_especial = false;
-		for (var i in especiales) {
-			if (key == especiales[i]) {
-				teclado_especial = true;
-				break;
-			}
-		}
-		if (letras.indexOf(teclado) == -1 && !teclado_especial) {
-			return false;
-		}
-	}
+  function alfaNumerico(e) {
+    key = e.keyCode || e.which;
+    teclado = String.fromCharCode(key);
+    letras =
+      " -1234567890abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    especiales = "9-8-37-38-46-164";
+    teclado_especial = false;
+    for (var i in especiales) {
+      if (key == especiales[i]) {
+        teclado_especial = true;
+        break;
+      }
+    }
+    if (letras.indexOf(teclado) == -1 && !teclado_especial) {
+      return false;
+    }
+  }
+
+  function comprobarCedula() {
+
+    jQuery.ajax({
+      url: base_url + "encuesta/consulta/comprobarCedula",
+
+      data: "cedula=" + $("#cedula").val(),
+      type: "POST",
+      success: function(data) {
+        if (data == "Usted ya realizó la consulta") {
+
+          $("#cedula").focus();
+          $("#btn_enviar").prop("disabled", true);
+        } else {
+          $("#btn_enviar").prop("disabled", false);
+        }
+
+        $("#cedula_check").html(data);
+
+      },
+
+      error: function() {}
+
+    });
+  }
+
+  // $("#btn_save").on("click", function(event) {
+
+
+  // });
 </script>

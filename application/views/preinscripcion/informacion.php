@@ -17,7 +17,7 @@
     $fecha_contaduria_desde      = strtotime("25-04-2022");
     $fecha_contaduria_hasta      = strtotime("29-04-2022");
     $fecha_rezagados_desde       = strtotime("02-05-2022");
-    $fecha_rezagados_hasta       = strtotime("03-05-2022");
+    $fecha_rezagados_hasta       = strtotime("02-05-2022");
 
     $carrera_ofertada = 1;
     $imagen_carrera = '';
@@ -34,8 +34,8 @@
         $carrera_ofertada = "<li>ADMINISTRACIÓN DE EMPRESAS</li>";
     } else if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) {
         $carrera_ofertada = "<li>CONTADURÍA</li>";
-    } else if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) {
-        $carrera_ofertada = "<li>EDUCACIÓN INTEGRAL</li><li>EDUCACIÓN PREESCOLAR</li><li>EDUCACIÓN ESPECIAL</li><li>ELECTRÓNICA</li><li>ELECTROTECNIA</li><li>MECÁNICA</li><li>INFORMÁTICA</li><li>ADMINISTRACIÓN DE EMPRESAS</li><li>CONTADURÍA</li>";
+    } else if ($fecha_actual == $fecha_rezagados_desde) {
+        $carrera_ofertada = "<li>EDUCACIÓN INTEGRAL</li><li>EDUCACIÓN PREESCOLAR</li><li>EDUCACIÓN ESPECIAL</li><li>ELECTRÓNICA</li><li>ELECTROTECNIA</li><li>MECÁNICA</li>";
     }
 
     ?>
@@ -244,8 +244,47 @@
                                 </a>
                             </div>
                         <?php endif; ?>
-                        <?php if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) :  ?>
-                            <?php echo $carrera_ofertada; ?>
+                        <?php if ($fecha_actual == $fecha_rezagados_desde) :  ?>
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/electronica1.jpg' alt="First slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion1.jpg' alt="First slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion2.jpg' alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/educacion3.jpg' alt="Third slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/pmecanica2.jpg' alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src='<?php echo base_url(); ?>assets/img/electrotecnia3.jpg' alt="Second slide">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-custom-icon" aria-hidden="true">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-custom-icon" aria-hidden="true">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
                         <?php endif; ?>
                         <?php if ($fecha_actual < $fecha_educacion_desde) :  ?>
                             <?php echo '<p style="color: red; font-size: 25px;">Proceso inactivo, comienza el lunes 14-03-2022</p>'; ?>

@@ -1,6 +1,7 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <?php
+
     $fecha_actual                = strtotime(date("d-m-Y", time()));
     $fecha_educacion_desde       = strtotime("14-03-2022");
     $fecha_educacion_hasta       = strtotime("18-03-2022");
@@ -15,12 +16,11 @@
     $fecha_contaduria_desde      = strtotime("25-04-2022");
     $fecha_contaduria_hasta      = strtotime("29-04-2022");
     $fecha_rezagados_desde       = strtotime("02-05-2022");
-    $fecha_rezagados_hasta       = strtotime("03-05-2022");
+    $fecha_rezagados_hasta       = strtotime("02-05-2022");
 
-    $carrera_ofertada = 'Proceso inactivo';
+    $carrera_ofertada = "";
 
     if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) {
-
         $carrera_ofertada = "<option value='Educación integral'>EDUCACIÓN INTEGRAL</option><option value='Educación preescolar'>EDUCACIÓN PREESCOLAR</option><option value='Educación especial'>EDUCACIÓN ESPECIAL</option>";
     } else if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) {
         $carrera_ofertada = "<option value='Electrónica'>ELECTRÓNICA</option><option value='Electrotecnia'>ELECTROTECNIA</option>";
@@ -32,8 +32,45 @@
         $carrera_ofertada = "<option value='Administración de empresas'>ADMINISTRACIÓN DE EMPRESAS</option>";
     } else if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) {
         $carrera_ofertada = "<option value='Contaduría'>CONTADURÍA</option>";
-    }else if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) {
-        $carrera_ofertada = "<option value='Educación integral'>EDUCACIÓN INTEGRAL</option><option value='Educación preescolar'>EDUCACIÓN PREESCOLAR</option><option value='Educación especial'>EDUCACIÓN ESPECIAL</option><option value='Electrónica'>ELECTRÓNICA</option><option value='Electrotecnia'>ELECTROTECNIA</option><option value='Mecánica'>MECÁNICA</option><option value='Informática'>INFORMÁTICA</option><option value='Administración de empresas'>ADMINISTRACIÓN DE EMPRESAS</option><option value='Contaduría'>CONTADURÍA</option>";
+    } else if ($fecha_actual == $fecha_rezagados_desde) {
+        $preescolar = "";
+        $especial = "";
+        $integral = "";
+        $mecanica = "";
+        $electronica = "";
+        $electrotecnia = "";
+        
+
+        if ($educacion_integral < 80) {
+            $integral = "<option value='Educación integral'>EDUCACIÓN INTEGRAL</option>";
+        } else {
+            $integral = "";
+        }
+        if ($educacion_especial < 52) {
+            $especial = "<option value='Educación especial'>EDUCACIÓN ESPECIAL</option>";
+        } else {
+            $especial = "";
+        }
+        if ($educacion_preescolar < 56) {
+            $preescolar = "<option value='Educación preescolar'>EDUCACIÓN PREESCOLAR</option>";
+        } else {
+            $preescolar = "";
+        }
+        if ($mecanica_pre < 93) {
+            $mecanica = "<option value='Mecánica'>MECÁNICA</option>";
+        } else {
+            $mecanica = "";
+        }
+        if ($electronica_pre  < 105) {
+            $electronica = "<option value='Electrónica'>ELECTRÓNICA</option>";
+        } else {
+            $electronica = "";
+        }
+        if ($electrotecnia_pre < 49) {
+            $electrotecnia = "<option value='Electrotecnia'>ELECTROTECNIA</option>";
+        } else {
+            $electrotecnia = "";
+        }
     }
 
     ?>
@@ -51,16 +88,16 @@
 
     <!-- Main content -->
     <div class="content">
-        
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="callout callout-danger">
-                    <h5><i class="fas fa-info tamano_icono"></i>mportante:</h5>
-                        Este es el primer paso para ti que quieres formarte en una carrera universitaria en nuestro instituto.
-                        Registra cada uno de los datos que se solicitan, deben ser actualizados y reales, no dejes datos en blanco.
+                        <h5><i class="fas fa-info tamano_icono"></i>mportante:</h5>
+                        <p>En la carrera en que realice la preinscripción será la que curse, no habrán cambios de carrera. Si no hay cupos le invitamos a participar en el siguiente proceso de selección y admisión.</p>
+                        <p>La entrega de documentos debe realizarse de inmediato de lo contrario no podrá avanzar al siguiente paso.</p>
                     </div>
-          
+
                     <section class="content">
                         <div class="container-fluid">
                             <div class="row">
@@ -77,7 +114,7 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="cedula">Cédula</label>
-                                                            <input minlength="8" maxlength="8" type="text" class="form-control form-control-sm" name="cedula" id="cedula"  onblur="comprobarCedula()" value="<?php echo $cedula;?>" readonly required>
+                                                            <input minlength="8" maxlength="8" type="text" class="form-control form-control-sm" name="cedula" id="cedula" onblur="comprobarCedula()" value="<?php echo $cedula; ?>" readonly required>
                                                             <span id="cedula_message"></span>
                                                             <span id="cedula_data" style="color:red; font-size: 12px;"></span>
                                                         </div>
@@ -99,7 +136,7 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="p_apellido">Primer apellido</label>
-                                                            <input minlength="3" maxlength="45" type="text" title="Coloca tu primer apellido, debe tener mínimo tres caracteres"  class="form-control form-control-sm" name="p_apellido" id="p_apellido" onkeypress="return soloLetras(event)">
+                                                            <input minlength="3" maxlength="45" type="text" title="Coloca tu primer apellido, debe tener mínimo tres caracteres" class="form-control form-control-sm" name="p_apellido" id="p_apellido" onkeypress="return soloLetras(event)">
                                                             <span id="p_apellido_message"></span>
                                                         </div>
                                                     </div>
@@ -109,7 +146,7 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="p_apellido">Segundo apellido</label>
-                                                            <input minlength="3" maxlength="45" type="text" title="Coloca tu segundo apellido, este campo es opcional,  debe tener mínimo tres caracteres"  class="form-control form-control-sm" name="s_apellido" id="s_apellido" onkeypress="return soloLetras(event)">
+                                                            <input minlength="3" maxlength="45" type="text" title="Coloca tu segundo apellido, este campo es opcional,  debe tener mínimo tres caracteres" class="form-control form-control-sm" name="s_apellido" id="s_apellido" onkeypress="return soloLetras(event)">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-3">
@@ -161,14 +198,14 @@
                                                             <input minlength="10" maxlength="300" type="text" title="Coloca tu dirección, debe tener al menos diez caracteres" class="form-control form-control-sm" name="direccion" id="direccion" onkeypress="return alfaNumerico(event)" required>
                                                             <span id="direccion_message"></span>
                                                         </div>
-                                                       
+
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="Email">Correo Electrónico</label>
                                                             <input type="text" class="form-control form-control-sm" title="Coloca tu correo electrónico y verifica que esté bien escrito. Ten presente que al mismo te enviaremos información" name="email" id="email" onblur="validarEmail()" required>
                                                             <span id="email_message"></span>
-                                                        </div>                                                        
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -220,9 +257,24 @@
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
                                                             <label for="carrera">Carrera</label>
-                                                            <select name="carrera" title="Selecciona la carrera que quieres cursar" id="carrera" class="form-control form-control-sm">
-                                                                <?php echo $carrera_ofertada; ?>
+                                                            <select name="carrera" title="Selecciona la carrera que quieres cursar" id="carrera" class="form-control form-control-sm" required>
+                                                                <?php
+
+                                                                echo $integral;
+
+                                                                echo  $especial;
+
+                                                                echo  $preescolar;
+
+                                                                echo $mecanica;
+
+                                                                echo $electronica;
+
+                                                                echo $electrotecnia;
+                                                                echo $carrera_ofertada;
+                                                                ?>
                                                             </select>
+                                                            <span id="carrera_message"></span>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -49,6 +49,7 @@ class Preinscripcion extends CI_Controller
 
 	public function store()
 	{
+
 		$fecha_actual                = strtotime(date("d-m-Y", time()));
 		$fecha_educacion_desde       = strtotime("14-03-2022");
 		$fecha_educacion_hasta       = strtotime("18-03-2022");
@@ -63,7 +64,7 @@ class Preinscripcion extends CI_Controller
 		$fecha_contaduria_desde      = strtotime("25-04-2022");
 		$fecha_contaduria_hasta      = strtotime("29-04-2022");
 		$fecha_rezagados_desde       = strtotime("02-05-2022");
-		$fecha_rezagados_hasta       = strtotime("03-05-2022");
+		$fecha_rezagados_hasta       = strtotime("02-05-2022");
 
 		$correo_envio = '';
 		$fecha_limite = '';
@@ -86,8 +87,8 @@ class Preinscripcion extends CI_Controller
 		} else if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) {
 			$correo_envio = "admisioniujocontaduria@gmail.com";
 			$fecha_limite = 'De inmediato';
-		} else if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) {
-
+		} else if ($fecha_actual == $fecha_rezagados_desde && $fecha_actual == $fecha_rezagados_hasta) {
+			$correo_envio = "admisioniujorezagados@gmail.com";
 			$fecha_limite = 'De inmediato';
 		}
 
@@ -171,9 +172,23 @@ class Preinscripcion extends CI_Controller
 	public function verificarAspirante()
 	{
 		$cedula = $this->input->post("cedula");
+		$educacion_integral = 'Educación integral';
+		$educacion_especial = 'Educación especial';
+		$educacion_preescolar = 'Educación preescolar';
+		$mecanica = 'Mecánica';
+		$electronica = 'Electrónica';
+		$electrotecnia = 'Electrotecnia';
+		$periodo = "2-2022";
 
 		$data = array(
-			'cedula' => $cedula
+			'cedula' => $cedula,
+			'educacion_integral'   => $this->Aspirante_model->getCantidadPreinscriptosDOS($periodo, $educacion_integral)->total,
+			'educacion_especial'   => $this->Aspirante_model->getCantidadPreinscriptosDOS($periodo, $educacion_especial)->total,
+			'educacion_preescolar' => $this->Aspirante_model->getCantidadPreinscriptosDOS($periodo, $educacion_preescolar)->total,
+			'mecanica_pre'             => $this->Aspirante_model->getCantidadPreinscriptosDOS($periodo, $mecanica)->total,
+			'electronica_pre'          => $this->Aspirante_model->getCantidadPreinscriptosDOS($periodo, $electronica)->total,
+			'electrotecnia_pre'        => $this->Aspirante_model->getCantidadPreinscriptosDOS($periodo, $electrotecnia)->total
+	
 		);
 
 		if ($ce = $this->Aspirante_model->getAspiranteNew($cedula)) {

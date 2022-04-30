@@ -24,7 +24,8 @@ $(document).ready(function () {
 		let ano_egre = $("#ano_egre").val();
 		let rusnie = $("#rusnie").val();
 		let serial = $("#serial").val();
-
+		let carrera = $("#carrera").val();
+        
 		let send = 0;
 
 		if (cedula.length <7 || cedula.length >8) {
@@ -158,9 +159,20 @@ $(document).ready(function () {
 			$("#serial").css("border-color", "#228B22");
 			$("#serial_message").text("");
 		}
+		if (carrera ==null) {
+			send--;
+			
+			$("#carrera").css("border-color", "#FF0000");
+			$("#carrera_message").text("Ya no hay cupos disponibles.");
+		} else {
+			send++;
+			
+			$("#carrera").css("border-color", "#228B22");
+			$("#carrera_message").text("");
+		}
 		//console.log(send,'van');
 
-		if (send >= 12) {
+		if (send >= 13) {
 			$("#new_asp").submit();
 		}
 	});

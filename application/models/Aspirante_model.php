@@ -71,6 +71,22 @@ class Aspirante_model extends CI_Model
 
      public function getCantidadPreinscriptos($lapso, $carrera)
     {
+      
+        $this->db->select(
+            'count(*) AS total
+            '
+        );
+        $this->db->from('aspirante');
+        $this->db->where('lapso', $lapso);
+        $this->db->where('carrera', $carrera);
+
+        $resultado = $this->db->get();
+        return $resultado->row();
+    }
+
+    public function getCantidadPreinscriptosDOS($lapso, $carrera)
+    {
+
         $this->db->select(
             'count(*) AS total
             '

@@ -161,7 +161,7 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div class="form-group">
-                                                            <label for="Email">Correo Electronico</label>
+                                                            <label for="Email">Correo Electrónico</label>
                                                             <input type="text" class="form-control form-control-sm" name="email" id="email" required>
                                                             <span id="email_message"></span>
                                                         </div>                                                        

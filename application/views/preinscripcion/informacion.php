@@ -66,6 +66,24 @@
                                 <?php if ($fecha_actual >= $fecha_educacion_desde && $fecha_actual <= $fecha_educacion_hasta) :  ?>
                                     <img src='<?php echo base_url(); ?>assets/img/educacion.png' alt='Educación'>
                                 <?php endif; ?>
+                                <?php if ($fecha_actual >= $fecha_electronica_desde && $fecha_actual <= $fecha_electronica_hasta) :  ?>
+                                    <?php echo $carrera_ofertada; ?>
+                                <?php endif; ?>
+                                <?php if ($fecha_actual >= $fecha_mecanica_desde && $fecha_actual <= $fecha_mecanica_hasta) :  ?>
+                                    <?php echo $carrera_ofertada; ?>
+                                <?php endif; ?>
+                                <?php if ($fecha_actual >= $fecha_informatica_desde && $fecha_actual <= $fecha_informatica_hasta) :  ?>
+                                    <?php echo $carrera_ofertada; ?>
+                                <?php endif; ?>
+                                <?php if ($fecha_actual >= $fecha_admin_empre_desde && $fecha_actual <= $fecha_admin_empre_hasta) :  ?>
+                                    <?php echo $carrera_ofertada; ?>
+                                <?php endif; ?>
+                                <?php if ($fecha_actual >= $fecha_contaduria_desde && $fecha_actual <= $fecha_contaduria_hasta) :  ?>
+                                    <?php echo $carrera_ofertada; ?>
+                                <?php endif; ?>
+                                <?php if ($fecha_actual >= $fecha_rezagados_desde && $fecha_actual <= $fecha_rezagados_hasta) :  ?>
+                                    <?php echo $carrera_ofertada; ?>
+                                <?php endif; ?>
 
                             </p>
                         </div>
@@ -90,7 +108,7 @@
                             <?php if ($carrera_ofertada != 'Proceso inactivo') : ?>
                                 <form id="consulta_form" action="<?php echo base_url(); ?>preinscripcion/preinscripcion/verificarAspirante" method="POST">
                                     <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" name="cedula" id="cedula" maxlength="8" required onkeypress="return soloNumeros(event)">
+                                        <input type="number" class="form-control" name="cedula" id="cedula" maxlength="8" required onkeypress="return soloNumeros(event)">
                                         <span class="input-group-append">
                                             <button id="btn_cedula" type="submit" class="btn btn-info btn-flat">PREINSCRIPCIÓN</button>
                                         </span>

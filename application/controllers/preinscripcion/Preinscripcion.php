@@ -47,9 +47,60 @@ class Preinscripcion extends CI_Controller
 		$rusnies       = $this->input->post("rusnie");
 		$serial_titulo = $this->input->post("serial");
 
+		//Indicamos el protocolo a utilizar
+		$config['protocol'] = 'smtp';
+
+		//El servidor de correo que utilizaremos
+		$config["smtp_host"] = 'smtp.gmail.com';
+
+		//Nuestro usuario
+		$config["smtp_user"] = 'jjosenavasp@gmail.com';
+
+		//Nuestra contraseña
+		$config["smtp_pass"] = 'oriana20';
+
+		//El puerto que utilizará el servidor smtp
+		$config["smtp_port"] = '587';
+
+		//El juego de caracteres a utilizar
+		$config['charset'] = 'utf-8';
+
+		//Permitimos que se puedan cortar palabras
+		$config['wordwrap'] = TRUE;
+
+		//El email debe ser valido 
+		$config['validate'] = true;
+
+		//Establecemos esta configuración
+		$this->email->initialize($config);
+
+		//Ponemos la dirección de correo que enviará el email y un nombre
+		$this->email->from('jjosenavasp@gmail.com', 'Prueba');
+		/*
+         Ponemos el o los destinatarios para los que va el email
+      
+       */
+		$this->email->to($email, $p_nombre . ' ' . $p_apellido);
+
+		
+
+		//Definimos el mensaje a enviar
+		$this->email->message(
+			"Email: " . $email .
+				" Mensaje: " . 'Esto es el mensaje'
+		);
+		if ($env = $this->email->send()) {
+			$si =2;
+		} else {
+			$si =0;
+		}
+
+       
+
+
 		$nun_planilla = $this->Aspirante_model->numeroPlanilla();
 		++$nun_planilla;
-		//var_dump($nun_planilla);exit;
+
 		$data  = array(
 			'cedula'        => $cedula,
 			'nombre1'       => $p_nombre,
@@ -68,7 +119,7 @@ class Preinscripcion extends CI_Controller
 			'carrera'       => $carrera,
 			'rusnies'       => $rusnies,
 			'serial_titulo' => $serial_titulo,
-			'status'        => '1',
+			'status'        => $si,
 			'planilla'      => $nun_planilla,
 		);
 
@@ -76,7 +127,7 @@ class Preinscripcion extends CI_Controller
 		if ($this->Aspirante_model->save($data)) {
 
 			$id_aspirante = $this->Aspirante_model->lastID();
-			redirect(base_url() . "preinscripcion/preinscripcion/resultadoRegistro/$id_aspirante");			
+			redirect(base_url() . "preinscripcion/preinscripcion/resultadoRegistro/$id_aspirante");
 		} else {
 			$this->session->set_flashdata("error", "No se pudo guardar la informacion");
 			redirect(base_url() . "preinscripcion/preinscripcion/RegistroAspirante");
@@ -105,9 +156,9 @@ class Preinscripcion extends CI_Controller
 	public function resultadoRegistro($id)
 	{
 		$result = $this->Aspirante_model->getAspiranteRegi($id);
-		
+
 		$this->load->view("layouts/header_pre");
-		$this->load->view("preinscripcion/planilla_registro",$result);
+		$this->load->view("preinscripcion/planilla_registro", $result);
 		$this->load->view("layouts/footer");
 		$this->load->view("layouts/close_body");
 	}

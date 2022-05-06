@@ -520,4 +520,45 @@ class Seguimiento extends CI_Controller
 
 		echo json_encode($result);
 	}
+
+	public function rezagado_por_carrera()
+	{
+		$carrera = $this->input->post("data_carrera");
+		$num = 1;
+		$data = array();
+		
+
+		$result = $this->Foc_model->getRezagadosPorCarrera($carrera);
+		$path = base_url() . 'seguimiento/seguimiento/getDataAspirante/';
+
+		if (!empty($result)) {
+
+			foreach ($result as $r) {
+				$boton = "<a href='" . $path . $r->id . "' class='btn btn-info'><span class='fa  fa-search'></span></a>";
+				$data[] = array(
+					$num++,
+					$r->cedula,
+					$r->nombre1,
+					$r->nombre2,
+					$r->apellido1,
+					$r->apellido2,
+					$r->fechanac,
+					$r->sexo,
+					$r->direccion,
+					$r->telefono,
+					$r->email,
+					$r->carrera,
+					$boton
+				);
+			}
+		} else {
+			$data = [];
+		}
+
+		$result = array(
+			"data" => $data
+		);
+
+		echo json_encode($result);
+	}
 }

@@ -29,6 +29,13 @@
 
                         </div>
                     <?php endif; ?>
+                    <?php if ($this->session->flashdata("error_ya")) : ?>
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <p><i class="icon fa  fa-check"></i><?php echo $this->session->flashdata("error_ya"); ?></p>
+
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="row mb-2">
                     <div class="col-sm-6">
@@ -43,8 +50,8 @@
                     <div class="callout callout-danger">
                         <h4>Apreciado estudiante</h4>
                         <div class="">
-                            <h2>Para el próximo semestre, Periodo académico 2-2022, ¿Cuentas con la disponibilidad de continuar tu carrera bajo la bimodalidad, es decir, presencial y virtual según las materias?</h2>
-                            <h5><strong>Nota:</strong> En caso que tsu respuesta sea negativa (NO) por favor especifique si es por trabajo u otro motivo.</h5>
+                            <h2>Para el próximo semestre, Periodo académico 2-2022, ¿Cuentas con la disponibilidad de continuar tu carrera bajo la bimodalidad, es decir, presencial y virtual, según las materias?</h2>
+                            <h5><strong>Nota:</strong> En caso que su respuesta sea negativa (NO) por favor especifique si es por trabajo u otro motivo.</h5>
                         </div>
                     </div>
                 </div>
@@ -67,7 +74,7 @@
                                         <div class="form-group">&nbsp;&nbsp;&nbsp;
                                             <label for="Username">Respuesta</label>
                                             <div class="form-check">&nbsp;&nbsp;&nbsp;
-                                                <input class="form-check-input " type="radio" name="radio1" value="SI">
+                                                <input class="form-check-input " type="radio" name="radio1" value="SI" checked>
                                                 <label class="form-check-label">Si</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <input class="form-check-input" type="radio" name="radio1" value="NO">
                                                 <label class="form-check-label">No</label>

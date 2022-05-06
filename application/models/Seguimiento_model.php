@@ -15,6 +15,25 @@ class Seguimiento_model extends CI_Model
         return $resultado->result();
     }
 
+    public function getCarrerasRezagados()
+    {
+        $this->db->select(
+            'nombre AS nombre_carrera
+            '
+        );
+        $this->db->from('carreras');
+        $this->db->group_start();
+        $this->db->where('nombre', 'Educación integral');
+        $this->db->or_where('nombre', 'Educación especial');
+        $this->db->or_where('nombre', 'Educación preescolar');
+        $this->db->or_where('nombre', 'Electrónica');
+        $this->db->or_where('nombre', 'Electrotecnia');
+        $this->db->or_where('nombre', 'Mecánica');
+        $this->db->group_end();
+        $resultado = $this->db->get();
+        return $resultado->result();
+    }
+
     public function getCantidadPreinscriptos($lapso)
     {
         $this->db->select(
@@ -488,6 +507,42 @@ class Seguimiento_model extends CI_Model
             $this->db->where('status', '2');
         }
         $this->db->where('status', '2');
+        $resultado = $this->db->get();
+        return $resultado->result();
+    }
+
+    public function getRezagadosPorCarrera($carrera)
+    {
+        $planilla_especial = '00900';
+        $planilla_preescolar = '00897';
+        $planilla_integral = '00891';
+        $planilla_mecanica = '00894';
+        $planilla_electronica = '00890';
+        $planilla_electrotecnia = '';
+
+        if ($carrera == 'Educación especial') {
+            $planilla = $planilla_especial;
+        }else if ($carrera == 'Educación integral') {
+             $planilla = $planilla_integral;
+        }else if ($carrera =='Educación preescolar') {
+            $planilla = $planilla_preescolar;
+        }else if ($carrera == 'Electrónica') {
+            $planilla = $planilla_electronica;
+        }else if ($carrera == 'Electrotecnia') {
+            $planilla = $planilla_electrotecnia;
+        }else if ($carrera == 'Mecánica') {
+            $planilla = $planilla_mecanica;
+        }
+
+         $this->db->select(
+            '*
+            '
+        );
+        $this->db->from('aspirante');
+        $this->db->where('carrera', $carrera);
+        $this->db->where('lapso', '2-2022');
+        $this->db->where('planilla >', $planilla);
+
         $resultado = $this->db->get();
         return $resultado->result();
     }

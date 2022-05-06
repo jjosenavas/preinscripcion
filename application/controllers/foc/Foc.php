@@ -18,7 +18,7 @@ class Foc extends CI_Controller
         );
         $this->load->view("layouts/header");
         $this->load->view("layouts/aside");
-        $this->load->view("foc/listado_inscripto", $data);
+        $this->load->view("seguimiento/list_rezagados", $data);
         $this->load->view("layouts/footer");
         $this->load->view("layouts/close_body");
     }
